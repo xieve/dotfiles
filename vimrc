@@ -1,30 +1,12 @@
-" Unicode support
+" Unicode support for unrecognized locales
 if has("multi_byte")
   if &termencoding == ""
-    let &termencoding = &encoding
+    let termencoding = &encoding
   endif
   set encoding=utf-8
   setglobal fileencoding=utf-8
   set fileencodings=ucs-bom,utf-8,latin1
 endif
-
-
-" Vundle
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'wellle/targets.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'edkolev/promptline.vim'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 
 " Airline setup

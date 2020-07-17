@@ -1,12 +1,33 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
-[submodule "zsh-syntax-highlighting"]
-	path = zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "ohmyzsh"]
 	path = ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
-[submodule "vim/bundle/Vundle.vim"]
-	path = vim/bundle/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "vim/pack/targets.vim"]
+	path = vim/pack/xieve/start/targets.vim
+	url = https://github.com/wellle/targets.vim
+[submodule "vim/pack/vim-fugitive"]
+	path = vim/pack/xieve/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/pack/vim-airline"]
+	path = vim/pack/xieve/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "vim/pack/vim-airline-themes"]
+	path = vim/pack/xieve/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/pack/tmuxline.vim"]
+	path = vim/pack/xieve/start/tmuxline.vim
+	url = https://github.com/edkolev/tmuxline.vim
+[submodule "zsh/plugins/zsh-autosuggestions"]
+	path = zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/themes/powerlevel10k"]
+	path = zsh/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
+[submodule "zsh/plugins/zsh-vim-mode"]
+	path = zsh/plugins/zsh-vim-mode
+	url = https://github.com/softmoth/zsh-vim-mode
