@@ -15,3 +15,5 @@ if [ "$TERM" = "xterm-kitty" ]; then
     alias diff='kitty +kitten diff'
     alias klip='kitty +kitten clipboard'
 fi
+
+eval $(thefuck --alias)

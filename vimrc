@@ -14,7 +14,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline_skip_empty_sections = 1
-let g:airline_theme='term'
+let g:airline_theme='base16_shell'
 
 
 " Make vim's window separator match tmux
@@ -49,6 +49,7 @@ set shiftwidth=4    " indenting is 4 spaces
 set autoindent
 set smartindent     " does the right thing (mostly) in programs
 set cindent         " stricter rules for c programs
+filetype plugin indent on
 
 
 " Show invisibles
