@@ -8,6 +8,7 @@
     ~/.zshrc: zshrc
     ~/.vim: vim
     ~/.config/flavours/config.toml: flavours.toml
+    ~/.termux/colors.properties: termux-colors.properties
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
