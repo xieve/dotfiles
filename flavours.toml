@@ -52,6 +52,5 @@ rewrite = true
 [[item]]
 file = "~/.dotfiles/termux-colors.properties"
 template = "termux"
-rewrite = true
 hook = "command -v termux-reload-settings &> /dev/null && termux-reload-settings"
 
