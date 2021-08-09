@@ -5,9 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Add local go binaries to path (base16-universal-manager)
-# PATH+=":$(go env GOPATH)/bin"
-
 # OhMyZsh
 DOTFILES=$HOME/.dotfiles
 ZSH=$DOTFILES/ohmyzsh
@@ -16,8 +13,12 @@ HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_CUSTOM=$DOTFILES/zsh
+
 # If on remote machine, autostart/automagically attach to tmux
 [[ "$(hostname)" =~ "server|pi" ]] && ZSH_TMUX_AUTOSTART=true
+
+# Override KDE's LC_TIME setting (en_SE) because it doesn't exist outside of KDE
+export LC_TIME="en_DK.UTF-8"
 
 plugins=(
         git

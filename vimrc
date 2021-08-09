@@ -14,8 +14,9 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline_skip_empty_sections = 1
-let g:airline_theme='base16_shell'
-
+"let g:airline_theme='base16_shell'
+" vim/autoload/airline/themes/base16.vim, managed by flavours
+let g:airline_theme='flavours'
 
 " Make vim's window separator match tmux
 set fillchars+=vert:│

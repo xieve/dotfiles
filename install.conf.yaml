@@ -7,6 +7,7 @@
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
     ~/.vim: vim
+    ~/.config/flavours/config.toml: flavours.toml
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

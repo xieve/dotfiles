@@ -1,0 +1,49 @@
+# Commands go through zsh
+shell = "zsh -c '{}'"
+
+# Kitty
+[[item]]
+file = "~/.dotfiles/kitty/colors.conf"
+template = "kitty"
+rewrite = true
+# Adjusts theme for slant powerline setup (see kitty.conf)
+hook = '''
+export $(grep -E "active_tab|tab_bar" ~/.dotfiles/kitty/colors.conf | sed "s/ /=/")
+sed -i "s/^\\(active_tab_background \\).*/\\1$active_tab_foreground/
+s/^\\(active_tab_foreground \\).*/\\1$inactive_tab_background/
+s/^\\(inactive_tab_background \\).*/\\1$inactive_tab_background/
+s/^\\(tab_bar_background \\).*/\\1$inactive_tab_background/" ~/.dotfiles/kitty/colors.conf
+'''
+
+# Vim & Tmux
+[[item]]
+file = "~/.dotfiles/vim/autoload/airline/themes/flavours.vim"
+template = "vim-airline-themes"
+rewrite = true
+hook = '''
+# Replaces the dynamic theme name with "flavours"
+sed -i "s/#base16_{s:scheme_slug}#/#flavours#/g" ~/.dotfiles/vim/autoload/airline/themes/flavours.vim
+# Generates a new tmuxline snapshot
+tmux new "vim -c \"TmuxlineSnapshot! ~/.dotfiles/tmuxline.theme\" -c q"
+'''
+
+# Jetbrains
+[[item]]
+file = "~/.dotfiles/jetbrains/colors/flavours.icls"
+template = "jetbrains"
+rewrite = true
+[[item]]
+file = "~/.dotfiles/jetbrains/options/flavours.theme.xml"
+template = "jetbrains"
+subtemplate = "theme"
+rewrite = true
+[[item]]
+file = "~/.dotfiles/jetbrains/options/flavours.accent.xml"
+template = "jetbrains"
+subtemplate = "accent"
+rewrite = true
+[[item]]
+file = "~/.dotfiles/jetbrains/options/flavours.scheme.xml"
+template = "jetbrains"
+subtemplate = "scheme"
+rewrite = true
