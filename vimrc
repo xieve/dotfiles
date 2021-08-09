@@ -1,11 +1,11 @@
 " Unicode support for unrecognized locales
 if has("multi_byte")
-  if &termencoding == ""
-    let termencoding = &encoding
-  endif
-  set encoding=utf-8
-  setglobal fileencoding=utf-8
-  set fileencodings=ucs-bom,utf-8,latin1
+    if &termencoding == ""
+        let termencoding = &encoding
+    endif
+    set encoding=utf-8
+    setglobal fileencoding=utf-8
+    set fileencodings=ucs-bom,utf-8,latin1
 endif
 
 
@@ -17,7 +17,24 @@ let g:airline_skip_empty_sections = 1
 "let g:airline_theme='base16_shell'
 " vim/autoload/airline/themes/base16.vim, managed by flavours
 let g:airline_theme='flavours'
-" TODO: slant seperator
+
+" Slant seperator
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" Powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+let g:tmuxline_separators = {
+            \ 'left' : g:airline_left_sep,
+            \ 'left_alt': g:airline_left_alt_sep,
+            \ 'right' : g:airline_right_sep,
+            \ 'right_alt' : g:airline_right_alt_sep,
+            \ 'space' : ' '}
 
 " Make vim's window separator match tmux
 set fillchars+=vert:│
