@@ -21,14 +21,15 @@ ZSH_CUSTOM=$DOTFILES/zsh
 export LC_TIME="en_DK.UTF-8"
 
 plugins=(
-        git
         zsh-autosuggestions
         zsh-syntax-highlighting
+        zsh-history-substring-search
         zsh-vim-mode
         alias-finder
         command-not-found
         common-aliases
         compleat
+        git
         mosh
         nmap
         systemd
