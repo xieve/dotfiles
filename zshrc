@@ -21,9 +21,8 @@ ZSH_CUSTOM=$DOTFILES/zsh
 export LC_TIME="en_DK.UTF-8"
 
 plugins=(
-        zsh-autosuggestions
         zsh-syntax-highlighting
-        zsh-history-substring-search
+        zsh-autosuggestions
         zsh-vim-mode
         alias-finder
         command-not-found
