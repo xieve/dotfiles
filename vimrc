@@ -17,6 +17,7 @@ let g:airline_skip_empty_sections = 1
 "let g:airline_theme='base16_shell'
 " vim/autoload/airline/themes/base16.vim, managed by flavours
 let g:airline_theme='flavours'
+" TODO: slant seperator
 
 " Make vim's window separator match tmux
 set fillchars+=vert:│

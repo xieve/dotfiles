@@ -46,3 +46,11 @@ plugins=(
 autoload -Uz zmv
 
 source $ZSH/oh-my-zsh.sh
+
+# Overrides vim-modes' settings which seem to be incompatible with syntax-highlighting
+autoload -U up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+vim-mode-bindkey viins vicmd -- up-line-or-beginning-search Up
+vim-mode-bindkey viins vicmd -- down-line-or-beginning-search Down
