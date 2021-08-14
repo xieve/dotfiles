@@ -22,8 +22,6 @@ let g:airline_theme='flavours'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-" Powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -35,6 +33,15 @@ let g:tmuxline_separators = {
             \ 'right' : g:airline_right_sep,
             \ 'right_alt' : g:airline_right_alt_sep,
             \ 'space' : ' '}
+
+let g:tmuxline_preset = {
+            \ 'a': '#S',
+            \ 'win': ['#I', '#W'],
+            \ 'cwin': ['#I', '#W'],
+            \ 'z': '#H',
+            \ 'options': {
+                \'status-justify': 'left'}
+                \}
 
 " Make vim's window separator match tmux
 set fillchars+=vert:│

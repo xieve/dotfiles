@@ -1,3 +1,10 @@
 [user]
-	name = xieve
-	email = xieve@mailbox.org
+    name = xieve
+    email = xieve@mailbox.org
+    signingkey = EBA16635FB2F51E2
+
+[pager]
+    # diff-highlight is script provided by git that shows word-by-word diff
+    log  = perl /usr/share/git/diff-highlight/diff-highlight | less
+    show = perl /usr/share/git/diff-highlight/diff-highlight | less
+    diff = perl /usr/share/git/diff-highlight/diff-highlight | less
