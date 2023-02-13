@@ -23,9 +23,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(
 # If on remote machine, autostart/automagically attach to tmux
 [[ "$(hostname)" =~ "server|pi" ]] && ZSH_TMUX_AUTOSTART=true
 
-# https://wiki.archlinux.org/title/Podman#Docker_Compose
-[[ "$(hostname)" = "xievesvserver" ]] && export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
-
 # TODO: Revert language settings if invoked from inside tmux
 
 # Override KDE's LC_TIME setting (en_SE) because it doesn't exist outside of KDE
