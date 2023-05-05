@@ -34,3 +34,12 @@
 [submodule "zsh/plugins/zsh-history-substring-search"]
 	path = zsh/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search.git
+[submodule "vim/pack/plugins/start/vim-surround"]
+	path = vim/pack/plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/pack/plugins/start/ReplaceWithRegister"]
+	path = vim/pack/plugins/start/ReplaceWithRegister
+	url = https://github.com/vim-scripts/ReplaceWithRegister
+[submodule "vim/pack/plugins/start/vim-indent-object"]
+	path = vim/pack/plugins/start/vim-indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object

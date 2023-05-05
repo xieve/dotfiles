@@ -20,13 +20,12 @@ ZSH_AUTOSUGGEST_STRATEGY=(
     history
 )
 
+if type nvim > /dev/null; then
+    export EDITOR=nvim
+fi
+
 # If on remote machine, autostart/automagically attach to tmux
 [[ "$(hostname)" =~ "server|pi" ]] && ZSH_TMUX_AUTOSTART=true
-
-# TODO: Revert language settings if invoked from inside tmux
-
-# Override KDE's LC_TIME setting (en_SE) because it doesn't exist outside of KDE
-#export LC_TIME="en_DK.UTF-8"
 
 plugins=(
     zsh-vim-mode

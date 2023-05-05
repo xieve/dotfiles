@@ -9,6 +9,7 @@
     ~/.vim: vim
     ~/.config/flavours/config.toml: flavours.toml
     ~/.termux/colors.properties: termux-colors.properties
+    ~/.config/nvim/init.vim: init.vim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

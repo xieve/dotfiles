@@ -22,6 +22,10 @@ if [ "$TERM" = "xterm-kitty" ]; then
     alias klip='kitty +kitten clipboard'
 fi
 
+if type nvim > /dev/null; then
+    alias vim='nvim'
+fi
+
 if command -v thefuck &> /dev/null; then
     eval $(thefuck --alias)
 fi
