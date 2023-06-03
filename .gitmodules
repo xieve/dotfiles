@@ -43,3 +43,6 @@
 [submodule "vim/pack/plugins/start/vim-indent-object"]
 	path = vim/pack/plugins/start/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object
+[submodule "vim/pack/plugins/start/vim-autoformat"]
+	path = vim/pack/plugins/start/vim-autoformat
+	url = https://github.com/vim-autoformat/vim-autoformat.git
