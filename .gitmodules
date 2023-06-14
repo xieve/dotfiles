@@ -5,16 +5,16 @@
 	path = ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
 [submodule "vim/pack/targets.vim"]
-	path = vim/pack/plugins/start/targets.vim
+	path = vim/pack/plugins/opt/targets.vim
 	url = https://github.com/wellle/targets.vim
 [submodule "vim/pack/vim-fugitive"]
-	path = vim/pack/plugins/start/vim-fugitive
+	path = vim/pack/plugins/opt/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
 [submodule "vim/pack/vim-airline"]
-	path = vim/pack/plugins/start/vim-airline
+	path = vim/pack/plugins/opt/vim-airline
 	url = https://github.com/vim-airline/vim-airline
 [submodule "vim/pack/tmuxline.vim"]
-	path = vim/pack/plugins/start/tmuxline.vim
+	path = vim/pack/plugins/opt/tmuxline.vim
 	url = https://github.com/edkolev/tmuxline.vim
 [submodule "zsh/plugins/zsh-autosuggestions"]
 	path = zsh/plugins/zsh-autosuggestions
@@ -35,14 +35,26 @@
 	path = zsh/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search.git
 [submodule "vim/pack/plugins/start/vim-surround"]
-	path = vim/pack/plugins/start/vim-surround
+	path = vim/pack/plugins/opt/vim-surround
 	url = https://github.com/tpope/vim-surround
 [submodule "vim/pack/plugins/start/ReplaceWithRegister"]
-	path = vim/pack/plugins/start/ReplaceWithRegister
+	path = vim/pack/plugins/opt/ReplaceWithRegister
 	url = https://github.com/vim-scripts/ReplaceWithRegister
 [submodule "vim/pack/plugins/start/vim-indent-object"]
-	path = vim/pack/plugins/start/vim-indent-object
+	path = vim/pack/plugins/opt/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object
 [submodule "vim/pack/plugins/start/vim-autoformat"]
 	path = vim/pack/plugins/start/vim-autoformat
 	url = https://github.com/vim-autoformat/vim-autoformat.git
+[submodule "vim/pack/plugins/start/vim-cutlass"]
+	path = vim/pack/plugins/opt/vim-cutlass
+	url = https://github.com/svermeulen/vim-cutlass.git
+[submodule "vim/pack/plugins/start/vim-yoink"]
+	path = vim/pack/plugins/opt/vim-yoink
+	url = https://github.com/svermeulen/vim-yoink
+[submodule "vim/pack/plugins/start/vim-subversive"]
+	path = vim/pack/plugins/opt/vim-subversive
+	url = https://github.com/svermeulen/vim-subversive
+[submodule "vim/pack/plugins/opt/suda.vim"]
+	path = vim/pack/plugins/opt/suda.vim
+	url = https://github.com/lambdalisue/suda.vim
