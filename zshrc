@@ -20,6 +20,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(
     history
 )
 
+export LESS="-FRX"
+
 if type nvim > /dev/null; then
     export EDITOR=nvim
 fi
