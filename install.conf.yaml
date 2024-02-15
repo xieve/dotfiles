@@ -1,16 +1,30 @@
-- clean: ['~']
+- clean: 
+    '~/':
+      recursive: true
+
+- defaults:
+    link:
+      create: true
 
 - link:
-    ~/.gitconfig: gitconfig
-    ~/.tmux.conf: tmux.conf
-    ~/.tmuxline.theme: tmuxline.theme
-    ~/.vimrc: vimrc
-    ~/.zshrc: zshrc
-    ~/.vim: vim
+    ~/.gitconfig:
+    ~/.tmux.conf:
+    ~/.tmuxline.theme:
+    ~/.vimrc:
+    ~/.zshrc:
+    ~/.vim:
     ~/.config/flavours/config.toml: flavours.toml
-    ~/.termux/colors.properties: termux-colors.properties
+    ~/.termux/colors.properties:
+      create: false
+      path: termux-colors.properties
     ~/.config/nvim/init.vim: init.vim
+    ~/.config/kitty: kitty
+    ~/.editorconfig: .editorconfig
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [chsh -s $(which zsh), Changing shell]
+  - 
+    command: echo 'Use `chsh -s $(which zsh)` or similar to set default shell'
+    description: ''
+    stdout: true
+    quiet: true

@@ -1,12 +1,14 @@
 packadd ReplaceWithRegister
+packadd sleuth
 packadd suda.vim
 packadd targets.vim
 packadd vim-cutlass
 packadd vim-indent-object
 packadd vim-subversive
 packadd vim-surround
+packadd vim-textobj-user
+packadd vim-textobj-entire
 packadd vim-yoink
-
 
 " Unicode support for unrecognized locales
 if has("multi_byte")
@@ -116,11 +118,10 @@ set clipboard=unnamed,unnamedplus
 
 
 " Tabs
-set tabstop=4		" tabs are at proper location
-set shiftwidth=4	" indents are 4 spaces long
+set tabstop=4
+set shiftwidth=4
 set autoindent
-set smartindent		" does the right thing (mostly) in programs
-set cindent			" stricter rules for c programs
+set cindent cinkeys-=0#
 filetype plugin indent on
 
 
