@@ -1,3 +1,7 @@
+if type direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -56,3 +60,4 @@ autoload -U down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 vim-mode-bindkey viins vicmd -- up-line-or-beginning-search Up
 vim-mode-bindkey viins vicmd -- down-line-or-beginning-search Down
+
