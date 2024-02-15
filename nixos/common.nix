@@ -9,6 +9,10 @@
 			'';
 		};
 
+		# Bootloader
+		boot.loader.systemd-boot.enable = true;
+		boot.loader.efi.canTouchEfiVariables = true;
+
 		# TZ & Locale
 		time.timeZone = "Europe/Berlin";
 
@@ -25,6 +29,8 @@
 			LC_TELEPHONE = "de_DE.UTF-8";
 			LC_TIME = "de_DE.UTF-8";
 		};
+
+		services.xserver.xkb.layout = "us";
 
 		# Default user
 		users.users.xieve = {
@@ -64,7 +70,7 @@
 			zsh
 		];
 	};
-	
+
 	# If NM is enabled, allow default user to manage it
 	config.users.groups.networkmanager.members = lib.mkIf config.networking.networkmanager.enable [ "xieve" ];
 }

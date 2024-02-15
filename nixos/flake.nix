@@ -1,4 +1,3 @@
-# /etc/nixos/flake.nix
 {
   description = "xieve's nixos flake";
 
@@ -13,7 +12,13 @@
       despacito3 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+          ./despacito3.nix
+        ];
+      };
+      thegreatbelow = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./thegreatbelow.nix
         ];
       };
     };

@@ -6,14 +6,10 @@
 		./common.nix
 	];
 
-	# Bootloader
-	boot.loader.systemd-boot.enable = true;
-	boot.loader.efi.canTouchEfiVariables = true;
-
-	networking.hostName = "despacito3";
-
-	# Enable networking
-	networking.networkmanager.enable = true;
+	networking = {
+		hostName = "despacito3";
+		networkmanager.enable = true;
+	}
 
 	services = {
 		# Desktop stuff
@@ -25,8 +21,6 @@
 				defaultSession = "plasmawayland";
 			};
 			desktopManager.plasma5.enable = true;
-
-			xkb.layout = "us";
 		};
 
 		# Enable CUPS
