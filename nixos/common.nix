@@ -49,10 +49,8 @@
 			bashInteractive
 			zsh
 		];
-		programs = {
-			zsh.enable = true;
-			direnv.enable = true;
-		};
+		programs.zsh.enable = true;
+		programs.direnv.enable = true;
 		users.defaultUserShell = pkgs.zsh;
 
 		# allow unfree pkgs
@@ -63,12 +61,16 @@
 			git
 			htop
 			killall
-			neovim
 			python3
 			tmux
 			unzip
 			zsh
 		];
+
+		programs.neovim = {
+			enable = true;
+			defaultEditor = true;
+		};
 	};
 
 	# If NM is enabled, allow default user to manage it
