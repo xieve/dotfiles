@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nzbr, ... }:
 
 {
 	imports = [
@@ -6,8 +6,10 @@
 		./common.nix
 	];
 
+	services.qemuGuest.enable = true;
 	networking.hostName = "thegreatbelow";
 	services.openssh.enable = true;
+	programs.mosh.enable = true;
 
 	# Disable dhcpcd because we'll use networkd
 	networking.useDHCP = false;
@@ -15,9 +17,9 @@
 	systemd.network = {
 		enable = true;
 
-		networks."10-enp1s0" = {
+		networks."10-lan" = {
 			# Interface
-			matchConfig.Name = "enp1s0";
+			matchConfig.Name = "enp*s*";
 
 			address = [ "192.168.0.2/24" ];
 			routes = [ { routeConfig.Gateway = "192.168.0.1"; } ];
@@ -27,13 +29,38 @@
 			networkConfig.IPv6AcceptRA = true;
 			ipv6AcceptRAConfig = {
 				Token = "::7ac7:1ca1:cab:ba9e";
-				# if we don't set this, we'll get another IPv6 address
+				# if we don't set this, we'll get an extra IPv6 global address
 				DHCPv6Client = false;
 			};
 
 			linkConfig.RequiredForOnline = "routable";
 		};
 	};
+
+	users.users.unraidnobody = {
+		uid = 99;
+		group = "users";
+	};
+
+	boot.supportedFilesystems = [ "ntfs" ]; # for mounting backups
+	nzbr.service.urbackup = {
+		enable = true;
+		backupfolder = "/mnt/user/urbackup/";
+		config = {
+			LOGFILE = "/mnt/user/appdata/binhex-urbackup/urbackup/log/urbackup.log";
+			LOGLEVEL = "debug";
+			USER = "unraidnobody";
+		};
+		package = nzbr.packages.x86_64-linux.urbackup2-server;
+		dataset.images = "";
+		dataset.files = "";
+	};
+	fileSystems."/var/urbackup" = {
+		device = "/mnt/user/appdata/binhex-urbackup/urbackup";
+		fsType = "none";
+		options = [ "bind" ];
+	};
+
 
 	# This value determines the NixOS release from which the default
 	# settings for stateful data, like file locations and database versions
