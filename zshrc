@@ -31,7 +31,7 @@ if type nvim > /dev/null; then
 fi
 
 # If on remote machine, autostart/automagically attach to tmux
-[[ "$(hostname)" =~ "server|pi" ]] && ZSH_TMUX_AUTOSTART=true
+[[ "$(hostname)" =~ "server|pi|thegreatbelow" ]] && ZSH_TMUX_AUTOSTART=true
 
 plugins=(
     zsh-vim-mode
