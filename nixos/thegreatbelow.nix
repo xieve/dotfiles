@@ -1,6 +1,8 @@
 { config, pkgs, nzbr, ... }:
 
-{
+let
+	jellyfinBasePath = "/mnt/user/appdata/binhex-jellyfin";
+in {
 	imports = [
 		./thegreatbelow-hardware.nix
 		./common.nix
@@ -67,6 +69,17 @@
 		device = "/mnt/user/appdata/binhex-urbackup/urbackup";
 		fsType = "none";
 		options = [ "bind" ];
+	};
+
+
+	# jellyfin
+	services.jellyfin = rec {
+		enable = true;
+		openFirewall = true;
+		cacheDir = "${jellyfinBasePath}/cache";
+		configDir = "${jellyfinBasePath}/config";
+		dataDir = "${jellyfinBasePath}/data";
+		logDir = "${jellyfinBasePath}/logs";
 	};
 
 
