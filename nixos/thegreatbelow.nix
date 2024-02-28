@@ -6,13 +6,11 @@
 		./common.nix
 	];
 
-	services.qemuGuest.enable = true;
 	networking.hostName = "thegreatbelow";
-	services.openssh.enable = true;
-	programs.mosh.enable = true;
 
-	# Disable dhcpcd because we'll use networkd
-	networking.useDHCP = false;
+
+	# Network
+	networking.useDHCP = false;  # Disable dhcpcd because we'll use networkd
 
 	systemd.network = {
 		enable = true;
@@ -37,12 +35,22 @@
 		};
 	};
 
+
+	# temp fix for perms as long as this is a VM
 	users.users.unraidnobody = {
 		uid = 99;
 		group = "users";
 	};
 
-	boot.supportedFilesystems = [ "ntfs" ]; # for mounting backups
+
+	# misc services
+	services.qemuGuest.enable = true;
+	services.openssh.enable = true;
+	programs.mosh.enable = true;
+
+
+	# urbackup
+	boot.supportedFilesystems = [ "ntfs" ];  # for mounting backups
 	nzbr.service.urbackup = {
 		enable = true;
 		backupfolder = "/mnt/user/urbackup/";
