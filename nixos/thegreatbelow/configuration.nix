@@ -4,8 +4,8 @@ let
 	jellyfinBasePath = "/mnt/user/appdata/binhex-jellyfin";
 in {
 	imports = [
-		./thegreatbelow-hardware.nix
-		./common.nix
+		./hardware.nix
+		../common.nix
 	];
 
 	networking.hostName = "thegreatbelow";

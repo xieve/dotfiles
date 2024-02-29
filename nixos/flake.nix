@@ -15,7 +15,7 @@
 			despacito3 = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
 				modules = [
-					./despacito3.nix
+					./despacito3/configuration.nix
 				];
 			};
 			thegreatbelow = nixpkgs.lib.nixosSystem {
@@ -23,7 +23,7 @@
 				specialArgs = attrs; # Pass inputs to modules
 				modules = [
 					nzbr.nixosModules."service/urbackup.nix"
-					./thegreatbelow.nix
+					./thegreatbelow/configuration.nix
 				];
 			};
 		};

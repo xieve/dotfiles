@@ -2,8 +2,8 @@
 
 {
 	imports = [
-		./despacito3-hardware.nix
-		./common.nix
+		./hardware.nix
+		../common.nix
 	];
 
 	networking = {
