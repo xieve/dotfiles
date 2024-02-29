@@ -1,8 +1,6 @@
 { config, pkgs, nzbr, ... }:
 
-let
-	jellyfinBasePath = "/mnt/user/appdata/binhex-jellyfin";
-in {
+{
 	imports = [
 		./hardware.nix
 		../common.nix
@@ -73,7 +71,9 @@ in {
 
 
 	# jellyfin
-	services.jellyfin = {
+	services.jellyfin = let 
+		jellyfinBasePath = "/mnt/user/appdata/binhex-jellyfin";
+	in {
 		enable = true;
 		openFirewall = true;
 		cacheDir = "${jellyfinBasePath}/cache";
