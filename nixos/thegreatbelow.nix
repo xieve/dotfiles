@@ -73,7 +73,7 @@ in {
 
 
 	# jellyfin
-	services.jellyfin = rec {
+	services.jellyfin = {
 		enable = true;
 		openFirewall = true;
 		cacheDir = "${jellyfinBasePath}/cache";
