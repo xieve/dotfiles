@@ -36,6 +36,12 @@
 	};
 
 
+	# Firewall
+	networking.firewall.allowedTCPPorts = [
+		8080  # SearXNG (temp)
+	];
+
+
 	# temp fix for perms as long as this is a VM
 	users.users.unraidnobody = {
 		uid = 99;
@@ -44,8 +50,11 @@
 
 
 	# misc services
-	services.qemuGuest.enable = true;
-	services.openssh.enable = true;
+	services = {
+		qemuGuest.enable = true;
+		openssh.enable = true;
+		searx.enable = true;
+	};
 	programs.mosh.enable = true;
 
 
