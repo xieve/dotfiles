@@ -81,14 +81,14 @@
 
 	# jellyfin
 	services.jellyfin = let 
-		jellyfinBasePath = "/mnt/user/appdata/binhex-jellyfin";
+		basePath = "/mnt/user/appdata/binhex-jellyfin";
 	in {
 		enable = true;
 		openFirewall = true;
-		cacheDir = "${jellyfinBasePath}/cache";
-		configDir = "${jellyfinBasePath}/config";
-		dataDir = "${jellyfinBasePath}/data";
-		logDir = "${jellyfinBasePath}/logs";
+		cacheDir = "${basePath}/cache";
+		configDir = "${basePath}/config";
+		dataDir = "${basePath}/data";
+		logDir = "${basePath}/logs";
 	};
 
 
