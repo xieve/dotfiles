@@ -64,6 +64,7 @@ in {
 		extraGroups = [ "wheel" ];
 		# User pkgs
 		packages = with pkgs; [
+			black
 			dnsutils
 			git-crypt
 			mosh
