@@ -8,9 +8,12 @@
 		nzbr = {
 			url = "github:nzbr/nixos";
 		};
+		nixos-wsl = {
+			url = "github:nix-community/NixOS-WSL";
+		};
 	};
 
-	outputs = { self, nixpkgs, nzbr }@attrs: {
+	outputs = { self, nixos-wsl, nixpkgs, nzbr }@attrs: {
 		nixosConfigurations = {
 			despacito3 = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
@@ -24,6 +27,13 @@
 				modules = [
 					nzbr.nixosModules."service/urbackup.nix"
 					./thegreatbelow/configuration.nix
+				];
+			};
+			theeaterofdreams = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				modules = [
+					nixos-wsl.nixosModules.wsl
+					./theeaterofdreams/configuration.nix
 				];
 			};
 		};
