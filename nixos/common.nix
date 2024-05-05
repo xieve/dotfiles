@@ -68,6 +68,7 @@ in {
 			dnsutils
 			git-crypt
 			mosh
+			ripgrep
 		];
 	};
 
