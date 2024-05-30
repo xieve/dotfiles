@@ -13,6 +13,12 @@
 	};
 
 
+	hardware.bluetooth = {
+		enable = true;
+		powerOnBoot = false;
+	};
+
+
 	services = {
 		# Desktop stuff
 		xserver = {
