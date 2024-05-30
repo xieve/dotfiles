@@ -74,6 +74,8 @@ in {
 
 	# If NM is enabled, allow default user to manage it
 	users.groups.networkmanager.members = lib.mkIf config.networking.networkmanager.enable [ "xieve" ];
+	# Workaround for https://github.com/NixOS/nixpkgs/issues/180175
+	systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
 
 
 	# zsh & direnv
