@@ -98,6 +98,7 @@ in {
 		htop
 		killall
 		python3
+		smartmontools
 		tmux
 		unzip
 		zsh
