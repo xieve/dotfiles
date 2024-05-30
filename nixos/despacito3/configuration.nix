@@ -10,7 +10,8 @@
 	networking = {
 		hostName = "despacito3";
 		networkmanager.enable = true;
-	}
+	};
+
 
 	services = {
 		# Desktop stuff
