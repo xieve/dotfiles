@@ -1,13 +1,14 @@
 [user]
-    name = xieve
-    email = 2876434-xieve@users.noreply.gitlab.com
-    signingkey = EBA16635FB2F51E2
+	name = xieve
+	email = 2876434-xieve@users.noreply.gitlab.com
+	signingkey = EBA16635FB2F51E2
 
 [pager]
-    # diff-highlight is script provided by git that shows word-by-word diff
-    #log  = perl /usr/share/git/diff-highlight/diff-highlight | less
-    #show = perl /usr/share/git/diff-highlight/diff-highlight | less
-    #diff = perl /usr/share/git/diff-highlight/diff-highlight | less
+	# diff-highlight is script provided by git that shows word-by-word diff
+	#log  = perl /usr/share/git/diff-highlight/diff-highlight | less
+	#show = perl /usr/share/git/diff-highlight/diff-highlight | less
+	#diff = perl /usr/share/git/diff-highlight/diff-highlight | less
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
