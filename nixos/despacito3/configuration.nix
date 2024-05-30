@@ -67,6 +67,7 @@
 			extraUpFlags = [
 				"--operator=xieve"
 			];
+			useRoutingFeatures = "client";
 		};
 	};
 
