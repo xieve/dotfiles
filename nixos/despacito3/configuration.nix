@@ -95,15 +95,32 @@
 		packages = with pkgs; [
 			(nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ]; })
 			bespokesynth
+			dolphin-emu
 			fira-code
 			firefox
 			kate
 			keepassxc
 			kitty
+			maliit-keyboard
+			moonlight-qt
 			obsidian
 			syncthingtray
 			vscodium
+			wineWowPackages.stagingFull
+			yabridge
+			yabridgectl
 		];
+	};
+
+
+	# Dolphin emu udev rules (allow direct bluetooth access)
+	services.udev.packages = [ pkgs.dolphinEmu ];
+
+
+	# Steam
+	programs.steam = {
+		enable = true;
+		remotePlay.openFirewall = true;
 	};
 
 
