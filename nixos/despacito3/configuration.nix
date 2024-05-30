@@ -6,6 +6,7 @@
 		../common.nix
 	];
 
+
 	networking = {
 		hostName = "despacito3";
 		networkmanager.enable = true;
@@ -44,6 +45,7 @@
 		};
 	};
 
+
 	# Enable sound with pipewire.
 	sound.enable = true;
 	hardware.pulseaudio.enable = false;
@@ -60,6 +62,7 @@
 		# no need to redefine it in your config for now)
 		#media-session.enable = true;
 	};
+
 
 	# User pkgs
 	users.users.xieve = {
@@ -83,6 +86,7 @@
 		wantedBy = [ "xdg-desktop-autostart.target" ];
 		path = [ pkgs.trayscale ];
 	};
+
 
 	# temp workaround until obsidian gets their shit together
 	nixpkgs.config.permittedInsecurePackages = pkgs.lib.optional (pkgs.obsidian.version == "1.5.3") "electron-25.9.0";
