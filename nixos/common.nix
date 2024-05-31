@@ -101,6 +101,7 @@ in {
 		smartmontools
 		tmux
 		unzip
+		usbutils
 		zsh
 	];
 
