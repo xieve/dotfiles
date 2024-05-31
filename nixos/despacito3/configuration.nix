@@ -41,12 +41,12 @@
 		# Desktop stuff
 		xserver = {
 			enable = true;
-
-			displayManager = {
-				sddm.enable = true;
-				defaultSession = "plasmawayland";
-			};
 			desktopManager.plasma5.enable = true;
+		};
+
+		displayManager = {
+			sddm.enable = true;
+			defaultSession = "plasmawayland";
 		};
 
 		# Enable CUPS
