@@ -5,11 +5,11 @@
 		nixpkgs = {
 			url = "github:NixOS/nixpkgs/nixos-unstable";
 		};
-		nzbr = {
-			url = "github:nzbr/nixos";
-		};
 		nixos-wsl = {
 			url = "github:nix-community/NixOS-WSL";
+		};
+		nzbr = {
+			url = "github:nzbr/nixos";
 		};
 	};
 
