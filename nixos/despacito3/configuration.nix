@@ -37,6 +37,10 @@
 	environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
 
 
+	# nix-ld, needed this for a cursed risc v gcc binary at gpn22
+	programs.nix-ld.enable = true;
+
+
 	services = {
 		# Desktop stuff
 		xserver = {
