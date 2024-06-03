@@ -61,7 +61,7 @@ in {
 	users.users.xieve = {
 		isNormalUser = true;
 		description = "xieve";
-		extraGroups = [ "wheel" ];
+		extraGroups = [ "wheel" "dialout" ];
 		# User pkgs
 		packages = with pkgs; [
 			black
