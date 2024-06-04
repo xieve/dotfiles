@@ -29,7 +29,7 @@ hook = '''
 # Replaces the dynamic theme name with "flavours"
 sed -i "s/#base16_{s:scheme_slug}#/#flavours#/g" ~/.dotfiles/vim/autoload/airline/themes/flavours.vim
 # Generates a new tmuxline snapshot
-tmux new "vim -c \"TmuxlineSnapshot! ~/.dotfiles/tmuxline.theme\" -c q"
+tmux new "vim -c \"packadd tmuxline.vim\" -c \"Tmuxline airline\" -c \"TmuxlineSnapshot! ~/.dotfiles/tmuxline.theme\" -c q"
 '''
 
 # Termux
