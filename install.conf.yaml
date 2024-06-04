@@ -13,7 +13,9 @@
     ~/.vimrc:
     ~/.zshrc:
     ~/.vim:
-    ~/.config/flavours/config.toml: flavours.toml
+    ~/.config/flavours: flavours
+    # Workaround for https://github.com/Misterio77/flavours/issues/79
+    ~/.local/share/flavours/base16/sources: flavours/sources
     ~/.termux/colors.properties:
       create: false
       path: termux-colors.properties
