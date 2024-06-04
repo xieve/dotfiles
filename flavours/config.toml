@@ -1,19 +1,5 @@
 # Commands go through zsh shell = "zsh -c '{}'"
 
-# Kitty
-[[item]]
-file = "~/.dotfiles/kitty/colors.conf"
-template = "kitty"
-rewrite = true
-# Adjusts theme for slant powerline setup (see kitty.conf)
-hook = '''
-export $(grep -E "active_tab|tab_bar" ~/.dotfiles/kitty/colors.conf | sed "s/ /=/")
-sed -i "s/^\\(active_tab_background \\).*/\\1$active_tab_foreground/
-s/^\\(active_tab_foreground \\).*/\\1$inactive_tab_background/
-s/^\\(inactive_tab_background \\).*/\\1$inactive_tab_background/
-s/^\\(tab_bar_background \\).*/\\1$inactive_tab_background/" ~/.dotfiles/kitty/colors.conf
-'''
-
 # Vim & Tmux
 [[item]]
 file = "~/.dotfiles/vim/colors/flavours.vim"
@@ -37,3 +23,9 @@ tmux new "vim -c \"packadd tmuxline.vim\" -c \"Tmuxline airline\" -c \"TmuxlineS
 file = "~/.dotfiles/termux-colors.properties"
 template = "termux"
 hook = "command -v termux-reload-settings &> /dev/null && termux-reload-settings"
+
+# WezTerm
+[[item]]
+file = "~/.dotfiles/wezterm/colors/flavours.toml"
+template = "wezterm"
+rewrite = true

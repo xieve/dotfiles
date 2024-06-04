@@ -105,12 +105,12 @@
 			flavours
 			kate
 			keepassxc
-			kitty
 			maliit-keyboard
 			moonlight-qt
 			obsidian
 			syncthingtray
 			vscodium
+			wezterm
 			wineWowPackages.stagingFull
 			yabridge
 			yabridgectl

@@ -20,7 +20,7 @@
       create: false
       path: termux-colors.properties
     ~/.config/nvim/init.vim: init.vim
-    ~/.config/kitty: kitty
+    ~/.config/wezterm: wezterm
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
