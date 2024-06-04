@@ -67,6 +67,7 @@ in {
 			black
 			dnsutils
 			git-crypt
+			neofetch
 			ripgrep
 		];
 	};

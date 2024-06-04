@@ -102,6 +102,7 @@
 			dolphin-emu
 			fira-code
 			firefox
+			flavours
 			kate
 			keepassxc
 			kitty
