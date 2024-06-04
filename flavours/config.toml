@@ -32,27 +32,6 @@ sed -i "s/#base16_{s:scheme_slug}#/#flavours#/g" ~/.dotfiles/vim/autoload/airlin
 tmux new "vim -c \"TmuxlineSnapshot! ~/.dotfiles/tmuxline.theme\" -c q"
 '''
 
-# Jetbrains
-[[item]]
-file = "~/.dotfiles/jetbrains/colors/flavours.icls"
-template = "jetbrains"
-rewrite = true
-[[item]]
-file = "~/.dotfiles/jetbrains/options/flavours.theme.xml"
-template = "jetbrains"
-subtemplate = "theme"
-rewrite = true
-[[item]]
-file = "~/.dotfiles/jetbrains/options/flavours.accent.xml"
-template = "jetbrains"
-subtemplate = "accent"
-rewrite = true
-[[item]]
-file = "~/.dotfiles/jetbrains/options/flavours.scheme.xml"
-template = "jetbrains"
-subtemplate = "scheme"
-rewrite = true
-
 # Termux
 [[item]]
 file = "~/.dotfiles/termux-colors.properties"
