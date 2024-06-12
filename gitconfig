@@ -3,6 +3,9 @@
 	email = 2876434-xieve@users.noreply.gitlab.com
 	signingkey = EBA16635FB2F51E2
 
+[core]
+	autocrlf = input
+
 [pager]
 	# diff-highlight is script provided by git that shows word-by-word diff
 	#log  = perl /usr/share/git/diff-highlight/diff-highlight | less
