@@ -110,6 +110,11 @@ if !exists("g:vscode")
 	" Line numbering
 	set number
 	set relativenumber
+
+
+	" Folding
+	set foldmethod=syntax  " folds are appropriately created for supported languages
+	set nofoldenable  " all folds open by default
 endif
 
 
