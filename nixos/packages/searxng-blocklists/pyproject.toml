@@ -1,0 +1,9 @@
+[project]
+name = "searxng-blocklists"
+version = "0.0.1"
+
+[tool.setuptools]
+py-modules = ["blocklists"]
+
+[project.entry-points."searxng.plugins"]
+blocklists = "blocklists"

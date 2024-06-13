@@ -1,2 +1,7 @@
+*.egg-info/
+.history/
+.venv/
+__pycache__/
+build/
+dist/
 vim/.netrwhist
-.history

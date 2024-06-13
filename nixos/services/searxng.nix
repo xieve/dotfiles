@@ -1,11 +1,32 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
-{
-	# SearXNG
+let
+	searxng = config.services.searx.package;
+in {
+	# i believe lib.stringAfter defines at what beuild stage of the system the script is executed
+	system.activationScripts.makeSearxNGStaticDir = lib.mkIf (
+		config.services.searx.enable
+		&& config.services.searx.settings ? ui.static_path
+	) (let
+		staticPath = config.services.searx.settings.ui.static_path;
+	in lib.stringAfter [ "var" ] ''
+		install --mode='u=rwx' --owner=searx --group=searx --directory '${staticPath}' &&
+		cd '${searxng.outPath}/${searxng.pythonModule.sitePackages}/searx/static' &&
+		find . -type f -exec install -D --mode='u=rw,a=r' '{}' '${staticPath}/{}' \;
+	'');
+	# TODO: this needs cleanup after uninstall. maybe there's a better way
+
 	services.searx = {
 		redisCreateLocally = true;
 		runInUwsgi = true;
 		environmentFile = ./searxng.env;
+		uwsgiConfig = {
+			http = ":8080";
+			pythonPackages = self: [
+				config.services.searx.package
+				(pkgs.callPackage ../packages/searxng-blocklists/package.nix {})
+			];
+		};
 		settings = {
 			use_default_settings = true;
 			categories_as_tabs = {
@@ -22,6 +43,7 @@
 				limiter = true;
 				image_proxy = true;
 				method = "GET";
+				secret_key = "@SEARXNG_SECRET@";
 			};
 			search = {
 				autocomplete = "duckduckgo";
@@ -29,9 +51,13 @@
 				languages = ["all" "en" "de"];
 			};
 			ui = {
+				static_path = "/var/lib/searxng/";  # needed for plugins to work
 				static_use_hash = true;
 				query_in_title = true;
 			};
+			plugins = [
+				"blocklists"
+			];
 			engines = [
 				{
 					name = "wolframalpha";
@@ -172,10 +198,5 @@
 			];
 			outgoing.max_redirects = 30;
 		};
-	};
-	
-	# Workaround for https://github.com/NixOS/nixpkgs/issues/292652
-	services.uwsgi.instance.vassals = lib.mkIf config.services.searx.enable {
-		searx.env = lib.strings.splitString "\n" (lib.readFile config.services.searx.environmentFile);
 	};
 }
