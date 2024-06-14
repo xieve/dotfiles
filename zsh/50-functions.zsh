@@ -3,6 +3,7 @@ compose() { grep --no-filename --ignore-case "$@" /usr/share/X11/locale/en_US.UT
 rex() { echo "$@" | xxd -r -p }
 sine() { pactl load-module module-sine frequency=$@; read; pactl unload-module module-sine }
 alias_or_name() { alias_value $@ || echo $@ }
+cd() { pushd $@ > /dev/null }
 
 ansi_colors() {
   # source: https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
