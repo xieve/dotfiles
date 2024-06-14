@@ -2,7 +2,7 @@ alias arduino-cli='arduino-cli --config-file ~/Arduino/.cli-config.yml'
 alias bat='sudo tpacpi-bat -v'
 alias find="noglob $(alias_or_name find)"
 alias sed="noglob $(alias_or_name sed)"
-alias rg="noglob $(alias_or_name rg)"
+alias rg="noglob $(alias_or_name rg) --smart-case"
 alias ccat='pygmentize -g'
 # Some applications don't support locales properly
 if [ "$LC_COLLATE" = "en_DE.UTF-8" ]; then
