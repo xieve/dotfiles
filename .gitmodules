@@ -67,3 +67,9 @@
 [submodule "vim/pack/plugins/opt/vim-textobj-user"]
 	path = vim/pack/plugins/opt/vim-textobj-user
 	url = https://github.com/kana/vim-textobj-user.git
+[submodule "vim/pack/plugins/opt/lh-brackets"]
+	path = vim/pack/plugins/opt/lh-brackets
+	url = https://github.com/LucHermitte/lh-brackets
+[submodule "vim/pack/plugins/start/lh-vim-lib"]
+	path = vim/pack/plugins/start/lh-vim-lib
+	url = https://github.com/LucHermitte/lh-vim-lib
