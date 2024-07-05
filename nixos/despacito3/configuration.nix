@@ -63,8 +63,20 @@ in {
 	];
 
 
-	# Dolphin emu udev rules (allow direct bluetooth access)
-	services.udev.packages = [ pkgs.dolphinEmu ];
+	services.udev.packages = [
+		# Dolphin emu udev rules (allow direct bluetooth access)
+		pkgs.dolphinEmu
+		# wchisp rules for CH5XX RISC V chips (badgemagic)
+		(pkgs.writeTextFile {
+			name = "wchisp-udev-rules";
+			text = ''
+				SUBSYSTEM=="usb", ATTR{idVendor}="1a86", ATTR{idProduct}=="8010", MODE="0660", TAG+="uaccess"
+				SUBSYSTEM=="usb", ATTR{idVendor}="4348", ATTR{idProduct}=="55e0", MODE="0660", TAG+="uaccess"
+				SUBSYSTEM=="usb", ATTR{idVendor}="1a86", ATTR{idProduct}=="8012", MODE="0660", TAG+="uaccess"
+			'';
+			destination = "/etc/udev/rules.d/70-wch.rules";
+		})
+	];
 
 
 	# Steam
