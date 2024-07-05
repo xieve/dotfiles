@@ -19,6 +19,7 @@
     ~/.termux/colors.properties:
       create: false
       path: termux-colors.properties
+    ~/.config/burn-my-windows/profiles: burn-my-windows
     ~/.config/nvim/init.vim: init.vim
     ~/.config/wezterm: wezterm
 
