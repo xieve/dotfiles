@@ -62,6 +62,7 @@ in {
 		extraGroups = [ "wheel" "dialout" ];
 		# User pkgs
 		packages = with pkgs; [
+			p7zip
 			black
 			dnsutils
 			git-crypt
