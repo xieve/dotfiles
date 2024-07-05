@@ -521,6 +521,22 @@
     },
     "nixos-hardware": {
       "locked": {
+        "lastModified": 1719895800,
+        "narHash": "sha256-xNbjISJTFailxass4LmdWeV4jNhAlmJPwj46a/GxE6M=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "6e253f12b1009053eff5344be5e835f604bb64cd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixos-hardware_2": {
+      "locked": {
         "lastModified": 1716173274,
         "narHash": "sha256-FC21Bn4m6ctajMjiUof30awPBH/7WjD0M5yqrWepZbY=",
         "owner": "NixOS",
@@ -729,7 +745,7 @@
         "nix-ld-rs": "nix-ld-rs",
         "nixd": "nixd",
         "nixos-generators": "nixos-generators",
-        "nixos-hardware": "nixos-hardware",
+        "nixos-hardware": "nixos-hardware_2",
         "nixos-wsl": "nixos-wsl_2",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-23-05": "nixpkgs-23-05",
@@ -772,6 +788,7 @@
     },
     "root": {
       "inputs": {
+        "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
         "nzbr": "nzbr"
