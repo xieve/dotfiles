@@ -69,6 +69,7 @@ in {
 			git-crypt
 			neofetch
 			ripgrep
+			tree
 		];
 	};
 
