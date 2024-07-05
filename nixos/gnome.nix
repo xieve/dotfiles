@@ -64,6 +64,12 @@ in {
 	};
 
 
+	# Force Firefox to use Wayland
+	environment.variables = {
+		MOZ_ENABLE_WAYLAND = 1;
+	};
+
+
 	programs.dconf = pkgs.lib.mkIf config.services.xserver.desktopManager.gnome.enable {
 		enable = true;
 		profiles.user.databases = [{
