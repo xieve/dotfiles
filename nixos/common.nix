@@ -65,10 +65,10 @@ in {
 			p7zip
 			black
 			dnsutils
+			fd
 			git-crypt
 			neofetch
 			ripgrep
-			fd
 		];
 	};
 
