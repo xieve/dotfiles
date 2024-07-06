@@ -141,7 +141,7 @@ cnoremap w!! SudaWrite
 
 
 " vim-subversive
-" s<text object> to substitute all occurances of <text object>. use `cl` for
+" s<text object> to replace <text object> with selected register. use `cl` for
 " old behaviour.
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
