@@ -2,21 +2,11 @@
 
 with lib;
 let
-	# https://github.com/evanjs/nixos_cfg/blob/4bb5b0b84a221b25cf50853c12b9f66f0cad3ea4/config/new-modules/default.nix
-	# Recursively constructs an attrset of a given folder, recursing on directories, value of attrs is the filetype
-	getDir = dir: mapAttrs
-		(file: type:
-			if type == "directory" then getDir "${dir}/${file}" else type
-		)
-		(builtins.readDir dir);
-
-	# Collects all files of a directory as a list of strings of paths
-	getFiles = dir: collect isString (mapAttrsRecursive (path: type: concatStringsSep "/" path) (getDir dir));
-
-	# Filters out directories that don't end with .nix, also makes the strings absolute
-	getNixFiles = dir: map
-		(file: dir + "/${file}")
-		(filter (file: hasSuffix ".nix" file) (getFiles dir));
+	getNixFiles = dir:
+		(filter
+			(file: hasSuffix ".nix" file)
+			(lib.filesystem.listFilesRecursive dir)
+		);
 in {
 	imports = getNixFiles ./services;
 
