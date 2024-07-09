@@ -20,13 +20,13 @@
   };
 
   boot = {
-		kernelParams = [
-			"console=ttyS0,115200n8"
-			"console=tty0"
-			''root="LABEL=nixos"''
-		];
-      # Override common.nix
-		loader.systemd-boot.enable = false;
+    kernelParams = [
+      "console=ttyS0,115200n8"
+      "console=tty0"
+      ''root="LABEL=nixos"''
+    ];
+    # Override common.nix
+    loader.systemd-boot.enable = false;
   };
-	services.openssh.enable = true;
+  services.openssh.enable = true;
 }

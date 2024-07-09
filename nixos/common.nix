@@ -105,7 +105,7 @@ in
   # This will break nixos-rebuild on system which don't have my dotfiles cloned
   # to this location, but you can always resort to specifying the config
   # location manually.
-	environment.etc."nixos/flake.nix".source = "/home/xieve/.dotfiles/nixos/flake.nix";
+  environment.etc."nixos/flake.nix".source = "/home/xieve/.dotfiles/nixos/flake.nix";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
