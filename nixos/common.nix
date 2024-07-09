@@ -7,7 +7,7 @@
 
 with lib;
 let
-  getNixFiles = dir: (filter (file: hasSuffix ".nix" file) (lib.filesystem.listFilesRecursive dir));
+  getNixFiles = dir: (filter (file: hasSuffix ".nix" file) (filesystem.listFilesRecursive dir));
 in
 {
   imports = getNixFiles ./services;
@@ -20,8 +20,8 @@ in
 
   # Bootloader
   boot.loader = mkIf (!((config ? wsl) && config.wsl.enable)) {
-    systemd-boot.enable = lib.mkDefault true;
-    efi.canTouchEfiVariables = lib.mkDefault true;
+    systemd-boot.enable = mkDefault true;
+    efi.canTouchEfiVariables = mkDefault true;
   };
 
   # TZ & Locale
@@ -65,7 +65,7 @@ in
   };
 
   # If NM is enabled, allow default user to manage it
-  users.groups.networkmanager.members = lib.mkIf config.networking.networkmanager.enable [ "xieve" ];
+  users.groups.networkmanager.members = mkIf config.networking.networkmanager.enable [ "xieve" ];
   # Workaround for https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = [
     ""
