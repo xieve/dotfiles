@@ -66,15 +66,11 @@ in {
 	services.udev.packages = [
 		# Dolphin emu udev rules (allow direct bluetooth access)
 		pkgs.dolphinEmu
-		# wchisp rules for CH5XX RISC V chips (badgemagic)
+		# Allow raw access to all usb storage devices
 		(pkgs.writeTextFile {
-			name = "wchisp-udev-rules";
-			text = ''
-				SUBSYSTEM=="usb", ATTR{idVendor}="1a86", ATTR{idProduct}=="8010", MODE="0660", TAG+="uaccess"
-				SUBSYSTEM=="usb", ATTR{idVendor}="4348", ATTR{idProduct}=="55e0", MODE="0660", TAG+="uaccess"
-				SUBSYSTEM=="usb", ATTR{idVendor}="1a86", ATTR{idProduct}=="8012", MODE="0660", TAG+="uaccess"
-			'';
-			destination = "/etc/udev/rules.d/70-wch.rules";
+			name = "usb-storage-udev-rules";
+			text = ''SUBSYSTEM=="usb", ATTRS{removable}=="removable", MODE="0660", TAG+="uaccess"'';
+			destination = "/etc/udev/rules.d/70-usb-storage.rules";
 		})
 	];
 
