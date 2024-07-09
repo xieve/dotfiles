@@ -1,4 +1,10 @@
-{ config, lib, pkgs, nzbr, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  nzbr,
+  ...
+}:
 
 {
   imports = [
@@ -8,9 +14,8 @@
 
   networking.hostName = "thegreatbelow";
 
-
   # Network
-  networking.useDHCP = false;  # Disable dhcpcd because we'll use networkd
+  networking.useDHCP = false; # Disable dhcpcd because we'll use networkd
 
   systemd.network = {
     enable = true;
@@ -35,12 +40,10 @@
     };
   };
 
-
   # Firewall
   networking.firewall.allowedTCPPorts = [
-    8080  # SearXNG (temp)
+    8080 # SearXNG (temp)
   ];
-
 
   # temp fix for perms as long as this is a VM
   # user is called "nobody" on unraid
@@ -48,7 +51,6 @@
     uid = 99;
     group = "users";
   };
-
 
   # misc services
   services = {
@@ -118,9 +120,8 @@
   '';
   programs.mosh.enable = true;
 
-
   # urbackup
-  boot.supportedFilesystems = [ "ntfs" ];  # for mounting backups
+  boot.supportedFilesystems = [ "ntfs" ]; # for mounting backups
   nzbr.service.urbackup = {
     enable = true;
     backupfolder = "/mnt/user/urbackup/";
@@ -144,20 +145,24 @@
   };
   programs.fuse.userAllowOther = true;
 
-  users.groups.users.members = [ "root" "urbackup" ];
+  users.groups.users.members = [
+    "root"
+    "urbackup"
+  ];
 
   users.groups.urbackup.members = [ "root" ];
 
-
   # jellyfin
-  services.jellyfin = let 
-    basePath = "/mnt/user/appdata/binhex-jellyfin";
-  in {
-    enable = true;
-    openFirewall = true;
-    cacheDir = "${basePath}/cache";
-    configDir = "${basePath}/config";
-    dataDir = "${basePath}/data";
-    logDir = "${basePath}/logs";
-  };
+  services.jellyfin =
+    let
+      basePath = "/mnt/user/appdata/binhex-jellyfin";
+    in
+    {
+      enable = true;
+      openFirewall = true;
+      cacheDir = "${basePath}/cache";
+      configDir = "${basePath}/config";
+      dataDir = "${basePath}/data";
+      logDir = "${basePath}/logs";
+    };
 }

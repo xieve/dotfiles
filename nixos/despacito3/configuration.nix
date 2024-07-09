@@ -2,18 +2,17 @@
 
 let
   home = config.users.users.xieve.home;
-in {
+in
+{
   imports = [
     ./hardware.nix
     ../common.nix
     ../gnome.nix
   ];
 
-
   networking = {
     hostName = "despacito3";
   };
-
 
   hardware = {
     bluetooth = {
@@ -25,8 +24,9 @@ in {
     sensor.iio.enable = true;
   };
 
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
-
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  }; # Force intel-media-driver
 
   services = {
     syncthing = {
@@ -37,16 +37,12 @@ in {
       configDir = "${home}/.config/syncthing";
     };
 
-
     tailscale = {
       enable = true;
-      extraUpFlags = [
-        "--operator=xieve"
-      ];
+      extraUpFlags = [ "--operator=xieve" ];
       useRoutingFeatures = "client";
     };
   };
-
 
   # User pkgs
   users.users.xieve.packages = with pkgs; [
@@ -62,7 +58,6 @@ in {
     yabridgectl
   ];
 
-
   services.udev.packages = [
     # Dolphin emu udev rules (allow direct bluetooth access)
     pkgs.dolphinEmu
@@ -74,13 +69,11 @@ in {
     })
   ];
 
-
   # Steam
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
   };
-
 
   systemd.user.services.trayscale = {
     script = "sleep 5; trayscale --hide-window";
@@ -88,7 +81,8 @@ in {
     path = [ pkgs.trayscale ];
   };
 
-
   # temp workaround until obsidian gets their shit together
-  nixpkgs.config.permittedInsecurePackages = pkgs.lib.optional (pkgs.obsidian.version == "1.5.3") "electron-25.9.0";
+  nixpkgs.config.permittedInsecurePackages = pkgs.lib.optional (
+    pkgs.obsidian.version == "1.5.3"
+  ) "electron-25.9.0";
 }

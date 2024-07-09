@@ -19,41 +19,48 @@
     };
   };
 
-  outputs = { self, flake-utils, nixos-hardware, nixos-wsl, nixpkgs, nzbr }@attrs: {
-    nixosConfigurations = {
-      despacito3 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./despacito3/configuration.nix
-        ];
+  outputs =
+    {
+      self,
+      flake-utils,
+      nixos-hardware,
+      nixos-wsl,
+      nixpkgs,
+      nzbr,
+    }@attrs:
+    {
+      nixosConfigurations = {
+        despacito3 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./despacito3/configuration.nix ];
+        };
+        thegreatbelow = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = attrs; # Pass inputs to modules
+          modules = [
+            nzbr.nixosModules."service/urbackup.nix"
+            ./thegreatbelow/configuration.nix
+          ];
+        };
+        theeaterofdreams = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            nixos-wsl.nixosModules.wsl
+            ./theeaterofdreams/configuration.nix
+          ];
+        };
+        warmplace = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
+            ./warmplace/configuration.nix
+            {
+              nixpkgs.config.allowUnsupportedSystem = true;
+              nixpkgs.hostPlatform.system = "aarch64-linux";
+            }
+          ];
+        };
       };
-      thegreatbelow = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = attrs; # Pass inputs to modules
-        modules = [
-          nzbr.nixosModules."service/urbackup.nix"
-          ./thegreatbelow/configuration.nix
-        ];
-      };
-      theeaterofdreams = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nixos-wsl.nixosModules.wsl
-          ./theeaterofdreams/configuration.nix
-        ];
-      };
-      warmplace = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          nixos-hardware.nixosModules.raspberry-pi-4
-          ./warmplace/configuration.nix
-          {
-            nixpkgs.config.allowUnsupportedSystem = true;
-            nixpkgs.hostPlatform.system = "aarch64-linux";
-          }
-        ];
-      };
-    };
     }
     // flake-utils.lib.eachDefaultSystem (system: {
       formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;

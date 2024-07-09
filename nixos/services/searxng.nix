@@ -9,13 +9,13 @@
     settings = {
       use_default_settings = true;
       categories_as_tabs = {
-        general = [];
-        images = [];
-        videos = [];
-        news = [];
-        map = [];
-        it = [];
-        science = [];
+        general = [ ];
+        images = [ ];
+        videos = [ ];
+        news = [ ];
+        map = [ ];
+        it = [ ];
+        science = [ ];
         #files = [];
       };
       server = {
@@ -26,7 +26,11 @@
       search = {
         autocomplete = "duckduckgo";
         safe_search = 1;
-        languages = ["all" "en" "de"];
+        languages = [
+          "all"
+          "en"
+          "de"
+        ];
       };
       ui = {
         static_use_hash = true;
@@ -81,7 +85,11 @@
         }
         {
           name = "github";
-          categories = ["it" "repos" "files"];
+          categories = [
+            "it"
+            "repos"
+            "files"
+          ];
         }
         {
           name = "filepursuit";
@@ -99,12 +107,18 @@
         {
           name = "peertube";
           disabled = false;
-          categories = ["videos" "files"];
+          categories = [
+            "videos"
+            "files"
+          ];
         }
         {
           name = "mediathekviewweb";
           disabled = false;
-          categories = ["videos" "files"];
+          categories = [
+            "videos"
+            "files"
+          ];
         }
         {
           name = "library genesis";
@@ -173,7 +187,7 @@
       outgoing.max_redirects = 30;
     };
   };
-  
+
   # Workaround for https://github.com/NixOS/nixpkgs/issues/292652
   services.uwsgi.instance.vassals = lib.mkIf config.services.searx.enable {
     searx.env = lib.strings.splitString "\n" (lib.readFile config.services.searx.environmentFile);

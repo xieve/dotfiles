@@ -1,10 +1,13 @@
-{ lib, pkgs, config, modulesPath, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  modulesPath,
+  ...
+}:
 
 {
-  imports = [
-    ../common.nix
-  ];
-
+  imports = [ ../common.nix ];
 
   wsl = {
     enable = true;
@@ -16,11 +19,9 @@
     startMenuLaunchers = true;
   };
 
-
   # run unpatched dynamic binaries on nixos
   # jetbrains remote dev needs this
   programs.nix-ld.enable = true;
-
 
   # doesn't work. eh
   #fileSystems."/home" = {
