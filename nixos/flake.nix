@@ -54,10 +54,6 @@
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
             ./warmplace/configuration.nix
-            {
-              nixpkgs.config.allowUnsupportedSystem = true;
-              nixpkgs.hostPlatform.system = "aarch64-linux";
-            }
           ];
         };
       };

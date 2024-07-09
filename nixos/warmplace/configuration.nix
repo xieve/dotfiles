@@ -20,24 +20,13 @@
   };
 
   boot = {
-    kernelParams = [ "console=ttyS0,115200n8" ];
-    loader = {
-      efi.canTouchEfiVariables = false;
-      # This is set in the the nixos-hardware RPi4 module, we don't need it
-      generic-extlinux-compatible.enable = false;
+		kernelParams = [
+			"console=ttyS0,115200n8"
+			"console=tty0"
+			''root="LABEL=nixos"''
+		];
       # Override common.nix
-      systemd-boot.enable = false;
-      grub = {
-        enable = true;
-        efiSupport = true;
-        efiInstallAsRemovable = true;
-        device = "nodev";
-        extraConfig = "
-          serial --speed=115200 --unit=0
-          terminal_input console serial
-          terminal_output gfxterm serial
-        ";
-      };
-    };
+		loader.systemd-boot.enable = false;
   };
+	services.openssh.enable = true;
 }
