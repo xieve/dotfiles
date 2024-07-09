@@ -53,12 +53,12 @@ in
     ];
     # User pkgs
     packages = with pkgs; [
-      p7zip
       black
       dnsutils
       fd
       git-crypt
       neofetch
+      p7zip
       ripgrep
       tree
     ];
