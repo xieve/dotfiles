@@ -1,15 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
-  getNixFiles = dir:
-    (filter
-      (file: hasSuffix ".nix" file)
-      (lib.filesystem.listFilesRecursive dir)
-    );
-in {
+  getNixFiles = dir: (filter (file: hasSuffix ".nix" file) (lib.filesystem.listFilesRecursive dir));
+in
+{
   imports = getNixFiles ./services;
-
 
   # Enable flakes
   nix = {
@@ -17,13 +18,11 @@ in {
     settings.experimental-features = "nix-command flakes";
   };
 
-
   # Bootloader
   boot.loader = mkIf (!((config ? wsl) && config.wsl.enable)) {
     systemd-boot.enable = lib.mkDefault true;
     efi.canTouchEfiVariables = lib.mkDefault true;
   };
-
 
   # TZ & Locale
   time.timeZone = "Europe/Berlin";
@@ -44,12 +43,14 @@ in {
 
   services.xserver.xkb.layout = "us";
 
-
   # Default user
   users.users.xieve = {
     isNormalUser = true;
     description = "xieve";
-    extraGroups = [ "wheel" "dialout" ];
+    extraGroups = [
+      "wheel"
+      "dialout"
+    ];
     # User pkgs
     packages = with pkgs; [
       p7zip
@@ -66,8 +67,10 @@ in {
   # If NM is enabled, allow default user to manage it
   users.groups.networkmanager.members = lib.mkIf config.networking.networkmanager.enable [ "xieve" ];
   # Workaround for https://github.com/NixOS/nixpkgs/issues/180175
-  systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
-
+  systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = [
+    ""
+    "${pkgs.networkmanager}/bin/nm-online -q"
+  ];
 
   # zsh & direnv
   environment.shells = with pkgs; [
@@ -78,10 +81,8 @@ in {
   programs.direnv.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-
   # allow unfree pkgs
   nixpkgs.config.allowUnfree = true;
-
 
   # system pkgs
   environment.systemPackages = with pkgs; [
@@ -96,12 +97,10 @@ in {
     zsh
   ];
 
-
   programs.neovim = {
     enable = true;
     defaultEditor = true;
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

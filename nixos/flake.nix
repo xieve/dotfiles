@@ -2,6 +2,9 @@
   description = "xieve's nixos flake";
 
   inputs = {
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
     nixpkgs = {
       url = "github:numtide/nixpkgs-unfree/nixos-unstable";
     };
@@ -16,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixos-hardware, nixos-wsl, nixpkgs, nzbr }@attrs: {
+  outputs = { self, flake-utils, nixos-hardware, nixos-wsl, nixpkgs, nzbr }@attrs: {
     nixosConfigurations = {
       despacito3 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -51,6 +54,8 @@
         ];
       };
     };
-  };
+    }
+    // flake-utils.lib.eachDefaultSystem (system: {
+      formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+    });
 }
-
