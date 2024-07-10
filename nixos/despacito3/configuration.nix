@@ -39,7 +39,6 @@ in
 
     tailscale = {
       enable = true;
-      extraUpFlags = [ "--operator=xieve" ];
       useRoutingFeatures = "client";
     };
   };

@@ -102,6 +102,9 @@ in
     defaultEditor = true;
   };
 
+  # This way, we can run the tailscale CLI as user (if the service is enabled for the host)
+  services.tailscale.extraUpFlags = [ "--operator=xieve" ];
+
   # This will break nixos-rebuild on system which don't have my dotfiles cloned
   # to this location, but you can always resort to specifying the config
   # location manually.
