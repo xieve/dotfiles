@@ -25,6 +25,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(
 )
 
 export LESS="-FRX"
+export SYSTEMD_LESS="$LESS"
 
 if type nvim > /dev/null; then
     export EDITOR=nvim
