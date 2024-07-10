@@ -28,5 +28,9 @@
     # Override common.nix
     loader.systemd-boot.enable = false;
   };
-  services.openssh.enable = true;
+
+  services = {
+    openssh.enable = true;
+    tailscale.enable = true;
+  };
 }
