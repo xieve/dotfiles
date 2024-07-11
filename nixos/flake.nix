@@ -2,21 +2,11 @@
   description = "xieve's nixos flake";
 
   inputs = {
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
-    nixpkgs = {
-      url = "github:numtide/nixpkgs-unfree/nixos-unstable";
-    };
-    nixos-hardware = {
-      url = "github:nixos/nixos-hardware/master";
-    };
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL";
-    };
-    nzbr = {
-      url = "github:nzbr/nixos";
-    };
+    flake-utils.url = "github:numtide/flake-utils";
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixpkgs.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
+    nzbr.url = "github:nzbr/nixos";
   };
 
   outputs =
