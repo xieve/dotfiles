@@ -29,6 +29,10 @@
     loader.systemd-boot.enable = false;
   };
 
+  environment.variables = {
+    ZSH_TMUX_AUTOSTART = "true";
+  };
+
   services = {
     openssh.enable = true;
     tailscale.enable = true;
