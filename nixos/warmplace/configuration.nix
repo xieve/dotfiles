@@ -62,6 +62,7 @@ in
         "esphome"
         "met"
         "radio_browser"
+        "forecast_solar"
       ];
       config = {
         # Includes dependencies for a basic setup
