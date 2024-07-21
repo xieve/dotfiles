@@ -120,9 +120,11 @@ in
               (
                 lib.attrsToList {
                   energy = [
+                    "ChargeEnergyTotal"
+                    "DischargeEnergyTotal"
                     "TotalEnergyOfUserLoad"
                     "TotalEnergyToGrid"
-                    "TotalEnergyToUser"
+                    "TotalEnergyToUser" # Energy drawn from grid
                     "TotalGenerateEnergy"
                   ];
                   temperature = [
