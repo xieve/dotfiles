@@ -35,10 +35,10 @@ fi
 [[ "$(hostname)" =~ "server|pi|thegreatbelow" ]] && ZSH_TMUX_AUTOSTART=true
 
 plugins=(
-    zsh-vim-mode
     compleat
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-vim-mode
     alias-finder
     command-not-found
     common-aliases
@@ -59,6 +59,8 @@ autoload -U up-line-or-beginning-search
 zle -N up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N down-line-or-beginning-search
-vim-mode-bindkey viins vicmd -- up-line-or-beginning-search Up
-vim-mode-bindkey viins vicmd -- down-line-or-beginning-search Down
+bindkey -M viins '^[OA' up-line-or-beginning-search
+bindkey -M vicmd '^[OA' up-line-or-beginning-search
+bindkey -M viins '^[OB' down-line-or-beginning-search
+bindkey -M vicmd '^[OB' down-line-or-beginning-search
 
