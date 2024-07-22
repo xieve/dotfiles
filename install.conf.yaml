@@ -25,8 +25,17 @@
     ~/.ssh/config: ssh.config
 
 - shell:
+  -
+    command: >
+      [[ "$SHELL:t" == "zsh" ]] || (echo Not zsh; exit 1)
+      && src="${1:h:a}"/firefox
+      && target=("$HOME"/.mozilla/firefox/*.default([1]))
+      && echo Glob-linking $src to "$target"/chrome
+      && ln --symbolic "$src" "$target"/chrome
+    description: ''
+    stdout: true
   - [git submodule update --init --recursive, Installing submodules]
-  - 
+  -
     command: echo 'Use `chsh -s $(which zsh)` or similar to set default shell'
     description: ''
     stdout: true
