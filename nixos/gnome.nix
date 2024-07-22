@@ -76,6 +76,7 @@ in
             background = "file://${home}/Syncthing/Bilder/IMG_20200401_203137_972.jpg";
           in
           {
+            "org/gnome/desktop/input-sources".xkb-options = [ "compose:ralt" ];
             # Enable fractional scaling
             "org/gnome/mutter".experimental-features = [ "scale-monitor-framebuffer" ];
             "org/gnome/shell" = {
