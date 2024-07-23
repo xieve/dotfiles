@@ -205,7 +205,11 @@ in
     nginx = {
       enable = true;
       recommendedProxySettings = true;
+      recommendedTlsSettings = true;
       virtualHosts."warmplace" = {
+        # We're abusing the fallback self-signed cert here
+        enableACME = true;
+        forceSSL = true;
         extraConfig = ''
           proxy_buffering off;
         '';
@@ -216,9 +220,22 @@ in
       };
     };
   };
+  security.acme = {
+    # By using an invalid value here, the renew service will not connect to Let's Encrypt at all
+    defaults = {
+      email = "";
+      # The generated self-signed certs are valid for 2 years
+      renewInterval = "yearly";
+    };
+    # Mandatory even though we're not actually connecting
+    acceptTerms = true;
+  };
+  # Ignore error produced due to config above
+  systemd.services.acme-warmplace.serviceConfig.SuccessExitStatus = [ 10 ];
 
   networking.firewall.allowedTCPPorts = [
     1883 # MQTT
     80
+    443
   ];
 }
