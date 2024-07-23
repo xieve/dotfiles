@@ -18,13 +18,16 @@
       nixpkgs,
       nzbr,
     }@attrs:
+    let
+      inherit (nixpkgs.lib) nixosSystem;
+    in
     {
       nixosConfigurations = {
-        despacito3 = nixpkgs.lib.nixosSystem {
+        despacito3 = nixosSystem {
           system = "x86_64-linux";
           modules = [ ./despacito3/configuration.nix ];
         };
-        thegreatbelow = nixpkgs.lib.nixosSystem {
+        thegreatbelow = nixosSystem {
           system = "x86_64-linux";
           specialArgs = attrs; # Pass inputs to modules
           modules = [
@@ -32,23 +35,42 @@
             ./thegreatbelow/configuration.nix
           ];
         };
-        theeaterofdreams = nixpkgs.lib.nixosSystem {
+        theeaterofdreams = nixosSystem {
           system = "x86_64-linux";
           modules = [
             nixos-wsl.nixosModules.wsl
             ./theeaterofdreams/configuration.nix
           ];
         };
-        warmplace = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
-            ./warmplace/configuration.nix
-          ];
-        };
+        warmplace =
+          let
+            system = "aarch64-linux";
+          in
+          nixosSystem {
+            inherit system;
+            specialArgs = {
+              self-pkgs = self.packages.${system};
+            };
+            modules = [
+              nixos-hardware.nixosModules.raspberry-pi-4
+              ./warmplace/configuration.nix
+            ];
+          };
       };
     }
-    // flake-utils.lib.eachDefaultSystem (system: {
-      formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
-    });
+
+    // flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        formatter = pkgs.nixfmt-rfc-style;
+
+        packages = nixpkgs.lib.packagesFromDirectoryRecursive {
+          inherit (pkgs) callPackage;
+          directory = ./packages;
+        };
+      }
+    );
 }
