@@ -81,9 +81,33 @@ in
             background = "file://${home}/Syncthing/Bilder/IMG_20200401_203137_972.jpg";
           in
           {
+            # Compose Key
             "org/gnome/desktop/input-sources".xkb-options = [ "compose:ralt" ];
-            # Enable fractional scaling
+            # Fractional scaling
             "org/gnome/mutter".experimental-features = [ "scale-monitor-framebuffer" ];
+            # Disable automatic backlight adjustments
+            "org/gnome/settings-daemon/plugins/power".ambient-enabled = false;
+
+            # Behaviour
+            "org/gnome/desktop/wm/preferences" = {
+              # Focus windows on hover
+              focus-mode = "sloppy";
+              # Don't raise windows when focused
+              auto-raise = "false";
+            };
+
+            # Styling
+            "org/gnome/desktop/background" = {
+              picture-uri = background;
+              picture-uri-dark = background;
+            };
+            "org/gnome/desktop/screensaver".picture-uri = background;
+            "org/gnome/desktop/interface" = {
+              font-antialiasing = "rgba";
+              monospace-font-name = "FiraCode Nerd Font weight=450 10";
+            };
+
+            # Extensions
             "org/gnome/shell" = {
               disabled-user-extensions = false;
               enabled-extensions = [
@@ -96,27 +120,15 @@ in
                 "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
               ];
             };
-            "org/gnome/desktop/background" = {
-              picture-uri = background;
-              picture-uri-dark = background;
-            };
-            "org/gnome/desktop/screensaver".picture-uri = background;
-            "org/gnome/desktop/interface" = {
-              font-antialiasing = "rgba";
-              monospace-font-name = "FiraCode Nerd Font weight=450 10";
-            };
-            "org/gnome/desktop/wm/preferences" = {
-              focus-mode = "sloppy";
-              auto-raise = "false";
-            };
+            # Burn My Windows (window open & close effects)
             "org/gnome/shell/extensions/burn-my-windows".active-profile = "${home}/.config/burn-my-windows/profiles/close.conf";
+            # Blur My Shell
             "org/gnome/shell/extensions/blur-my-shell/applications" = {
               blur = true;
               dynamic-opacity = false;
               whitelist = [ "org.wezfurlong.wezterm" ];
               opacity = pkgs.lib.gvariant.mkInt32 255;
             };
-            "org/gnome/settings-daemon/plugins/power".ambient-enabled = false;
           };
       }
     ];
