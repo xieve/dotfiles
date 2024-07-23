@@ -67,6 +67,11 @@ in
     MOZ_ENABLE_WAYLAND = 1;
   };
 
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
+
   programs.dconf = pkgs.lib.mkIf config.services.xserver.desktopManager.gnome.enable {
     enable = true;
     profiles.user.databases = [
@@ -85,9 +90,9 @@ in
                 "appindicatorsupport@rgcjonas.gmail.com"
                 "blur-my-shell@aunetx"
                 "burn-my-windows@schneegans.github.com"
+                "gsconnect@andyholmes.github.io"
                 "just-perfection-desktop@just-perfection"
                 "pop-shell@system76.com"
-                #"steal-my-focus-window@steal-my-focus-window"
                 "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
               ];
             };
