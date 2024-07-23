@@ -4,7 +4,7 @@ rex() { echo "$@" | xxd -r -p }
 sine() { pactl load-module module-sine frequency=$@; read; pactl unload-module module-sine }
 alias_or_name() { alias_value $@ || echo $@ }
 cd() { pushd $@ > /dev/null }
-nix-tree() { store_path="$(nix build --print-out-paths --no-link $@)" && tree "$store_path" }
+nix-tree() { echo "$(nix build --print-out-paths --no-link $@)" | xargs tree }
 
 ansi_colors() {
   # source: https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
