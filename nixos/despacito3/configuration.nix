@@ -80,6 +80,20 @@ in
     path = [ pkgs.trayscale ];
   };
 
+  programs.dconf.profiles.user.databases = [
+    {
+      settings."org/gnome/shell".favorite-apps = [
+        "org.gnome.Nautilus.desktop"
+        "firefox.desktop"
+        "org.wezfurlong.wezterm.desktop"
+        "org.keepassxc.KeePassXC.desktop"
+        "obsidian.desktop"
+        "codium.desktop"
+        "BespokeSynth.desktop"
+      ];
+    }
+  ];
+
   # temp workaround until obsidian gets their shit together
   nixpkgs.config.permittedInsecurePackages = pkgs.lib.optional (
     pkgs.obsidian.version == "1.5.3"
