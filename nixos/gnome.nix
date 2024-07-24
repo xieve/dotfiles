@@ -52,7 +52,6 @@ in
   };
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -134,10 +133,12 @@ in
     ];
   };
 
-  environment.gnome.excludePackages =
-    (with pkgs; [ gnome-tour ])
-    ++ (with pkgs.gnome; [
+  environment.gnome.excludePackages = (
+    with pkgs;
+    [
+      gnome-tour
       epiphany # browser
       geary # email
-    ]);
+    ]
+  );
 }
