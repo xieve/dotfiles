@@ -15,8 +15,16 @@ in
   # Enable flakes
   nix = {
     package = pkgs.nixFlakes;
-    settings.experimental-features = "nix-command flakes";
+    settings = {
+      experimental-features = "nix-command flakes";
+    };
   };
+
+  # Optimise system nix store and collect garbage on every rebuild
+  system.userActivationScripts.optimise-storage = ''
+    nix-store --optimise
+    nix-collect-garbage --delete-older-than 30d
+  '';
 
   # Bootloader
   boot.loader = mkIf (!((config ? wsl) && config.wsl.enable)) {
