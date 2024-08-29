@@ -75,6 +75,7 @@ in
   };
 
   systemd.user.services.trayscale = {
+    enable = true;
     script = "sleep 5; trayscale --hide-window";
     wantedBy = [ "xdg-desktop-autostart.target" ];
     path = [ pkgs.trayscale ];
