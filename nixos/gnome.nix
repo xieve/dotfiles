@@ -61,9 +61,11 @@ in
     pulse.enable = true;
   };
 
-  # Force Firefox to use Wayland
   environment.variables = {
+    # Force Firefox to use Wayland
     MOZ_ENABLE_WAYLAND = 1;
+    # Force electron apps to use Wayland
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
   programs.kdeconnect = {
