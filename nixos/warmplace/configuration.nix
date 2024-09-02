@@ -115,15 +115,18 @@ in
           [
             ({ name = "grid"; } // goeMqtt "pGrid")
             ({ name = "pv"; } // goeMqtt "pPv")
-            ({
-              name = "battery";
-              # state of charge is published by HA via statestream integration,
-              # HA is connected to growatt (esphome device) via HA api
-              soc = {
-                source = "mqtt";
-                topic = "homeassistant/sensor/growatt_battery_charge/state";
-              };
-            } // goeMqtt "pAkku")
+            (
+              {
+                name = "battery";
+                # state of charge is published by HA via statestream integration,
+                # HA is connected to growatt (esphome device) via HA api
+                soc = {
+                  source = "mqtt";
+                  topic = "homeassistant/sensor/growatt_battery_charge/state";
+                };
+              }
+              // goeMqtt "pAkku"
+            )
           ];
         chargers = [
           {
@@ -172,10 +175,10 @@ in
       enable = true;
       extraComponents = [
         "esphome"
+        "forecast_solar"
         "met"
         "mqtt"
         "radio_browser"
-        "forecast_solar"
       ];
       config = {
         # Includes dependencies for a basic setup
