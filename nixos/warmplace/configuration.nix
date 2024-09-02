@@ -264,7 +264,7 @@ in
                 # go-e Charger topic is `go-eCharger/<Serial number>` by default
                 # but can be changed in the app
                 topic = "energy/go-eCharger/ids/set";
-                payload_template = ''
+                payload = ''
                   {"pGrid":{{
                     float(states("sensor.growatt_power_from_grid"))
                       - float(states("sensor.growatt_power_to_grid"))
