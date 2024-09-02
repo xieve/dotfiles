@@ -199,6 +199,14 @@ in
               platform = "integration";
               source = "sensor.growatt_${lib.toLower (lib.replaceStrings [ " " ] [ "_" ] str)}";
               unit_prefix = "k"; # kWh
+              # Since our sensors are often sitting at 0W for a long time,
+              # ramp up for a peak, then immediately ramp down again, we need
+              # to specify this value explicitly. Else the entire 0W period is
+              # one datapoint instead of many, which skews the integral upwards
+              # very significantly.
+              # 5s is the current ESPHome interval, although the ESP8266 at the
+              # inverter is struggling to keep up. This can probably be decreased.
+              max_sub_interval.seconds = 5;
             })
             [
               "Power to Grid"
