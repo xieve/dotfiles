@@ -120,38 +120,6 @@
   '';
   programs.mosh.enable = true;
 
-  # urbackup
-  boot.supportedFilesystems = [ "ntfs" ]; # for mounting backups
-  nzbr.service.urbackup = {
-    enable = true;
-    backupfolder = "/mnt/user/urbackup/";
-    config = {
-      LOGFILE = "/mnt/user/appdata/binhex-urbackup/urbackup/log/urbackup.log";
-      LOGLEVEL = "debug";
-      #USER = "urbackup";
-    };
-    package = nzbr.packages.x86_64-linux.urbackup2-server;
-    dataset.images = "";
-    dataset.files = "";
-  };
-  systemd.services.urbackup-server = {
-    #serviceConfig.User = lib.mkForce config.nzbr.service.urbackup.config.USER;
-    serviceConfig.Restart = "on-failure";
-  };
-  fileSystems."/var/urbackup" = {
-    device = "/mnt/user/appdata/binhex-urbackup/urbackup";
-    fsType = "none";
-    options = [ "bind" ];
-  };
-  programs.fuse.userAllowOther = true;
-
-  users.groups.users.members = [
-    "root"
-    "urbackup"
-  ];
-
-  users.groups.urbackup.members = [ "root" ];
-
   # jellyfin
   services.jellyfin =
     let
