@@ -23,6 +23,8 @@
   # jetbrains remote dev needs this
   programs.nix-ld.enable = true;
 
+  programs.ssh.startAgent = true;
+
   # doesn't work. eh
   #fileSystems."/home" = {
   #  device = "D:\\";
