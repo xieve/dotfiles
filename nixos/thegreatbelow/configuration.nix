@@ -43,7 +43,7 @@
       matchConfig.Name = "enp*s*";
 
       address = [ "192.168.0.2/24" ];
-      routes = [ { routeConfig.Gateway = "192.168.0.1"; } ];
+      routes = [ { Gateway = "192.168.0.1"; } ];
 
       # Accept router advertisements, but set a static suffix
       # (global scope IPv6 address will always end in tactical cabbage)
