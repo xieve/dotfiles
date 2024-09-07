@@ -1,7 +1,3 @@
-- clean: 
-    '~/':
-      recursive: true
-
 - defaults:
     link:
       create: true
