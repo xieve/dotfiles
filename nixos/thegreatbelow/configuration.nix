@@ -18,6 +18,14 @@
   # When RAM fills up, compress it before swapping to disk
   zramSwap.enable = true;
 
+  # Encrypt swap on boot with new randomly generated key
+  swapDevices = [
+    {
+      device = "/dev/disk/by-partuuid/936d5326-778d-4427-bd23-031d26d302d5";
+      randomEncryption.enable = true;
+    }
+  ];
+
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
   networking.hostId = "df6e6c66";
