@@ -102,6 +102,7 @@ in
     tmux
     unzip
     usbutils
+    wget
     zsh
   ];
 
