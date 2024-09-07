@@ -12,6 +12,8 @@
     ../common.nix
   ];
 
+  boot.kernelParams = [ "console=tty0" "console=ttyS0,115200n8" ];
+
   networking.hostName = "thegreatbelow";
 
   # Network
@@ -45,16 +47,8 @@
     8080 # SearXNG (temp)
   ];
 
-  # temp fix for perms as long as this is a VM
-  # user is called "nobody" on unraid
-  users.users.unraidnobody = {
-    uid = 99;
-    group = "users";
-  };
-
   # misc services
   services = {
-    qemuGuest.enable = true;
     openssh.enable = true;
     searx.enable = true;
     samba = {
