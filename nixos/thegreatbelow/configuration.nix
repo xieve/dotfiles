@@ -112,7 +112,6 @@
     iptables -A nixos-fw -p udp -m pkttype --pkt-type multicast -m udp --dport 3702 -d 239.255.255.250/32 -j nixos-fw-accept
     ip6tables -A nixos-fw -p udp -m pkttype --pkt-type multicast -m udp --dport 3702 -d ff02::c/128 -j nixos-fw-accept
   '';
-  programs.mosh.enable = true;
 
   # jellyfin
   services.jellyfin =
