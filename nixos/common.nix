@@ -32,6 +32,9 @@ in
     efi.canTouchEfiVariables = mkDefault true;
   };
 
+  # Recommended by docs, default enabled only for backwards compat
+  boot.zfs.forceImportRoot = false;
+
   # TZ & Locale
   time.timeZone = "Europe/Berlin";
 

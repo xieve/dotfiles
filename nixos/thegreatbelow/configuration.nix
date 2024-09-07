@@ -12,11 +12,16 @@
     ../common.nix
   ];
 
+  # Serial Console
   boot.kernelParams = [ "console=tty0" "console=ttyS0,115200n8" ];
 
-  networking.hostName = "thegreatbelow";
+  # zfs
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "df6e6c66";
+  services.zfs.autoScrub.enable = true;
 
   # Network
+  networking.hostName = "thegreatbelow";
   networking.useDHCP = false; # Disable dhcpcd because we'll use networkd
 
   systemd.network = {
