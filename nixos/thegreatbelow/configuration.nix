@@ -40,7 +40,7 @@
 
     networks."10-lan" = {
       # Interface
-      matchConfig.Name = "enp*s*";
+      matchConfig.Name = "eno*";
 
       address = [ "192.168.0.2/24" ];
       routes = [ { Gateway = "192.168.0.1"; } ];
@@ -57,6 +57,11 @@
       linkConfig.RequiredForOnline = "routable";
     };
   };
+  # Any link is sufficient, we use only one of two interfaces
+  systemd.services.systemd-networkd-wait-online.serviceConfig.ExecStart = [
+    ""
+    "${pkgs.systemd}/lib/systemd/systemd-networkd-wait-online --any --timeout=120"
+  ];
 
   # Firewall
   networking.firewall.allowedTCPPorts = [
@@ -72,7 +77,7 @@
       openFirewall = true;
       shares = {
         public = {
-          path = "/mnt/user/public";
+          path = "/mnt/frail/srv/public";
           writeable = "yes";
           public = "yes";
           #"guest ok" = "yes";
@@ -108,12 +113,12 @@
         guest account = nobody
 
         browseable = yes
-        force create mode = 0666
-        force directory mode = 0777
-        force user = unraidnobody
+        force create mode = 0664
+        force directory mode = 0775
+        #force user = nobody
         force group = users
-        create mask = 0666
-        directory mask = 0777
+        create mask = 0664
+        directory mask = 0775
       '';
     };
     samba-wsdd = {
@@ -130,16 +135,8 @@
   '';
 
   # jellyfin
-  services.jellyfin =
-    let
-      basePath = "/mnt/user/appdata/binhex-jellyfin";
-    in
-    {
-      enable = true;
-      openFirewall = true;
-      cacheDir = "${basePath}/cache";
-      configDir = "${basePath}/config";
-      dataDir = "${basePath}/data";
-      logDir = "${basePath}/logs";
-    };
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
 }
