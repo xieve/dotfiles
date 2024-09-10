@@ -68,14 +68,6 @@
     8080 # SearXNG (temp)
   ];
 
-  # LDAP
-  systemd.services.glauth = {
-    enable = true;
-    script = "glauth -c ${pkgs.writers.writeTOML "glauth.cfg" (import ./glauth-conf.nix)}";
-    wantedBy = [ "sambda.target" "jellyfin.service" ];
-    path = [ pkgs.glauth ];
-  };
-
   # misc services
   services = {
     openssh.enable = true;
