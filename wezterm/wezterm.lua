@@ -10,6 +10,17 @@ config.front_end = "WebGpu"
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 	config.default_domain = "WSL:NixOS"
+	config.wsl_domains = {
+		{
+			name = "WSL:NixOS",
+			distribution = "NixOS",
+			default_prog = {
+				"/run/current-system/sw/bin/zsh",
+				"-c",
+				"until [ -S /run/dbus/system_bus_socket ]; do sleep 1; done; exec zsh",
+			}
+		},
+	}
 	config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"  -- does not work on Gnome currently
 else
 	config.window_background_opacity = 0.8
