@@ -24,6 +24,8 @@ in
       steal-my-focus-window
     ]);
 
+  # TODO: this should be in like, desktop.nix or something...
+  # TODO: look at TODOs xd
   networking.networkmanager.enable = true;
 
   # Hardware decoding
@@ -66,7 +68,8 @@ in
     # Force Firefox to use Wayland
     MOZ_ENABLE_WAYLAND = 1;
     # Force electron apps to use Wayland
-    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    # Disabled since chromium and thus electron do not support styli on Wayland
+    #ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
   programs.kdeconnect = {
