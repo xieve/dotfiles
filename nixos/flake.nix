@@ -23,9 +23,9 @@
     in
     {
       nixosConfigurations = {
-        despacito3 = nixosSystem {
+        zerosum = nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./despacito3/configuration.nix ];
+          modules = [ ./zerosum/configuration.nix ];
         };
         thegreatbelow = nixosSystem {
           system = "x86_64-linux";

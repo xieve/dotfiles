@@ -11,7 +11,7 @@ in
   ];
 
   networking = {
-    hostName = "despacito3";
+    hostName = "zerosum";
   };
 
   hardware = {
