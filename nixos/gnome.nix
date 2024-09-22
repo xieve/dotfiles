@@ -9,6 +9,7 @@ in
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
       fira-code
       firefox
+      gnome.gnome-tweaks
       keepassxc
       obsidian
       vscodium
