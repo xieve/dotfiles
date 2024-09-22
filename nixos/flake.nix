@@ -25,7 +25,10 @@
       nixosConfigurations = {
         zerosum = nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./zerosum/configuration.nix ];
+          modules = [
+            nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            ./zerosum/configuration.nix
+          ];
         };
         thegreatbelow = nixosSystem {
           system = "x86_64-linux";

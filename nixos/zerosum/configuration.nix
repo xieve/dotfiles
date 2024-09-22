@@ -24,6 +24,14 @@ in
     sensor.iio.enable = true;
   };
 
+  # These prevent booting. https://github.com/linux-surface/linux-surface/issues/1516
+  # AFAIK they're responsible for the camera, which wouldn't work anyway according to
+  # the linux-surface wiki.
+  boot.blacklistedKernelModules = [
+    "intel-ipu6"
+    "intel-ipu6-isys"
+  ];
+
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   }; # Force intel-media-driver
