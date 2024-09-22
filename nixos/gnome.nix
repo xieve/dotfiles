@@ -85,7 +85,7 @@ in
             # Compose Key
             "org/gnome/desktop/input-sources".xkb-options = [ "compose:ralt" ];
             # Fractional scaling
-            "org/gnome/mutter".experimental-features = [ "scale-monitor-framebuffer" ];
+            "org/gnome/mutter".experimental-features = [ "scale-monitor-framebuffer" "xwayland-native-scaling" ];
             # Disable automatic backlight adjustments
             "org/gnome/settings-daemon/plugins/power".ambient-enabled = false;
 
