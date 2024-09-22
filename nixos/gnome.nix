@@ -22,6 +22,9 @@ in
       just-perfection
       pop-shell
       steal-my-focus-window
+    ]) ++ (with pkgs.kdePackages; [
+      ocean-sound-theme
+      breeze
     ]);
 
   # TODO: this should be in like, desktop.nix or something...
@@ -110,7 +113,9 @@ in
             "org/gnome/desktop/interface" = {
               font-antialiasing = "rgba";
               monospace-font-name = "FiraCode Nerd Font weight=450 10";
+              cursor-theme = "breeze_cursors";
             };
+            "org/gnome/desktop/sound".theme-name = "ocean";
 
             # Extensions
             "org/gnome/shell" = {
