@@ -29,7 +29,7 @@ in {
 
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "df6e6c66";
+  networking.hostId = "df6e6c66"; # head -c 8 /etc/machine-id
   services.zfs.autoScrub.enable = true;
 
   # Network
