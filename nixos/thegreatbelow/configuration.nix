@@ -5,8 +5,9 @@
   nzbr,
   ...
 }:
-
-{
+let
+  satisfactoryPorts = [ 15777 15000 7777 ];
+in {
   imports = [
     ./hardware.nix
     ../common.nix
@@ -64,9 +65,8 @@
   ];
 
   # Firewall
-  networking.firewall.allowedTCPPorts = [
-    8080 # SearXNG (temp)
-  ];
+  networking.firewall.allowedUDPPorts = satisfactoryPorts;
+  networking.firewall.allowedTCPPorts = satisfactoryPorts ++ [ 8080 /* SearXNG (temp) */ ];
 
   # misc services
   services = {
