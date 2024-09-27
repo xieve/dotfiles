@@ -8,7 +8,7 @@ in
     ./vscode.nix
   ];
 
-  users.users.xieve.packages =
+  environment.systemPackages =
     (with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
       fira-code

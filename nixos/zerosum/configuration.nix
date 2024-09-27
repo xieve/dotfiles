@@ -70,8 +70,7 @@ in
     };
   };
 
-  # User pkgs
-  users.users.xieve.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     bespokesynth
     dolphin-emu
     flavours
