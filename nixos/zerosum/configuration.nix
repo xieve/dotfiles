@@ -58,6 +58,7 @@ in
     flavours
     jetbrains.clion
     moonlight-qt
+    rnote
     syncthingtray
     wezterm
     wineWowPackages.stagingFull
