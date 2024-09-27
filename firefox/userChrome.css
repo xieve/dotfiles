@@ -25,3 +25,49 @@
 #main-window[titlepreface*="​"] #tabbrowser-tabs {
     z-index: 0 !important;
 }
+
+#sidebar-header, #sidebar-splitter {
+    display: none;
+}
+
+/* make extensions menu a little more compact */
+#unified-extensions-panel .unified-extensions-item {
+    margin-block: 0px !important;
+}
+
+/* Transparent Toolbar */
+#navigator-toolbox {
+    background: transparent;
+}
+
+:root {
+    --toolbar-bgcolor: transparent !important;
+    --lwt-accent-color: transparent !important;
+    --toolbar-field-background-color: transparent !important;
+}
+
+/* Experiments: Wanted to turn sidebar transparent. It seems there is some sort
+ * of hardcoded rule that forbids anything below the toolbar being transparent
+
+* {
+    background-color: transparent !important;
+}
+
+@-moz-document url("chrome://browser/content/webext-panels.xhtml") {
+    * {
+        background-color: transparent !important;
+    }
+}
+
+@-moz-document url("moz-extension://b41b013c-e140-4120-8212-fc7d960ef9d5/sidebar/sidebar.html") {
+    * {
+        background-color: transparent !important;
+    }
+}
+
+@-moz-document url-prefix() {
+    * {
+        background-color: transparent !important;
+    }
+}
+*/
