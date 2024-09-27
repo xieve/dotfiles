@@ -4,6 +4,10 @@ let
   home = config.users.users.xieve.home;
 in
 {
+  imports = [
+    ./vscode.nix
+  ];
+
   users.users.xieve.packages =
     (with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -12,7 +16,6 @@ in
       gnome-tweaks
       keepassxc
       obsidian
-      vscodium
       xclip # clipboard support for term apps (neovim, ssh) (works on gnome, while wl-clipboard does not)
     ])
     ++ (with pkgs.gnomeExtensions; [
@@ -22,7 +25,8 @@ in
       just-perfection
       pop-shell
       steal-my-focus-window
-    ]) ++ (with pkgs.kdePackages; [
+    ])
+    ++ (with pkgs.kdePackages; [
       ocean-sound-theme
       breeze
     ]);
@@ -92,7 +96,11 @@ in
             # Compose Key
             "org/gnome/desktop/input-sources".xkb-options = [ "compose:ralt" ];
             # Fractional scaling
-            "org/gnome/mutter".experimental-features = [ "scale-monitor-framebuffer" "xwayland-native-scaling" ];
+            "org/gnome/mutter".experimental-features = [
+              "scale-monitor-framebuffer"
+              "variable-refresh-rate"
+              "xwayland-native-scaling"
+            ];
             # Disable automatic backlight adjustments
             "org/gnome/settings-daemon/plugins/power".ambient-enabled = false;
 
@@ -136,7 +144,10 @@ in
             "org/gnome/shell/extensions/blur-my-shell/applications" = {
               blur = true;
               dynamic-opacity = false;
-              whitelist = [ "org.wezfurlong.wezterm" ];
+              whitelist = [
+                "org.wezfurlong.wezterm"
+                "firefox"
+              ];
               opacity = pkgs.lib.gvariant.mkInt32 255;
             };
           };
