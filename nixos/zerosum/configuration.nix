@@ -36,6 +36,25 @@ in
     LIBVA_DRIVER_NAME = "iHD";
   }; # Force intel-media-driver
 
+  # Touchscreen calibration values measured by iptsd-calibrate
+  services.iptsd.config = {
+    Contacts = {
+      SizeMin = 0.5;
+      SizeMax = 2.25;
+      AspectMin = 1;
+      AspectMax = 2.1;
+      /*
+      ActivationThreshold = 40;
+      DeactivationThreshold = 36;
+      OrientationThresholdMax = 15;
+      */
+    };
+    # Once https://github.com/NixOS/nixpkgs/pull/344036 has been merged, this option should
+    # be renamed to "Touchscreen"
+    Touch.DisableOnPalm = true;
+    Touch.DisableOnStylus = true;
+  };
+
   services = {
     syncthing = {
       enable = true;
