@@ -159,6 +159,7 @@ in
             pv = [ "pv" ];
             battery = [ "battery" ];
           };
+          residualPower = 100;
         };
         loadpoints = [
           {
