@@ -104,12 +104,30 @@ in
     remotePlay.openFirewall = true;
   };
 
-  systemd.user.services.trayscale = {
-    enable = true;
-    script = "sleep 5; trayscale --hide-window";
-    wantedBy = [ "xdg-desktop-autostart.target" ];
-    path = [ pkgs.trayscale ];
-  };
+  systemd.user.services =
+    builtins.mapAttrs
+      (
+        name: unit:
+        let
+          wantedBy = [ "graphical-session.target" ];
+        in
+        {
+          inherit wantedBy;
+          bindsTo = wantedBy;
+          after = wantedBy;
+          enable = true;
+          path = [ pkgs.${name} ];
+        }
+        // unit
+      )
+      {
+        trayscale = {
+          script = "sleep 5; trayscale --hide-window";
+        };
+        syncthingtray = {
+          script = "syncthingtray --wait";
+        };
+      };
 
   programs.dconf.profiles.user.databases = [
     {
