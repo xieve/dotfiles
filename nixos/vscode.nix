@@ -21,6 +21,7 @@
         ms-python.vscode-pylance
         ms-vscode.hexeditor
         pkief.material-icon-theme
+        svelte.svelte-vscode
         tamasfe.even-better-toml
         timonwong.shellcheck
         xyz.local-history
