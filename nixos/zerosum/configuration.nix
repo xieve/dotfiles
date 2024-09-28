@@ -24,15 +24,12 @@ in
     sensor.iio.enable = true;
   };
 
+  # These prevent booting. https://github.com/linux-surface/linux-surface/issues/1516
+  # AFAIK they're responsible for the camera, which wouldn't work anyway according to
+  # the linux-surface wiki.
   boot.blacklistedKernelModules = [
-    # These prevent booting. https://github.com/linux-surface/linux-surface/issues/1516
-    # AFAIK they're responsible for the camera, which wouldn't work anyway according to
-    # the linux-surface wiki.
     "intel-ipu6"
     "intel-ipu6-isys"
-    # Responsible for the lid close event. Waking from suspend is currently bugged
-    # https://github.com/linux-surface/linux-surface/issues/1224
-    "surface_gpe"
   ];
 
   environment.sessionVariables = {
