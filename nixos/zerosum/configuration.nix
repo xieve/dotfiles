@@ -36,6 +36,11 @@ in
     LIBVA_DRIVER_NAME = "iHD";
   }; # Force intel-media-driver
 
+  services.logind = {
+    lidSwitch = "lock";
+    lidSwitchExternalPower = "lock";
+  };
+
   # Touchscreen calibration values measured by iptsd-calibrate
   services.iptsd.config = {
     Contacts = {
