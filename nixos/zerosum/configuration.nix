@@ -127,7 +127,7 @@ in
           script = "sleep 5; trayscale --hide-window";
         };
         syncthingtray = {
-          script = "syncthingtray --wait";
+          script = "QT_QPA_PLATFORM=xcb syncthingtray --wait";
         };
       };
 
