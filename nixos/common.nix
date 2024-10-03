@@ -6,11 +6,8 @@
 }:
 
 with lib;
-let
-  getNixFiles = dir: (filter (file: hasSuffix ".nix" file) (filesystem.listFilesRecursive dir));
-in
 {
-  imports = getNixFiles ./services;
+  imports = lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules);
 
   # Enable flakes
   nix = {
