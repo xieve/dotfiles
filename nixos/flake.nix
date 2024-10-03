@@ -66,14 +66,21 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        inherit (nixpkgs) lib;
       in
       {
         formatter = pkgs.nixfmt-rfc-style;
 
-        packages = nixpkgs.lib.packagesFromDirectoryRecursive {
+        packages = lib.packagesFromDirectoryRecursive {
           inherit (pkgs) callPackage;
           directory = ./packages;
         };
+
+        nixosModules = lib.foldl (a: b: a // b) {} (
+          map (filename: {
+            ${lib.strings.removePrefix "${toString ./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} = import filename;
+          }) (lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules))
+        );
       }
     );
 }
