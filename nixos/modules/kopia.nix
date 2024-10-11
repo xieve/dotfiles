@@ -26,6 +26,9 @@ in
   options = {
     services.kopia = mkOption {
       description = "Kopia backup service";
+      # Needed for the submodule to populate with default options
+      # https://github.com/NixOS/nixpkgs/issues/161566
+      default = { };
       type =
         with types;
         submodule {
