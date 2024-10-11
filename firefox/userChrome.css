@@ -26,8 +26,14 @@
     z-index: 0 !important;
 }
 
-#sidebar-header, #sidebar-splitter {
+#sidebar-header {
     display: none;
+}
+
+splitter.sidebar-splitter {
+    width: 1px !important;
+    border: none !important;
+    background-color: var(--sidebar-background-color) !important;
 }
 
 /* make extensions menu a little more compact */
