@@ -11,6 +11,7 @@ in
   environment.systemPackages =
     (with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      adwaita-icon-theme-legacy
       fira-code
       firefox
       gnome-tweaks
@@ -29,6 +30,7 @@ in
     ++ (with pkgs.kdePackages; [
       ocean-sound-theme
       breeze
+      qtstyleplugin-kvantum
     ]);
 
   # TODO: this should be in like, desktop.nix or something...
@@ -69,6 +71,12 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  # Qt Theme
+  qt = {
+    enable = true;
+    style = "kvantum";
   };
 
   environment.variables = {

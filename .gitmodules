@@ -73,3 +73,6 @@
 [submodule "vim/pack/plugins/start/lh-vim-lib"]
 	path = vim/pack/plugins/start/lh-vim-lib
 	url = https://github.com/LucHermitte/lh-vim-lib
+[submodule "KvLibadwaita"]
+	path = KvLibadwaita
+	url = https://github.com/GabePoel/KvLibadwaita.git
