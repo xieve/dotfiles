@@ -73,7 +73,7 @@ in
     };
 
     # Enable CUPS
-    printing.enable = true;
+    #printing.enable = true;
   };
 
   # Enable sound with pipewire.
