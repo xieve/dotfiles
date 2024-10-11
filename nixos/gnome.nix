@@ -42,6 +42,14 @@ in
   # TODO: look at TODOs xd
   networking.networkmanager.enable = true;
 
+  boot.plymouth = {
+    enable = true;
+    themePackages = [
+      pkgs.adi1090x-plymouth-themes
+    ];
+    theme = "sphere";
+  };
+
   # Hardware decoding
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
