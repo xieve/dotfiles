@@ -33,6 +33,11 @@ in
       qtstyleplugin-kvantum
     ]);
 
+  fonts.packages = with pkgs; [
+    newcomputermodern
+  ];
+
+
   # TODO: this should be in like, desktop.nix or something...
   # TODO: look at TODOs xd
   networking.networkmanager.enable = true;
