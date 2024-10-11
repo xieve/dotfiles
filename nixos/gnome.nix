@@ -28,8 +28,8 @@ in
       steal-my-focus-window
     ])
     ++ (with pkgs.kdePackages; [
-      ocean-sound-theme
       breeze
+      ocean-sound-theme
       qtstyleplugin-kvantum
     ]);
 
