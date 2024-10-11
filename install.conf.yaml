@@ -18,6 +18,7 @@
     ~/.config/burn-my-windows/profiles: burn-my-windows
     ~/.config/nvim/init.vim: init.vim
     ~/.config/wezterm: wezterm
+    ~/.config/pop-shell/config.json: pop-shell.json
     ~/.config/Kvantum/KvLibadwaita: KvLibadwaita/src/KvLibadwaita
     ~/.ssh/config: ssh.config
 

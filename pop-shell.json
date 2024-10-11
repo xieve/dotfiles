@@ -1,0 +1,9 @@
+{
+  "float": [
+    {
+      "class": "Syncthing Tray"
+    }
+  ],
+  "skiptaskbarhidden": [],
+  "log_on_focus": false
+}
