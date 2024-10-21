@@ -27,6 +27,7 @@ in
     ./hydrus.nix
     ./authelia.nix
     ./karakeep.nix
+    ./kopia.nix
   ];
 
   options.thegreatbelow =

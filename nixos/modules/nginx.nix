@@ -33,7 +33,7 @@ in
         default = null;
       };
       commonHttpConfig = mkOption {
-        type = str;
+        type = lines;
         default = "";
       };
       commonServerConfig = mkOption {
@@ -96,6 +96,7 @@ in
       ];
     in
     {
+      # This is here because this module depends on authelia
       xieve.nginx.virtualHosts = {
         "auth.*" = {
           extraConfig = ''
