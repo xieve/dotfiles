@@ -56,6 +56,11 @@ in {
       };
 
       linkConfig.RequiredForOnline = "routable";
+
+      dns = [
+        "192.168.0.1"
+        "9.9.9.9"
+      ];
     };
   };
   # Any link is sufficient, we use only one of two interfaces
