@@ -77,6 +77,7 @@ in {
   services = {
     openssh.enable = true;
     searx.enable = true;
+    tailscale.enable = true;
     samba = {
       enable = true;
       openFirewall = true;
