@@ -88,6 +88,16 @@ in {
           public = "yes";
           #"guest ok" = "yes";
         };
+        hidden = {
+          path = "/mnt/frail/srv/hidden";
+          writeable = "yes";
+          "valid users" = [ "xieve" ];
+        };
+        kopia = {
+          path = "/mnt/frail/kopia";
+          writeable = "yes";
+          "valid users" = [ "xieve" ];
+        };
       };
       extraConfig = ''
         workgroup = WORKGROUP
