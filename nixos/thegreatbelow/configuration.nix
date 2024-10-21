@@ -142,6 +142,19 @@ in
       };
     };
 
+    services.kopia = {
+      enable = true;
+      enableServer = true;
+      #directories = [ "/home/xieve" ];
+      settings = {
+        storage = {
+          type = "filesystem";
+          config.path = "/mnt/frail/kopia";
+        };
+      };
+      settingsFile = "/etc/kopia/secrets.json";
+    };
+
     # misc services
     services = {
       openssh = {

@@ -1,4 +1,4 @@
-# From https://github.com/NixOS/nixpkgs/issues/163024#issuecomment-1822772284
+# Inspired by https://github.com/NixOS/nixpkgs/issues/163024#issuecomment-1822772284
 
 {
   config,
@@ -17,7 +17,7 @@ let
   cfgFile = json.generate "kopia.json" (
     cfg.settings
     // {
-      # "Token" parser (which is a config file encoded in base64 PLUS a password) wants this field
+      # "Token" (which is a config file encoded in base64 PLUS a password) parser wants this field
       version = "1";
     }
   );
@@ -33,8 +33,9 @@ in
         with types;
         submodule {
           options = {
-
             enable = mkEnableOption "Kopia backups";
+
+            enableServer = mkEnableOption "Kopia Repository Server";
 
             user = mkOption {
               type = str;
@@ -129,87 +130,122 @@ in
         };
     };
   };
-  config = mkIf cfg.enable {
-    users = mkIf (cfg.user == "kopia") {
-      users = {
-        kopia = {
-          group = "kopia";
-          isSystemUser = true;
+  config = mkIf cfg.enable (
+    let
+      kopia = "${pkgs.kopia}/bin/kopia";
+      jq = "${pkgs.jq}/bin/jq";
+      kopiaWrapper = pkgs.writeShellScriptBin "kopia" ''
+        cd "$RUNTIME_DIRECTORY" || exit
+
+        # Env vars taken from official Dockerfile
+        export \
+          KOPIA_CONFIG_PATH="$(pwd)/merged.json" \
+          KOPIA_CACHE_DIRECTORY="$CACHE_DIRECTORY" \
+          KOPIA_LOG_DIR="$LOGS_DIRECTORY" \
+          KOPIA_CHECK_FOR_UPDATES=false \
+          HOME="$(pwd)" # Kopia wants to write to $HOME really, really badly.
+
+        # KOPIA_PERSIST_CREDENTIALS_ON_CONNECT=false
+
+        ${jq} --slurp add '${cfgFile}' '${cfg.settingsFile}' > merged.json ||
+        cp '${cfgFile}' merged.json # If settingsFile is not specified, fall back
+
+        # Kopia will not read *repository* passwords from plain-text config files, so we
+        # have to encode our config in base64 first and pass it as a "token" (unpadded base64)...
+        # The credentials will be persisted on disk for as long as the snapshot is running,
+        # that's why we have set strict permissions above.
+        base64 < merged.json | tr -d "=" > merged.json.base64
+        ${kopia} repository connect from-config --token-file=merged.json.base64
+        ${kopia} $@
+        ${kopia} repository disconnect
+      '';
+    in
+    {
+      users = mkIf (cfg.user == "kopia") {
+        users = {
+          kopia = {
+            group = "kopia";
+            isSystemUser = true;
+          };
         };
+        groups.kopia = { };
       };
-      groups.kopia = { };
-    };
 
-    systemd = lib.mkMerge (
-      map (
-        directory:
+      environment.systemPackages = [ kopiaWrapper ];
+      systemd =
         let
-          serviceName = "kopia${replaceStrings [ "/" ] [ "-" ] directory}";
+          commonConfig =
+            {
+              description,
+              type,
+              command,
+              autoStart ? false,
+            }:
+            {
+              inherit description;
+              wantedBy = mkIf autoStart [ "multi-user.target" ];
+              serviceConfig = {
+                Type = type;
+                User = cfg.user;
+                ProtectSystem = "strict"; # Enforce read-only access for the entire system except for:
+                CacheDirectory = "kopia"; # /var/cache/kopia/
+                LogsDirectory = "kopia"; # /var/log/kopia/
+                RuntimeDirectory = "kopia"; # /run/kopia/
+                CacheDirectoryMode = "0700";
+                RuntimeDirectoryMode = "0700";
+                ExecStart = "${kopiaWrapper}/bin/kopia ${command}";
+              };
+            };
         in
-        {
-          services.${serviceName} = {
-            description = "Kopia Snapshot ${directory}";
-            path = with pkgs; [
-              kopia
-              jq
-              zsh
-            ];
-            serviceConfig = {
-              Type = "oneshot";
-              User = cfg.user;
-              ProtectSystem = "strict"; # Enforce read-only access for the entire system except for:
-              CacheDirectory = "kopia"; # /var/cache/kopia/
-              LogsDirectory = "kopia"; # /var/log/kopia/
-              RuntimeDirectory = "kopia"; # /run/kopia/
-              CacheDirectoryMode = "0700";
-              RuntimeDirectoryMode = "0700";
-              ExecStart = pkgs.writeShellScript "kopia.sh" ''
-                cd "$RUNTIME_DIRECTORY" || exit
-
-                # Env vars taken from official Dockerfile
-                export \
-                  KOPIA_CONFIG_PATH="$(pwd)/merged.json" \
-                  KOPIA_CACHE_DIRECTORY="$CACHE_DIRECTORY" \
-                  KOPIA_LOG_DIR="$LOGS_DIRECTORY" \
-                  KOPIA_CHECK_FOR_UPDATES=false \
-                  HOME="$(pwd)" # Kopia wants to write to $HOME really, really badly.
-
-                  # KOPIA_PERSIST_CREDENTIALS_ON_CONNECT=false
-
-                jq --slurp add '${cfgFile}' '${cfg.settingsFile}' > merged.json ||
-                  cp '${cfgFile}' merged.json # If settingsFile is not specified, fall back
-
-                # Kopia will not read *repository* passwords from plain-text config files, so we
-                # have to encode our config in base64 first and pass it as a "token" (unpadded base64)...
-                # The credentials will be persisted on disk for as long as the snapshot is running,
-                # that's why we have set strict permissions above.
-                base64 < merged.json | tr -d "=" > merged.json.base64
-                kopia repository connect from-config --token-file=merged.json.base64
-                kopia snapshot create '${directory}'
-                kopia repository disconnect
+        mkMerge (
+          map (
+            directory:
+            let
+              serviceName = "kopia${replaceStrings [ "/" ] [ "-" ] directory}";
+            in
+            {
+              services.${serviceName} = commonConfig {
+                description = "Kopia Snapshot ${directory}";
+                type = "oneshot";
+                command = ''
+                  kopia snapshot create '${directory}'
+                '';
+              };
+              timers.${serviceName} = mkIf cfg.schedule (mkMerge [
+                {
+                  enable = true;
+                  wantedBy = [ "timers.target" ];
+                  partOf = [ "${serviceName}.service" ];
+                  timerConfig = {
+                    Unit = "${serviceName}.service";
+                    OnCalendar = [ "${cfg.schedule}" ];
+                  };
+                }
+                cfg.timerConfig
+              ]);
+              tmpfiles.rules =
+                # `A+`: Append to existing ACLs, recursively
+                # `u:kopia:rX`: Grant user kopia read and if directory, list permissions
+                mkIf (cfg.user == "kopia") [
+                  ''A+ "${directory}" - - - - u:kopia:r-X''
+                ];
+            }
+          ) cfg.directories
+          ++ optional cfg.enableServer {
+            services.kopia-server = commonConfig {
+              description = "Kopia Repository Server";
+              autoStart = true;
+              type = "exec";
+              command = ''
+                kopia server start \
+                  --tls-generate-cert \
+                  --tls-cert-file ./kopia.cert \
+                  --tls-key-file ./kopia.key \
+                  --address 0.0.0.0:51515
               '';
             };
-          };
-          timers.${serviceName} = lib.mkMerge [
-            {
-              enable = true;
-              wantedBy = [ "timers.target" ];
-              partOf = [ "${serviceName}.service" ];
-              timerConfig = {
-                Unit = "${serviceName}.service";
-                OnCalendar = [ "${cfg.schedule}" ];
-              };
-            }
-            cfg.timerConfig
-          ];
-          tmpfiles.rules =
-            # `A+`: Append to existing ACLs, recursively
-            # `u:kopia:rX`: Grant user kopia read and if directory, list permissions
-            lib.mkIf (cfg.user == "kopia") [
-              ''A+ "${directory}" - - - - u:kopia:r-X''
-            ];
-        }
-      ) cfg.directories
-    );
-  };
+          }
+        );
+    }
+  );
 }
