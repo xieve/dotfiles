@@ -73,6 +73,19 @@ in {
   networking.firewall.allowedUDPPorts = satisfactoryPorts;
   networking.firewall.allowedTCPPorts = satisfactoryPorts ++ [ 8080 /* SearXNG (temp) */ ];
 
+  services.kopia = {
+    enable = true;
+    enableServer = true;
+    #directories = [ "/home/xieve" ];
+    settings = {
+      storage = {
+        type = "filesystem";
+        config.path = "/mnt/frail/kopia";
+      };
+    };
+    settingsFile = "/etc/kopia/secrets.json";
+  };
+
   # misc services
   services = {
     openssh.enable = true;
