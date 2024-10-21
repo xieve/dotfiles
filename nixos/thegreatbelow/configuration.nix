@@ -102,28 +102,22 @@ in {
       extraConfig = ''
         workgroup = WORKGROUP
         #server string = The Great Below
-        #netbios name = ${lib.toUpper config.networking.hostName}
+        netbios name = ${lib.toUpper config.networking.hostName}
 
         log level = 4
 
         use sendfile = yes
         deadtime = 30
+        # if a client is gone for 40s, assume connection lost and prevent zombie locks
+        # https://serverfault.com/questions/204812/how-to-prevent-samba-from-holding-a-file-lock-after-a-client-disconnects/907850#907850
+        socket options = TCP_NODELAY SO_KEEPALIVE TCP_KEEPIDLE=30 TCP_KEEPCNT=3 TCP_KEEPINTVL=3
 
         # smbpasswd will set the unix password as well
         unix password sync = yes
 
-        hosts allow = 192.168.0. 127.0.0.1 localhost
+        hosts allow = 192.168.0.
         hosts deny = ALL
-        server min protocol = SMB3_11
-        client ipc min protocol = SMB3_11
-        client signing = mandatory
-        server signing = mandatory
-        client ipc signing = mandatory
-        client NTLMv2 auth = yes
-        smb encrypt = required
         restrict anonymous = 2
-        null passwords = No
-        raw NTLMv2 auth = no
         map to guest = never
         access based share enum = yes
         guest account = nobody
