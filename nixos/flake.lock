@@ -247,6 +247,18 @@
         "type": "github"
       }
     },
+    "fasttext-lid": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-VaSq/ck96YaT7VJmkYnBRbqfsq1DaDnDV09/YnZSeJA=",
+        "type": "file",
+        "url": "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -860,6 +872,7 @@
     },
     "root": {
       "inputs": {
+        "fasttext-lid": "fasttext-lid",
         "flake-utils": "flake-utils",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",

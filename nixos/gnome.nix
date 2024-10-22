@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, fasttext-lid, ... }:
 
 let
   home = config.users.users.xieve.home;
@@ -70,6 +70,15 @@ in
       enable = true;
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
+    };
+
+    languagetool = {
+      enable = true;
+      port = 1337;
+      settings = {
+        fasttextBinary = "${pkgs.fasttext}/bin/fasttext";
+        fasttextModel = fasttext-lid;
+      };
     };
 
     # Enable CUPS

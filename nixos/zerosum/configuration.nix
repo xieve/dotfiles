@@ -7,7 +7,6 @@ in
   imports = [
     ./hardware.nix
     ../common.nix
-    ../gnome.nix
   ];
 
   networking = {

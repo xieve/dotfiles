@@ -7,6 +7,11 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixpkgs.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
     nzbr.url = "github:nzbr/nixos";
+    # Fasttext language identification model for languagetool
+    fasttext-lid = {
+      url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
+      flake = false;
+    };
   };
 
   outputs =
@@ -17,6 +22,7 @@
       nixos-wsl,
       nixpkgs,
       nzbr,
+      fasttext-lid,
     }@attrs:
     let
       inherit (nixpkgs.lib) nixosSystem;
@@ -25,14 +31,16 @@
       nixosConfigurations = {
         zerosum = nixosSystem {
           system = "x86_64-linux";
+          specialArgs = attrs; # Pass inputs to modules
           modules = [
+            ./gnome.nix
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
             ./zerosum/configuration.nix
           ];
         };
         thegreatbelow = nixosSystem {
           system = "x86_64-linux";
-          specialArgs = attrs; # Pass inputs to modules
+          specialArgs = attrs;
           modules = [
             nzbr.nixosModules."service/urbackup.nix"
             ./thegreatbelow/configuration.nix
