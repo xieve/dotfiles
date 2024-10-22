@@ -81,7 +81,38 @@ in {
     samba = {
       enable = true;
       openFirewall = true;
-      shares = {
+      settings = {
+        global = {
+          workgroup = "WORKGROUP";
+          #server string = The Great Below
+          "netbios name" = lib.toUpper config.networking.hostName;
+
+          "log level" = 4;
+
+          "use sendfile" = "yes";
+          deadtime = 30;
+          # if a client is gone for 40s, assume connection lost and prevent zombie locks
+          # https://serverfault.com/questions/204812/how-to-prevent-samba-from-holding-a-file-lock-after-a-client-disconnects/907850#907850
+          "socket options" = "TCP_NODELAY SO_KEEPALIVE TCP_KEEPIDLE=30 TCP_KEEPCNT=3 TCP_KEEPINTVL=3";
+
+          # smbpasswd will set the unix password as well
+          "unix password sync" = "yes";
+
+          "hosts allow" = "192.168.0.";
+          "hosts deny" = "ALL";
+          "restrict anonymous" = 2;
+          "map to guest" = "never";
+          "access based share enum" = "yes";
+          "guest account" = "nobody";
+
+          browseable = "yes";
+          "force create mode" = "0664";
+          "force directory mode" = "0775";
+          #force user = nobody
+          "force group" = "users";
+          "create mask" = "0664";
+          "directory mask" = "0775";
+        };
         public = {
           path = "/mnt/frail/srv/public";
           writeable = "yes";
@@ -99,37 +130,6 @@ in {
           "valid users" = [ "xieve" ];
         };
       };
-      extraConfig = ''
-        workgroup = WORKGROUP
-        #server string = The Great Below
-        netbios name = ${lib.toUpper config.networking.hostName}
-
-        log level = 4
-
-        use sendfile = yes
-        deadtime = 30
-        # if a client is gone for 40s, assume connection lost and prevent zombie locks
-        # https://serverfault.com/questions/204812/how-to-prevent-samba-from-holding-a-file-lock-after-a-client-disconnects/907850#907850
-        socket options = TCP_NODELAY SO_KEEPALIVE TCP_KEEPIDLE=30 TCP_KEEPCNT=3 TCP_KEEPINTVL=3
-
-        # smbpasswd will set the unix password as well
-        unix password sync = yes
-
-        hosts allow = 192.168.0.
-        hosts deny = ALL
-        restrict anonymous = 2
-        map to guest = never
-        access based share enum = yes
-        guest account = nobody
-
-        browseable = yes
-        force create mode = 0664
-        force directory mode = 0775
-        #force user = nobody
-        force group = users
-        create mask = 0664
-        directory mask = 0775
-      '';
     };
     samba-wsdd = {
       enable = true;
