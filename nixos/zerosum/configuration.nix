@@ -83,6 +83,7 @@ in
     syncthingtray
     wezterm
     wineWowPackages.stagingFull
+    xournalpp
     yabridge
     yabridgectl
   ];
