@@ -31,14 +31,13 @@ in
     "intel-ipu6-isys"
   ];
 
+  boot.kernelParams = [
+    "pci=hpiosize=0"
+  ];
+
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   }; # Force intel-media-driver
-
-  services.logind = {
-    lidSwitch = "lock";
-    lidSwitchExternalPower = "lock";
-  };
 
   # Touchscreen calibration values measured by iptsd-calibrate
   services.iptsd.config = {
