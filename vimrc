@@ -136,6 +136,10 @@ set showbreak=↪\
 set listchars=tab:\│\ ,nbsp:␣,trail:·,extends:›,precedes:‹
 
 
+" Scroll window before reaching edges
+set scrolloff=7
+
+
 " Allow saving of files as sudo when I forgot to start vim using sudoedit.
 cnoremap w!! SudaWrite
 
