@@ -9,6 +9,7 @@ packadd vim-surround
 packadd vim-textobj-user
 packadd vim-textobj-entire
 packadd vim-yoink
+packadd vim-commentary
 
 " Unicode support for unrecognized locales
 if has("multi_byte")

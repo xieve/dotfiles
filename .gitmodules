@@ -76,3 +76,6 @@
 [submodule "KvLibadwaita"]
 	path = KvLibadwaita
 	url = https://github.com/GabePoel/KvLibadwaita.git
+[submodule "vim/pack/plugins/opt/vim-commentary"]
+	path = vim/pack/plugins/opt/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
