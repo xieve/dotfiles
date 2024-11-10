@@ -30,6 +30,9 @@ if has('nvim')
 		nmap <silent> <C-r> <Cmd>call VSCodeNotify('redo')<CR>
 		nmap <silent> <C-f> <Cmd>call VSCodeNotify('actions.find')<CR>
 	endif
+
+	" Highlight yanked text
+	autocmd TextYankPost * silent! lua vim.hl.on_yank {higroup='Visual', timeout=300}
 else
 	" Use mouse input
 	set ttymouse=xterm2
