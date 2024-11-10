@@ -140,6 +140,11 @@ set listchars=tab:\│\ ,nbsp:␣,trail:·,extends:›,precedes:‹
 set scrolloff=7
 
 
+" Ignore case while searching if entire search term is lowercase
+set ignorecase
+set smartcase
+
+
 " Allow saving of files as sudo when I forgot to start vim using sudoedit.
 cnoremap w!! SudaWrite
 
