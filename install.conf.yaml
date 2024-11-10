@@ -7,6 +7,7 @@
     ~/.tmux.conf:
     ~/.tmuxline.theme:
     ~/.vimrc:
+    ~/.ideavimrc:
     ~/.zshrc:
     ~/.vim:
     ~/.config/flavours: flavours
