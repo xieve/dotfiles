@@ -3,6 +3,7 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixpkgs.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
@@ -18,6 +19,7 @@
     {
       self,
       flake-utils,
+      nix-vscode-extensions,
       nixos-hardware,
       nixos-wsl,
       nixpkgs,
@@ -33,6 +35,7 @@
           system = "x86_64-linux";
           specialArgs = attrs; # Pass inputs to modules
           modules = [
+            ./overlays.nix
             ./gnome.nix
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
             ./zerosum/configuration.nix
