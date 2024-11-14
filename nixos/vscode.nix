@@ -26,6 +26,7 @@
           svelte.svelte-vscode
           tamasfe.even-better-toml
           timonwong.shellcheck
+          xadillax.viml
           xyz.local-history
         ])
         ++ (with vscode-marketplace; [
