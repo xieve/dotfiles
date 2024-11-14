@@ -1,4 +1,10 @@
-{ config, pkgs, fasttext-lid, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  fasttext-lid,
+  ...
+}:
 
 let
   home = config.users.users.xieve.home;
@@ -36,7 +42,6 @@ in
   fonts.packages = with pkgs; [
     newcomputermodern
   ];
-
 
   # TODO: this should be in like, desktop.nix or something...
   # TODO: look at TODOs xd
@@ -143,6 +148,56 @@ in
               focus-mode = "sloppy";
               # Don't raise windows when focused
               auto-raise = "false";
+            };
+
+            # Keybindings
+            "org/gnome/desktop/wm/keybindings" = {
+              minimize = [ "<Super>z" ];
+              move-to-monitor-down = [ "<Shift><Super>j" ];
+              move-to-monitor-left = [ "<Shift><Super>h" ];
+              move-to-monitor-right = [ "<Shift><Super>l" ];
+              move-to-monitor-up = [ "<Shift><Super>k" ];
+              move-to-workspace-down = [ "<Shift><Alt><Super>j" ];
+              move-to-workspace-left = [ "<Shift><Alt><Super>h" ];
+              move-to-workspace-right = [ "<Shift><Alt><Super>l" ];
+              move-to-workspace-up = [ "<Shift><Alt><Super>k" ];
+              switch-applications = [ "<Alt>Tab" ];
+              switch-applications-backward = [ "<Shift><Alt>Tab" ];
+              switch-group = [ "<Super>Tab" ];
+              switch-group-backward = [ "<Shift><Super>Tab" ];
+              switch-input-source = pkgs.lib.gvariant.mkEmptyArray pkgs.lib.gvariant.type.string;
+              switch-input-source-backward = pkgs.lib.gvariant.mkEmptyArray pkgs.lib.gvariant.type.string;
+              switch-panels = [ "<Control><Alt>Tab" ];
+              switch-panels-backward = [ "<Shift><Control><Alt>Tab" ];
+              switch-to-workspace-1 = [ "<Super>Home" ];
+              switch-to-workspace-last = [ "<Super>End" ];
+              switch-to-workspace-left = [ "<Alt><Super>h" ];
+              switch-to-workspace-right = [ "<Alt><Super>l" ];
+              close = [
+                "<Super>q"
+                "<Alt>F4"
+              ];
+            };
+            "org/gnome/settings-daemon/plugins/media-keys" = {
+              calculator = [ "<Super>c" ];
+              control-center = [ "<Super>comma" ];
+              custom-keybindings = [
+                "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+              ];
+              rotate-video-lock-static = [
+                "<Super>o"
+                "XF86RotationLockToggle"
+              ];
+              screensaver = [ "<Super>Escape" ]; # lock screen
+              www = [ "<Super>b" ];
+            };
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+              binding = "<Super>t";
+              command = "wezterm";
+              name = "wezterm";
+            };
+            "org/gnome/mutter/wayland/keybindings" = {
+              restore-shortcuts = pkgs.lib.gvariant.mkEmptyArray pkgs.lib.gvariant.type.string;
             };
 
             # Styling
