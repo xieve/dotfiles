@@ -119,11 +119,12 @@ in
     package = pkgs.gnomeExtensions.gsconnect;
   };
 
-  programs.dconf = pkgs.lib.mkIf config.services.xserver.desktopManager.gnome.enable {
+  programs.dconf = lib.mkIf config.services.xserver.desktopManager.gnome.enable {
     enable = true;
     profiles.user.databases = [
       {
         settings =
+          with lib.gvariant;
           let
             background = "file://${home}/Syncthing/Bilder/IMG_20200401_203137_972.jpg";
           in
@@ -165,8 +166,8 @@ in
               switch-applications-backward = [ "<Shift><Alt>Tab" ];
               switch-group = [ "<Super>Tab" ];
               switch-group-backward = [ "<Shift><Super>Tab" ];
-              switch-input-source = pkgs.lib.gvariant.mkEmptyArray pkgs.lib.gvariant.type.string;
-              switch-input-source-backward = pkgs.lib.gvariant.mkEmptyArray pkgs.lib.gvariant.type.string;
+              switch-input-source = mkEmptyArray type.string;
+              switch-input-source-backward = mkEmptyArray type.string;
               switch-panels = [ "<Control><Alt>Tab" ];
               switch-panels-backward = [ "<Shift><Control><Alt>Tab" ];
               switch-to-workspace-1 = [ "<Super>Home" ];
@@ -197,7 +198,7 @@ in
               name = "wezterm";
             };
             "org/gnome/mutter/wayland/keybindings" = {
-              restore-shortcuts = pkgs.lib.gvariant.mkEmptyArray pkgs.lib.gvariant.type.string;
+              restore-shortcuts = mkEmptyArray type.string;
             };
 
             # Styling
@@ -236,7 +237,7 @@ in
                 "org.wezfurlong.wezterm"
                 "firefox"
               ];
-              opacity = pkgs.lib.gvariant.mkInt32 255;
+              opacity = mkInt32 255;
             };
           };
       }
