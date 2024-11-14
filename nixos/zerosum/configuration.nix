@@ -77,7 +77,6 @@ in
     bespokesynth
     dolphin-emu
     flavours
-    jetbrains.clion
     moonlight-qt
     rnote
     syncthingtray
