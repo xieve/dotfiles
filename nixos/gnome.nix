@@ -126,11 +126,14 @@ in
             # Compose Key
             "org/gnome/desktop/input-sources".xkb-options = [ "compose:ralt" ];
             # Fractional scaling
-            "org/gnome/mutter".experimental-features = [
-              "scale-monitor-framebuffer"
-              "variable-refresh-rate"
-              "xwayland-native-scaling"
-            ];
+            "org/gnome/mutter" = {
+              experimental-features = [
+                # "scale-monitor-framebuffer"
+                "variable-refresh-rate"
+                "xwayland-native-scaling"
+              ];
+              workspaces-only-on-primary = true;
+            };
             # Disable automatic backlight adjustments
             "org/gnome/settings-daemon/plugins/power".ambient-enabled = false;
 
