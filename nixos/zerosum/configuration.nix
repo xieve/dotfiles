@@ -138,7 +138,7 @@ in
         "org.keepassxc.KeePassXC.desktop"
         "obsidian.desktop"
         "codium.desktop"
-        "BespokeSynth.desktop"
+        "com.github.flxzt.rnote.desktop"
       ];
     }
   ];
