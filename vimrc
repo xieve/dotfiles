@@ -9,7 +9,6 @@ packadd vim-surround
 packadd vim-textobj-user
 packadd vim-textobj-entire
 packadd vim-yoink
-packadd vim-commentary
 
 " Unicode support for unrecognized locales
 if has("multi_byte")
@@ -190,3 +189,12 @@ xnoremap x d
 nnoremap xx dd
 nnoremap X D
 
+
+" ~ now accepts a motion
+set tildeop
+
+
+" Automatically insert comment leaders when creating a new line from a comment
+set formatoptions+=ro/
+
+set textwidth=100
