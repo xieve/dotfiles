@@ -193,7 +193,7 @@ in
               www = [ "<Super>b" ];
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-              binding = "<Super>t";
+              binding = "<Super>grave";
               command = "wezterm";
               name = "wezterm";
             };
