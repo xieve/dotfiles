@@ -11,3 +11,4 @@ Plug 'tpope/vim-commentary'
 
 set ideajoin
 set incsearch
+set clipboard^=ideaput
