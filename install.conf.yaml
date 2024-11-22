@@ -21,6 +21,8 @@
     ~/.config/wezterm: wezterm
     ~/.config/pop-shell/config.json: pop-shell.json
     ~/.config/Kvantum/KvLibadwaita: KvLibadwaita/src/KvLibadwaita
+    ~/.config/VSCodium/User/settings.json: vscode.json
+    ~/.config/VSCode/User/settings.json: vscode.json
     ~/.ssh/config: ssh.config
 
 - shell:
