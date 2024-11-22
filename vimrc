@@ -38,7 +38,7 @@ else
 endif
 
 
-if !exists("g:vscode")
+if !exists("g:vscode") && !has("ide")
 	packadd vim-fugitive
 	packadd vim-airline
 	packadd vim-airline
@@ -118,6 +118,10 @@ if !exists("g:vscode")
 	" Folding
 	set foldmethod=syntax  " folds are appropriately created for supported languages
 	set nofoldenable  " all folds open by default
+
+
+	" Allow saving of files as sudo when I forgot to start vim using sudoedit.
+	cnoremap w!! SudaWrite
 endif
 
 
@@ -146,10 +150,6 @@ set scrolloff=7
 " Ignore case while searching if entire search term is lowercase
 set ignorecase
 set smartcase
-
-
-" Allow saving of files as sudo when I forgot to start vim using sudoedit.
-cnoremap w!! SudaWrite
 
 
 " vim-subversive
