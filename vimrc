@@ -1,15 +1,3 @@
-packadd ReplaceWithRegister
-packadd sleuth
-packadd suda.vim
-packadd targets.vim
-packadd vim-cutlass
-packadd vim-indent-object
-packadd vim-subversive
-packadd vim-surround
-packadd vim-textobj-user
-packadd vim-textobj-entire
-packadd vim-yoink
-
 " Unicode support for unrecognized locales
 if has("multi_byte")
 	if &termencoding == ""
@@ -150,34 +138,6 @@ set scrolloff=7
 " Ignore case while searching if entire search term is lowercase
 set ignorecase
 set smartcase
-
-
-" vim-subversive
-" s<text object> to replace <text object> with selected register. use `cl` for
-" old behaviour.
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
-nmap S <plug>(SubversiveSubstituteToEndOfLine)
-
-
-" vim-yoink
-let g:yoinkSyncNumberedRegisters = 1
-let g:yoinkIncludeDeleteOperations = 1
-
-if !exists('g:vscode')
-	nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-	nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-
-	nmap p <plug>(YoinkPaste_p)
-	nmap P <plug>(YoinkPaste_P)
-endif
-
-" Also replace the default gp with yoink paste so we can toggle paste in this case too
-nmap gp <plug>(YoinkPaste_gp)
-nmap gP <plug>(YoinkPaste_gP)
-
-nmap y <plug>(YoinkYankPreserveCursorPosition)
-xmap y <plug>(YoinkYankPreserveCursorPosition)
 
 
 " vim-cutlass
