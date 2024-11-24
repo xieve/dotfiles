@@ -109,6 +109,21 @@ with lib;
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    configure = {
+      # Workaround for https://github.com/NixOS/nixpkgs/issues/177375
+      customRC = ''
+        source ~/.config/nvim/init.lua
+      '';
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        opt = [
+          nvim-autopairs
+          nvim-treesitter.withAllGrammars
+          nvim-ts-autotag
+          vim-matchup
+          which-key-nvim
+        ];
+      };
+    };
   };
 
   # This way, we can run the tailscale CLI as user (if the service is enabled for the host)
