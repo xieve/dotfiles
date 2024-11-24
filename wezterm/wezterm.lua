@@ -14,10 +14,16 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 		{
 			name = "WSL:NixOS",
 			distribution = "NixOS",
+			username = "root";
 			default_prog = {
 				"/run/current-system/sw/bin/zsh",
 				"-c",
-				"until [ -S /run/dbus/system_bus_socket ]; do sleep 1; done; exec zsh",
+				"until [ -S /run/dbus/system_bus_socket ]; \
+					do sleep 1; \
+				done; \
+				systemctl restart user@1000; \
+				export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'; \
+				exec sudo --preserve-env=DBUS_SESSION_BUS_ADDRESS --user xieve zsh",
 			}
 		},
 	}
