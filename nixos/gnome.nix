@@ -134,7 +134,7 @@ in
             # Fractional scaling
             "org/gnome/mutter" = {
               experimental-features = [
-                # "scale-monitor-framebuffer"
+                "scale-monitor-framebuffer"
                 "variable-refresh-rate"
                 "xwayland-native-scaling"
               ];

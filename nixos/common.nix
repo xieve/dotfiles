@@ -11,7 +11,6 @@ with lib;
 
   # Enable flakes
   nix = {
-    package = pkgs.nixFlakes;
     settings = {
       experimental-features = "nix-command flakes";
     };

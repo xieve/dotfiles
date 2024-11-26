@@ -89,7 +89,7 @@ in
 
   services.udev.packages = [
     # Dolphin emu udev rules (allow direct bluetooth access)
-    pkgs.dolphinEmu
+    pkgs.dolphin-emu
     # Allow raw access to all usb storage devices
     (pkgs.writeTextFile {
       name = "usb-storage-udev-rules";
