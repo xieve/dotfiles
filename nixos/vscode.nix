@@ -30,9 +30,6 @@
           xyz.local-history
         ])
         ++ (with vscode-marketplace; [
-          dendron.dendron
-          dendron.dendron-markdown-shortcuts
-          dendron.dendron-paste-image
         ]);
     })
   ];
