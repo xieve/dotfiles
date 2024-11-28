@@ -62,9 +62,9 @@ with lib;
     packages = with pkgs; [
       black
       dnsutils
+      fastfetch
       fd
       git-crypt
-      neofetch
       p7zip
       ripgrep
       tree
