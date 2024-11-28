@@ -30,6 +30,7 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 	config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"  -- does not work on Gnome currently
 else
 	config.window_background_opacity = 0.8
+	config.window_decorations = "NONE"
 end
 
 
