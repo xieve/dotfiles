@@ -7,7 +7,6 @@ config.enable_wayland = false
 
 -- Workaround for font rendering issue where all glyphs are rectangles
 config.front_end = "WebGpu"
-config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"  -- does not work on Gnome currently
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 	config.default_domain = "WSL:NixOS"
@@ -28,40 +27,10 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 			}
 		},
 	}
+	config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"  -- does not work on Gnome currently
 else
 	config.window_background_opacity = 0.8
-
-	wezterm.on("update-status", function(window)
-		-- run only once per new window
-		wezterm.GLOBAL.windows_without_decoration = wezterm.GLOBAL.windows_without_decoration or {}
-		local window_id = window:window_id() .. ""
-		wezterm.log_info("id: " .. window_id .. " has decoration: " .. tostring(not wezterm.GLOBAL.windows_without_decoration[window_id]))
-		if wezterm.GLOBAL.windows_without_decoration[window_id] then return end
-
-		-- get all current Xorg windows with their id and their window class
-		local success, stdout, stderr = wezterm.run_child_process({"wmctrl", "-lx"})
-		if not success then error("Error running wmctrl: " + (stderr or "")) end
-
-		-- iterate lines
-		for line in string.gmatch(stdout, "([^\n]+)") do
-			-- filter by window class
-			if string.find(line, "org.wezfurlong.wezterm") then
-				-- set wmhints
-				wezterm.run_child_process {
-					"xprop",
-					"-f", "_MOTIF_WM_HINTS", "32c",
-					"-set", "_MOTIF_WM_HINTS", "0x2, 0x0, 0x0, 0x0, 0x0",
-					"-id", string.match(line, "([^%s]+)")
-				}
-				wezterm.GLOBAL.windows_without_decoration[window_id] = true
-			end
-		end
-	end)
-
-	-- window is redrawn when config is reloaded
-	wezterm.on("window-config-reloaded", function(window)
-		wezterm.GLOBAL.windows_without_decoration[window:window_id() .. ""] = false
-	end)
+	config.window_decorations = "NONE"
 end
 
 
