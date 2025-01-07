@@ -16,12 +16,12 @@ in
 
   environment.systemPackages =
     (with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
       adwaita-icon-theme-legacy
       fira-code
       firefox
       gnome-tweaks
       keepassxc
+      nerd-fonts.fira-code
       obsidian
       xclip # clipboard support for term apps (neovim, ssh) (works on gnome, while wl-clipboard does not)
     ])
