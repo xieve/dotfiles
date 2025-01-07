@@ -1,0 +1,20 @@
+# Gnome Console default color scheme
+scheme: "kgx"
+author: "xieve"
+base00: "1e1e1e" # Black
+base08: "c01c28" # Red
+base0B: "2ec27e" # Green
+base0A: "f5c211" # Yellow
+base0D: "1e78e4" # Blue
+base0E: "9841bb" # Magenta
+base0C: "0ab9dc" # Cyan
+base05: "cfcfcf" # White
+base03: "5e5c64" # Bright Black
+base09: "ed333b" # Bright Red
+base01: "57e389" # Bright Green
+base02: "f8e45c" # Bright Yellow
+base04: "51a1ff" # Bright Blue
+base06: "c061cb" # Bright Magenta
+base0F: "4fd2fd" # Bright Cyan
+base07: "ffffff" # Bright White
+

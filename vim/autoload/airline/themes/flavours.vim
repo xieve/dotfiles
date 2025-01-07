@@ -1,28 +1,28 @@
-" Base16 Material Vivid vim-airline-theme (https://github.com/dawikur/base16-vim-airline-themes)
+" Base16 kgx-adjusted vim-airline-theme (https://github.com/dawikur/base16-vim-airline-themes)
 " For vim-airline (https://github.com/vim-airline/vim-airline)
-" By joshyrobot
+" By xieve
 
-let s:scheme_slug = substitute("material-vivid", "-", "_", "g")
+let s:scheme_slug = substitute("kgx-adjusted", "-", "_", "g")
 
 let g:airline#themes#flavours#palette = {}
 
 " GUI color definitions
-let s:gui00 = '#202124'
+let s:gui00 = '#1e1e1e'
 let s:gui01 = '#27292c'
 let s:gui02 = '#323639'
 let s:gui03 = '#44464d'
 let s:gui04 = '#676c71'
-let s:gui05 = '#80868b'
+let s:gui05 = '#cfcfcf'
 let s:gui06 = '#9e9e9e'
 let s:gui07 = '#ffffff'
-let s:gui08 = '#f44336'
-let s:gui09 = '#ff9800'
-let s:gui0A = '#ffeb3b'
-let s:gui0B = '#00e676'
-let s:gui0C = '#00bcd4'
-let s:gui0D = '#2196f3'
-let s:gui0E = '#673ab7'
-let s:gui0F = '#8d6e63'
+let s:gui08 = '#c01c28'
+let s:gui09 = '#ed333b'
+let s:gui0A = '#f5c211'
+let s:gui0B = '#2ec27e'
+let s:gui0C = '#0ab9dc'
+let s:gui0D = '#1e78e4'
+let s:gui0E = '#9841bb'
+let s:gui0F = '#4fd2fd'
 
 " Terminal color definitions
 let s:cterm00        = "00"

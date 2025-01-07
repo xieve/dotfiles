@@ -1,0 +1,21 @@
+# Mashup between the kgx default theme and material vivid
+# Because base00-07 are mainly used as "decoration" (eg. vim statusline) and that looks awful with bright colors
+scheme: "kgx-adjusted"
+author: "xieve"
+base00: "1e1e1e" # Black
+base01: "27292c" # From Material Vivid
+base02: "323639" # From Material Vivid
+base03: "44464d" # From Material Vivid
+base04: "676c71" # From Material Vivid
+base05: "cfcfcf" # White
+base06: "9e9e9e" # From Material Vivid
+base07: "ffffff" # Bright White
+base08: "c01c28" # Red
+base09: "ed333b" # Bright Red
+base0A: "f5c211" # Yellow
+base0B: "2ec27e" # Green
+base0C: "0ab9dc" # Cyan
+base0D: "1e78e4" # Blue
+base0E: "9841bb" # Magenta
+base0F: "4fd2fd" # Bright Cyan
+
