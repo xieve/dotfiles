@@ -194,7 +194,7 @@ in
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
               binding = "<Super>grave";
-              command = "wezterm";
+              command = "wezterm connect wuake --class org.wezfurlong.wezterm.dropdown";
               name = "wezterm";
             };
             "org/gnome/mutter/wayland/keybindings" = {
@@ -235,6 +235,7 @@ in
               dynamic-opacity = false;
               whitelist = [
                 "org.wezfurlong.wezterm"
+                "org.wezfurlong.wezterm.dropdown"
                 "firefox"
               ];
               opacity = mkInt32 255;

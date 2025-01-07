@@ -31,6 +31,20 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 else
 	config.window_background_opacity = 0.8
 	config.window_decorations = "NONE"
+
+	-- Dropdown terminal
+	require("wuake").setup {
+		config = config,
+		config_overrides = {
+			hide_tab_bar_if_only_one_tab = true,
+			window_padding = {
+				left = "2cell",
+				right = "2cell",
+				top = "1cell",
+				bottom = "1cell",
+			},
+		},
+	}
 end
 
 

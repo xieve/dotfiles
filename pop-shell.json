@@ -2,6 +2,9 @@
   "float": [
     {
       "class": "Syncthing Tray"
+    },
+    {
+      "class": "wezterm.dropdown"
     }
   ],
   "skiptaskbarhidden": [],
