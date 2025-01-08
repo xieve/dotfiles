@@ -54,8 +54,8 @@ in
     };
     # Once https://github.com/NixOS/nixpkgs/pull/344036 has been merged, this option should
     # be renamed to "Touchscreen"
-    Touch.DisableOnPalm = true;
-    Touch.DisableOnStylus = true;
+    Touchscreen.DisableOnPalm = true;
+    Touchscreen.DisableOnStylus = true;
   };
 
   services = {
