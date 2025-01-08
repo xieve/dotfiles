@@ -88,11 +88,12 @@ in
     yabridgectl
   ];
 
-  services.udev.packages = [
+  services.udev.packages = with pkgs; [
     # Dolphin emu udev rules (allow direct bluetooth access)
-    pkgs.dolphin-emu
+    dolphin-emu
+    android-udev-rules
     # Allow raw access to all usb storage devices
-    (pkgs.writeTextFile {
+    (writeTextFile {
       name = "usb-storage-udev-rules";
       text = ''SUBSYSTEM=="usb", ATTRS{removable}=="removable", MODE="0660", TAG+="uaccess"'';
       destination = "/etc/udev/rules.d/70-usb-storage.rules";
