@@ -20,7 +20,7 @@ require("nvim-autopairs").setup {}
 vim.cmd.packadd("nvim-ts-autotag")
 require("nvim-ts-autotag").setup {}
 vim.cmd.packadd("vim-matchup")
-vim.cmd.packadd("which-key.nvim")
+vim.g.matchup_matchparen_deferred = 1
 
 vim.cmd.packadd("ReplaceWithRegister")
 vim.cmd.packadd("sleuth")
@@ -48,6 +48,8 @@ vim.g.yoinkSyncNumberedRegisters = 1
 vim.g.yoinkIncludeDeleteOperations = 1
 
 if not vim.g.vscode then
+	vim.cmd.packadd("which-key.nvim")
+
 	vim.keymap.set("n", "<c-n>", "<plug>(YoinkPostPasteSwapBack)")
 	vim.keymap.set("n", "<c-p>", "<plug>(YoinkPostPasteSwapForward)")
 
