@@ -30,6 +30,7 @@
           xyz.local-history
         ])
         ++ (with vscode-marketplace; [
+          dozerg.tsimportsorter
         ]);
     })
   ];
