@@ -96,6 +96,7 @@ with lib;
     git
     htop
     killall
+    nixfmt-rfc-style
     python3
     smartmontools
     tmux
