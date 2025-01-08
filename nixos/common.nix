@@ -28,6 +28,9 @@ with lib;
     efi.canTouchEfiVariables = mkDefault true;
   };
 
+  # When RAM fills up, compress it before swapping to disk
+  zramSwap.enable = mkDefault true;
+
   # Recommended by docs, default enabled only for backwards compat
   boot.zfs.forceImportRoot = false;
 

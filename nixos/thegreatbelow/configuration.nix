@@ -16,9 +16,6 @@ in {
   # Serial Console
   boot.kernelParams = [ "console=tty0" "console=ttyS0,115200n8" ];
 
-  # When RAM fills up, compress it before swapping to disk
-  zramSwap.enable = true;
-
   # Encrypt swap on boot with new randomly generated key
   swapDevices = [
     {
