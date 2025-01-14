@@ -24,7 +24,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(
     history
 )
 
-export LESS="-FRX"
+export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS"
 export SYSTEMD_LESS="$LESS"
 
 if type nvim > /dev/null; then
