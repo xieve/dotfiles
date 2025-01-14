@@ -16,6 +16,7 @@ in
 
   environment.systemPackages =
     (with pkgs; [
+      adw-gtk3
       adwaita-icon-theme-legacy
       fira-code
       firefox
@@ -207,6 +208,8 @@ in
             };
             "org/gnome/desktop/screensaver".picture-uri = background;
             "org/gnome/desktop/interface" = {
+              # Make GTK3 apps look more consistent with libadwaita (GTK4) apps
+              gtk-theme = "adw-gtk3-dark";
               font-antialiasing = "rgba";
               monospace-font-name = "FiraCode Nerd Font weight=450 10";
               cursor-theme = "breeze_cursors";
