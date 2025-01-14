@@ -5,9 +5,6 @@ local config = wezterm.config_builder()
 -- XWayland works a little better right now on Gnome
 config.enable_wayland = false
 
--- Workaround for font rendering issue where all glyphs are rectangles
-config.front_end = "WebGpu"
-
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 	config.default_domain = "WSL:NixOS"
 	config.wsl_domains = {
