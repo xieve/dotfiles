@@ -87,9 +87,10 @@
           directory = ./packages;
         };
 
-        nixosModules = lib.foldl (a: b: a // b) {} (
+        nixosModules = lib.foldl (a: b: a // b) { } (
           map (filename: {
-            ${lib.strings.removePrefix "${toString ./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} = import filename;
+            ${lib.strings.removePrefix "${toString ./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} =
+              import filename;
           }) (lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules))
         );
       }

@@ -95,7 +95,6 @@ in
               default = "";
             };
 
-
             schedule = mkOption {
               type = str;
               default = "daily";
@@ -150,7 +149,11 @@ in
         {
           services.${serviceName} = {
             description = "Kopia Snapshot ${directory}";
-            path = with pkgs; [ kopia jq zsh ];
+            path = with pkgs; [
+              kopia
+              jq
+              zsh
+            ];
             serviceConfig = {
               Type = "oneshot";
               User = cfg.user;

@@ -47,9 +47,9 @@ in
       AspectMin = 1;
       AspectMax = 2.1;
       /*
-      ActivationThreshold = 40;
-      DeactivationThreshold = 36;
-      OrientationThresholdMax = 15;
+        ActivationThreshold = 40;
+        DeactivationThreshold = 36;
+        OrientationThresholdMax = 15;
       */
     };
     # Once https://github.com/NixOS/nixpkgs/pull/344036 has been merged, this option should

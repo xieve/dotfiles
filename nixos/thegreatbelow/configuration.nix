@@ -6,15 +6,23 @@
   ...
 }:
 let
-  satisfactoryPorts = [ 15777 15000 7777 ];
-in {
+  satisfactoryPorts = [
+    15777
+    15000
+    7777
+  ];
+in
+{
   imports = [
     ./hardware.nix
     ../common.nix
   ];
 
   # Serial Console
-  boot.kernelParams = [ "console=tty0" "console=ttyS0,115200n8" ];
+  boot.kernelParams = [
+    "console=tty0"
+    "console=ttyS0,115200n8"
+  ];
 
   # Encrypt swap on boot with new randomly generated key
   swapDevices = [
@@ -68,7 +76,9 @@ in {
 
   # Firewall
   networking.firewall.allowedUDPPorts = satisfactoryPorts;
-  networking.firewall.allowedTCPPorts = satisfactoryPorts ++ [ 8080 /* SearXNG (temp) */ ];
+  networking.firewall.allowedTCPPorts = satisfactoryPorts ++ [
+    8080 # SearXNG (temp)
+  ];
 
   # misc services
   services = {

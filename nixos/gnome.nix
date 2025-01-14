@@ -230,7 +230,8 @@ in
               ];
             };
             # Burn My Windows (window open & close effects)
-            "org/gnome/shell/extensions/burn-my-windows".active-profile = "${home}/.config/burn-my-windows/profiles/close.conf";
+            "org/gnome/shell/extensions/burn-my-windows".active-profile =
+              "${home}/.config/burn-my-windows/profiles/close.conf";
             # Blur My Shell
             "org/gnome/shell/extensions/blur-my-shell/applications" = {
               blur = true;

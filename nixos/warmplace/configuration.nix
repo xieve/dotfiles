@@ -294,7 +294,8 @@ in
                   entity_id = "sensor.evcc_status";
                   state = "online";
                 }
-                { # we use a condition to check because if we used `to:` etc. we would
+                {
+                  # we use a condition to check because if we used `to:` etc. we would
                   # not get events for attribute changes (like changed summary, times)
                   condition = "state";
                   entity_id = "calendar.evcc_schedule";
