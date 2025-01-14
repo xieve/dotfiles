@@ -16,7 +16,9 @@ require("nvim-treesitter.configs").setup {
 }
 
 vim.cmd.packadd("nvim-autopairs")
-require("nvim-autopairs").setup {}
+require("nvim-autopairs").setup {
+	check_ts = true,
+}
 vim.cmd.packadd("nvim-ts-autotag")
 require("nvim-ts-autotag").setup {}
 vim.cmd.packadd("vim-matchup")
