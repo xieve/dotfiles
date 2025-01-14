@@ -32,6 +32,10 @@
         fileSystems."/" = {
           device = "/dev/disk/by-uuid/650ca6ce-7a65-4278-a1d3-12c6170441b9";
           fsType = "ext4";
+          options = [
+            "noatime"
+            "discard"
+          ];
         };
 
         boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/a2d6a018-51a9-46fc-9875-1f6a014609da";
