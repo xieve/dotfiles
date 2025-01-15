@@ -162,8 +162,10 @@ in
               move-to-workspace-left = [ "<Shift><Alt><Super>h" ];
               move-to-workspace-right = [ "<Shift><Alt><Super>l" ];
               move-to-workspace-up = [ "<Shift><Alt><Super>k" ];
-              switch-applications = [ "<Alt>Tab" ];
-              switch-applications-backward = [ "<Shift><Alt>Tab" ];
+              switch-applications = [ "<Alt>grave" ];
+              switch-applications-backward = [ "<Shift><Alt>grave" ];
+              switch-windows = [ "<Alt>Tab" ];
+              switch-windows-backward = [ "<Shift><Alt>Tab" ];
               switch-group = [ "<Super>Tab" ];
               switch-group-backward = [ "<Shift><Super>Tab" ];
               switch-input-source = mkEmptyArray type.string;
@@ -200,6 +202,8 @@ in
             "org/gnome/mutter/wayland/keybindings" = {
               restore-shortcuts = mkEmptyArray type.string;
             };
+            # Alt-Tab to every workspace
+            "org/gnome/shell/window-switcher".current-workspace-only = false;
 
             # Styling
             "org/gnome/desktop/background" = {
