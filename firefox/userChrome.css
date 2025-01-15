@@ -1,24 +1,23 @@
-#main-window #titlebar {
-    overflow: hidden;
-    transition: height 0.3s 0.3s !important;
+#main-window #TabsToolbar {
+    transition: max-height 0.3s 0.3s !important;
 }
 
 /* Default state: Set initial height to enable animation */
-#main-window #titlebar {
-    height: 3em !important;
+#main-window #TabsToolbar {
+    max-height: 3em !important;
 }
 
-#main-window[uidensity="touch"] #titlebar {
-    height: 3.35em !important;
+#main-window[uidensity="touch"] #TabsToolbar {
+    max-height: 3.35em !important;
 }
 
-#main-window[uidensity="compact"] #titlebar {
-    height: 2.7em !important;
+#main-window[uidensity="compact"] #TabsToolbar {
+    max-height: 2.7em !important;
 }
 
 /* Hidden state: Hide native tabs strip */
-#main-window[titlepreface*="​"] #titlebar {
-    height: 0 !important;
+#main-window[titlepreface*="​"] #TabsToolbar {
+    max-height: 0 !important;
 }
 
 /* Hidden state: Fix z-index of active pinned tabs */
@@ -26,10 +25,16 @@
     z-index: 0 !important;
 }
 
+#main-window[titlepreface*="​"] .titlebar-close {
+    display: none;
+}
+
+/* Remove sidebar header */
 #sidebar-header {
     display: none;
 }
 
+/* Prettier, smaller sidebar on linux */
 splitter.sidebar-splitter {
     width: 1px !important;
     border: none !important;
