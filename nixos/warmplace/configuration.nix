@@ -148,10 +148,6 @@ in
             capacity = 39;
           }
         ];
-        tariffs.co2 = {
-          type = "grünstromindex";
-          zip = secrets.zip;
-        };
         site = {
           title = "Zuhause";
           meters = {
