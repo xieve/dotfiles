@@ -163,6 +163,7 @@ in
           {
             title = "Werkstatt";
             charger = "go-eCharger";
+            phases = 0; # automatically select 1|3
           }
         ];
       };
