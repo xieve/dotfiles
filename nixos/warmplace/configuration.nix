@@ -90,6 +90,7 @@ in
     evcc = {
       enable = true;
       settings = {
+        sponsortoken = secrets.evccToken;
         network = {
           schema = "https";
           host = config.networking.hostName;
@@ -130,10 +131,11 @@ in
           ];
         chargers = [
           {
-            # this opens a websocket on port 8887, which we reverse proxy with nginx for TLS
-            name = "ocpp";
+            name = "go-eCharger";
             type = "template";
-            template = "ocpp";
+            # go-e HTTP API v2
+            template = "go-e-v3";
+            host = "go-echarger_${secrets.goeSerial}";
           }
         ];
         vehicles = [
@@ -160,9 +162,7 @@ in
         loadpoints = [
           {
             title = "Werkstatt";
-            charger = "ocpp";
-            # let's see if i need to define this in addition to OCPP TODO
-            #meter = "charge";
+            charger = "go-eCharger";
           }
         ];
       };
@@ -354,11 +354,6 @@ in
           "/evcc/" = {
             proxyWebsockets = true;
             proxyPass = "http://[::1]:7070/";
-          };
-          # Open Charging Point Protocol, handled by evcc
-          "/ocpp/" = {
-            proxyWebsockets = true;
-            proxyPass = "http://[::1]:8887/";
           };
         };
       };
