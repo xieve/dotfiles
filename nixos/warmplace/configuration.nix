@@ -204,6 +204,8 @@ in
               # 5s is the current ESPHome interval, although the ESP8266 at the
               # inverter is struggling to keep up. This can probably be decreased.
               max_sub_interval.seconds = 5;
+              # Trapezoidal is highly inaccurate for the reason stated above
+              method = "left";
             })
             [
               "Power to Grid"
