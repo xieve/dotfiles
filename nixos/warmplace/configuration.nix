@@ -174,7 +174,6 @@ in
       extraComponents = [
         "esphome"
         "forecast_solar"
-        "local_calendar" # needs manual setup: evcc_schedule
         "met"
         "radio_browser"
       ];
@@ -235,16 +234,6 @@ in
           }
         ];
 
-        rest_command = {
-          evcc_plan_soc = {
-            url = "http://localhost:7070/api/vehicles/{{ vehicle }}/plan/soc/{{ soc }}/{{ time }}";
-            method = "post";
-          };
-        };
-
-        # Log REST errors
-        logger.logs."homeassistant.components.rest_command" = "debug";
-
         automation = [
           {
             alias = "go-e Surplus Charging";
@@ -277,47 +266,6 @@ in
                 '';
               };
             };
-          }
-          {
-            alias = "evcc Advanced Charging Plans";
-            description = "Set repeating charging plans for evcc, since that feature is not yet implemented in itself";
-            trigger = {
-              platform = "state";
-              entity_id = "calendar.evcc_schedule";
-            };
-            condition = {
-              condition = "and";
-              conditions = [
-                {
-                  condition = "state";
-                  entity_id = "sensor.evcc_status";
-                  state = "online";
-                }
-                {
-                  # we use a condition to check because if we used `to:` etc. we would
-                  # not get events for attribute changes (like changed summary, times)
-                  condition = "state";
-                  entity_id = "calendar.evcc_schedule";
-                  state = "on";
-                }
-              ];
-            };
-            action = [
-              {
-                action = "rest_command.evcc_plan_soc";
-                data = {
-                  vehicle = "fiat500e";
-                  soc = ''{{ int(trigger.to_state.attributes["message"].strip("%")) }}'';
-                  time = ''
-                    {{
-                      trigger.to_state.attributes["end_time"]
-                      | as_timestamp
-                      | timestamp_custom("%Y-%m-%dT%H:%M:%SZ", local=false)
-                    }}
-                  '';
-                };
-              }
-            ];
           }
         ];
       };
