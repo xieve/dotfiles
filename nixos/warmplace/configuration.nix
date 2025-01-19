@@ -234,6 +234,12 @@ in
           }
         ];
 
+        homeassistant.customize = {
+          "sensor.go_echarger_${secrets.goeSerial}_total_energy_charged" = {
+            state_class = "total_increasing";
+          };
+        };
+
         automation = [
           {
             alias = "go-e Surplus Charging";
