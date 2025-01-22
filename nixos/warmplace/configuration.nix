@@ -174,19 +174,8 @@ in
       extraComponents = [
         "esphome"
         "forecast_solar"
-        "met"
-        "radio_browser"
       ];
       config = {
-        # Includes dependencies for a basic setup
-        # https://www.home-assistant.io/integrations/default_config/
-        default_config = { };
-
-        http = {
-          trusted_proxies = [ "::1" ];
-          use_x_forwarded_for = true;
-        };
-
         # growatt is auto-discovered (HA api), we do our own energy calculations
         # based on polled power data (integral)
         sensor =

@@ -132,6 +132,26 @@ with lib;
   # This way, we can run the tailscale CLI as user (if the service is enabled for the host)
   services.tailscale.extraUpFlags = [ "--operator=xieve" ];
 
+  services.home-assistant = {
+    extraComponents = [
+      "met"
+      "radio_browser"
+      # Fast zlib compression
+      # https://www.home-assistant.io/integrations/isal
+      "isal"
+    ];
+    config = {
+      # Includes dependencies for a basic setup
+      # https://www.home-assistant.io/integrations/default_config/
+      default_config = { };
+
+      http = {
+        trusted_proxies = [ "::1" ];
+        use_x_forwarded_for = true;
+      };
+    };
+  };
+
   # This will break nixos-rebuild on system which don't have my dotfiles cloned
   # to this location, but you can always resort to specifying the config
   # location manually.
