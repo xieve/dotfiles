@@ -5,9 +5,10 @@
   ...
 }:
 
-with lib;
-{
-  imports = lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules);
+let
+  inherit (lib) fileset mkIf mkDefault;
+in {
+  imports = fileset.toList (fileset.fileFilter (file: file.hasExt "nix") ./modules);
 
   # Enable flakes
   nix = {
