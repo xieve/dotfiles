@@ -268,8 +268,6 @@ in
 
     nginx = {
       enable = true;
-      recommendedProxySettings = true;
-      recommendedTlsSettings = true;
       virtualHosts.${config.networking.hostName} = {
         # We're abusing the fallback self-signed cert here
         enableACME = true;

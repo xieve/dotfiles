@@ -152,6 +152,14 @@ with lib;
     };
   };
 
+  services.nginx = {
+    recommendedProxySettings = mkDefault true;
+    recommendedTlsSettings = mkDefault true;
+    # This option runs "Gixy" on the generated config. Gixy is a primitive vuln scanner that does
+    # not, in fact, validate the config.
+    validateConfigFile = false;
+  };
+
   # This will break nixos-rebuild on system which don't have my dotfiles cloned
   # to this location, but you can always resort to specifying the config
   # location manually.
