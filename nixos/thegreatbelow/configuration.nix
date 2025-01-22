@@ -54,10 +54,9 @@ in
       routes = [ { Gateway = "192.168.0.1"; } ];
 
       # Accept router advertisements, but set a static suffix
-      # (global scope IPv6 address will always end in tactical cabbage)
       networkConfig.IPv6AcceptRA = true;
       ipv6AcceptRAConfig = {
-        Token = "::7ac7:1ca1:cab:ba9e";
+        Token = "::acab";
         # if we don't set this, we'll get an extra IPv6 global address
         DHCPv6Client = false;
       };
