@@ -7,6 +7,7 @@
 
 let
   inherit (lib) fileset mkIf mkDefault;
+  secrets = lib.importTOML ./secrets.toml;
 in {
   imports = fileset.toList (fileset.fileFilter (file: file.hasExt "nix") ./modules);
 
@@ -159,6 +160,11 @@ in {
     # This option runs "Gixy" on the generated config. Gixy is a primitive vuln scanner that does
     # not, in fact, validate the config.
     validateConfigFile = false;
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = mkDefault secrets.acme.email;
   };
 
   # This will break nixos-rebuild on system which don't have my dotfiles cloned

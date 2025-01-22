@@ -310,8 +310,6 @@ in
       # The generated self-signed certs are valid for 2 years
       renewInterval = "yearly";
     };
-    # Mandatory even though we're not actually connecting
-    acceptTerms = true;
   };
   # Ignore error produced due to config above
   systemd.services."acme-${config.networking.hostName}".serviceConfig.SuccessExitStatus = [ 10 ];
