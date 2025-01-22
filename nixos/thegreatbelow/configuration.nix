@@ -16,6 +16,7 @@ in
   imports = [
     ./hardware.nix
     ../common.nix
+    ./home-assistant.nix
   ];
 
   # Serial Console
@@ -78,6 +79,7 @@ in
   networking.firewall.allowedUDPPorts = satisfactoryPorts;
   networking.firewall.allowedTCPPorts = satisfactoryPorts ++ [
     8080 # SearXNG (temp)
+    8123 # home assistant (also temp)
   ];
 
   # misc services
