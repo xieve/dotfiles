@@ -157,6 +157,8 @@ in {
   services.nginx = {
     recommendedProxySettings = mkDefault true;
     recommendedTlsSettings = mkDefault true;
+    recommendedOptimisation = mkDefault true;
+    recommendedZstdSettings  = mkDefault true;
     # This option runs "Gixy" on the generated config. Gixy is a primitive vuln scanner that does
     # not, in fact, validate the config.
     validateConfigFile = false;
