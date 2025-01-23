@@ -1,11 +1,13 @@
 { config, lib, ... }:
 
+let
+  secrets = lib.importTOML ./secrets.toml;
+in
 {
   # SearXNG
   services.searx = {
     redisCreateLocally = true;
     runInUwsgi = true;
-    environmentFile = ./searxng.env;
     settings = {
       use_default_settings = true;
       categories_as_tabs = {
@@ -19,6 +21,7 @@
         #files = [];
       };
       server = {
+        secret_key = secrets.searxng;
         limiter = true;
         image_proxy = true;
         method = "GET";
@@ -186,10 +189,5 @@
       ];
       outgoing.max_redirects = 30;
     };
-  };
-
-  # Workaround for https://github.com/NixOS/nixpkgs/issues/292652
-  services.uwsgi.instance.vassals = lib.mkIf config.services.searx.enable {
-    searx.env = lib.strings.splitString "\n" (lib.readFile config.services.searx.environmentFile);
   };
 }
