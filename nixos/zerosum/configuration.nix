@@ -71,6 +71,9 @@ in
       enable = true;
       useRoutingFeatures = "client";
     };
+
+    # Smartcard daemon (yubikey)
+    pcscd.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
