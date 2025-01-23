@@ -8,6 +8,10 @@ in
   services.searx = {
     redisCreateLocally = true;
     runInUwsgi = true;
+    uwsgiConfig = {
+      disable-logging = true;
+      http = "[::1]:41318";
+    };
     settings = {
       use_default_settings = true;
       categories_as_tabs = {

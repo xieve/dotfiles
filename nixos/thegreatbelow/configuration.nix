@@ -18,6 +18,8 @@ in
     ../common.nix
     ./home-assistant.nix
     ./samba.nix
+    ./searxng.nix
+    ./nginx.nix
   ];
 
   # Serial Console
@@ -92,6 +94,5 @@ in
   # jellyfin
   services.jellyfin = {
     enable = true;
-    openFirewall = true;
   };
 }
