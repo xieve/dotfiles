@@ -1,4 +1,5 @@
 { lib, config, ... }:
+
 {
   # allow multicast for wsdd
   #system.activationScripts = { samba-wsdd.text = "${pkgs.ipset}/bin/ipset create samba-wsdd hash:ip,port timeout 3 -exist"; };

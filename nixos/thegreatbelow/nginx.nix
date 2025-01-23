@@ -63,6 +63,10 @@ in
             proxyPass = "http://localhost:8096";
             localOnly = true;
           };
+          "arm.xieve.net" = {
+            proxyPass = "http://${head (match "(.*):.*?" (head config.virtualisation.oci-containers.containers.arm.ports))}";
+            localOnly = true;
+          };
           "cockring.xieve.net" = {
             proxyPass = "http://192.168.178.84:30000";
           };

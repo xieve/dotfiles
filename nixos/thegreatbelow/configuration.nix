@@ -19,6 +19,7 @@ in
     ./home-assistant.nix
     ./samba.nix
     ./searxng.nix
+    ./automatic-ripping-machine.nix
     ./nginx.nix
   ];
 
@@ -121,6 +122,20 @@ in
     };
   };
 
+  users.groups.media = {
+    gid = 2000;
+    members = [ "xieve" ];
+  };
+
+  # podman setup
+  virtualisation = {
+    podman = {
+      enable = true;
+      autoPrune.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
   # misc services
   services = {
     openssh.enable = true;
@@ -132,4 +147,5 @@ in
   services.jellyfin = {
     enable = true;
   };
+  users.users.jellyfin.extraGroups = [ "media" ];
 }
