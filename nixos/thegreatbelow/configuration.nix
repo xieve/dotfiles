@@ -6,6 +6,12 @@
   ...
 }:
 
+let
+  addr = {
+    v4 = "192.168.0.2";
+    v6 = "fd00::acab";
+  };
+in
 {
   imports = [
     ./hardware.nix
@@ -46,7 +52,7 @@
       # Interface
       matchConfig.Name = "eno*";
 
-      address = [ "192.168.0.2/24" ];
+      address = [ "${addr.v4}/24" "${addr.v6}/64" ];
       routes = [ { Gateway = "192.168.0.1"; } ];
 
       # Accept router advertisements, but set a static suffix
@@ -72,10 +78,48 @@
   ];
 
   # Firewall
+  networking.firewall.allowedUDPPorts = [ 53 ];
   networking.firewall.allowedTCPPorts = [
     8080 # SearXNG (temp)
     8123 # home assistant (also temp)
   ];
+
+  # DNS
+  # This is queried by the Fritzbox to obtain local addresses for this machine at *.xieve.net.
+  # All other non-local domains have rebind protection by the Fritzbox.
+  services.unbound = {
+    enable = true;
+    settings = {
+      server = {
+        interface = [ "::1" "127.0.0.1" addr.v4 addr.v6 ];
+        access-control = [ "::/0 allow" "0.0.0.0/0 allow" ];
+        # Based on recommended settings in https://docs.pi-hole.net/guides/dns/unbound/#configure-unbound
+        harden-glue = true;
+        harden-dnssec-stripped = true;
+        use-caps-for-id = false;
+        prefetch = true;
+        edns-buffer-size = 1232;
+
+        local-zone = ''"xieve.net." redirect'';
+        local-data = [
+          ''"xieve.net. A ${addr.v4}"''
+          ''"xieve.net. AAAA ${addr.v6}"''
+        ];
+      };
+      forward-zone = [
+        {
+          name = ".";
+          forward-addr = [
+            "9.9.9.9#dns.quad9.net"
+            "149.112.112.112#dns.quad9.net"
+            "2620:fe::fe#dns.quad9.net"
+            "2620:fe::9#dns.quad9.net"
+          ];
+          forward-tls-upstream = true;  # DNS over TLS
+        }
+      ];
+    };
+  };
 
   # misc services
   services = {
