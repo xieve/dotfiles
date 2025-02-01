@@ -5,13 +5,7 @@
   nzbr,
   ...
 }:
-let
-  satisfactoryPorts = [
-    15777
-    15000
-    7777
-  ];
-in
+
 {
   imports = [
     ./hardware.nix
@@ -78,8 +72,7 @@ in
   ];
 
   # Firewall
-  networking.firewall.allowedUDPPorts = satisfactoryPorts;
-  networking.firewall.allowedTCPPorts = satisfactoryPorts ++ [
+  networking.firewall.allowedTCPPorts = [
     8080 # SearXNG (temp)
     8123 # home assistant (also temp)
   ];
