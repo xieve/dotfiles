@@ -60,7 +60,7 @@ in
             proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
           };
           "jellyfin.xieve.net" = {
-            proxyPass = "http://[::1]:8096";
+            proxyPass = "http://localhost:8096";
             localOnly = true;
           };
           "cockring.xieve.net" = {
