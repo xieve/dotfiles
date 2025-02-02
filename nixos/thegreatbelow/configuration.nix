@@ -150,5 +150,5 @@ in
   services.jellyfin = {
     enable = true;
   };
-  users.users.jellyfin.extraGroups = [ "media" ];
+  users.users.jellyfin.group = lib.mkForce "media";
 }
