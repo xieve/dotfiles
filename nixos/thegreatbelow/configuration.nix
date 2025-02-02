@@ -101,7 +101,10 @@ in
         prefetch = true;
         edns-buffer-size = 1232;
 
-        local-zone = ''"xieve.net." redirect'';
+        local-zone = [
+          ''"xieve.net." redirect''
+          ''"cloud.xieve.net." transparent''
+        ];
         local-data = [
           ''"xieve.net. A ${addr.v4}"''
           ''"xieve.net. AAAA ${addr.v6}"''
