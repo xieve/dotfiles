@@ -1,44 +1,50 @@
-#main-window #TabsToolbar {
-    transition: max-height 0.3s 0.3s !important;
-}
-
-/* Default state: Set initial height to enable animation */
-#main-window #TabsToolbar {
-    max-height: 3em !important;
-}
-
-#main-window[uidensity="touch"] #TabsToolbar {
-    max-height: 3.35em !important;
-}
-
-#main-window[uidensity="compact"] #TabsToolbar {
-    max-height: 2.7em !important;
+#sidebar-main {
+    transition: width 0.3s 0.3s !important;
 }
 
 /* Hidden state: Hide native tabs strip */
-#main-window[titlepreface*="​"] #TabsToolbar {
-    max-height: 0 !important;
+/*#main-window[titlepreface*="​"] */
+:root:has([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden="true"])) {
+    #sidebar-main {
+        width: 0 !important;
+    }
+
+    #sidebar {
+        border-radius: unset !important;
+        box-shadow: unset !important;
+        border: unset !important;
+    }
+
+    navigator-toolbar {
+        border-bottom: none;
+    }
 }
 
-/* Hidden state: Fix z-index of active pinned tabs */
-#main-window[titlepreface*="​"] #tabbrowser-tabs {
-    z-index: 0 !important;
-}
-
-#main-window[titlepreface*="​"] .titlebar-close {
-    display: none;
+@-moz-document url-prefix("moz-extension://b41b013c-e140-4120-8212-fc7d960ef9d5/sidebar/") {
+    * {
+        background: red
+    }
+    :-moz-window-inactive * {
+        background: green;
+    }
 }
 
 /* Remove sidebar header */
-#sidebar-header {
-    display: none;
-}
+/*#sidebar-header {*/
+/*    display: none;*/
+/*}*/
 
 /* Prettier, smaller sidebar on linux */
 splitter.sidebar-splitter {
     width: 1px !important;
     border: none !important;
     background-color: var(--sidebar-background-color) !important;
+}
+
+#sidebar {
+    border-radius: unset !important;
+    box-shadow: unset !important;
+    border: unset !important;
 }
 
 /* make extensions menu a little more compact */
@@ -48,14 +54,18 @@ splitter.sidebar-splitter {
 
 /* Transparent Toolbar */
 #navigator-toolbox {
-    background: transparent;
+    /*background: transparent;*/
 }
 
 :root {
-    --toolbar-bgcolor: transparent !important;
-    --lwt-accent-color: transparent !important;
-    --lwt-accent-color-inactive: transparent !important;
-    --toolbar-field-background-color: transparent !important;
+    /*--toolbar-bgcolor: -moz-headerbar !important;*/
+    /*--lwt-accent-color: transparent !important;*/
+    /*--lwt-accent-color-inactive: transparent !important;*/
+    /*--toolbar-field-background-color: transparent !important;*/
+
+    &:where(-moz-window-inactive) {
+        /*--toolbar-bgcolor: -moz-headerbar-inactive !important;*/
+    }
 }
 
 /* Experiments: Wanted to turn sidebar transparent. It seems there is some sort
