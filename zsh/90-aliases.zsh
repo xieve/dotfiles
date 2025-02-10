@@ -10,6 +10,8 @@ if [ "$LC_COLLATE" = "en_DE.UTF-8" ]; then
     alias tmux="LC_ALL='en_US.UTF-8' $(alias_or_name tmux)"
 fi
 
+alias gdng='git fsck --lost-found | grep "^dangling commit" | sed "s/^dangling commit //g" | xargs git -c color.ui=always show -s --pretty="format:%ad %C(auto)%h %s" --date=short | sort'
+
 # zmv
 alias zmv='noglob zmv'
 alias zcp='noglob zmv -C'
