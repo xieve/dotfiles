@@ -24,7 +24,6 @@ require("nvim-ts-autotag").setup {}
 vim.cmd.packadd("vim-matchup")
 vim.g.matchup_matchparen_deferred = 1
 
-vim.cmd.packadd("ReplaceWithRegister")
 vim.cmd.packadd("sleuth")
 vim.cmd.packadd("suda.vim")
 vim.cmd.packadd("targets.vim")
