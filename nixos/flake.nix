@@ -9,9 +9,26 @@
     nixpkgs.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
     nzbr.url = "github:nzbr/nixos";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
+
+    automatic-ripping-machine = {
+      url = "github:automatic-ripping-machine/automatic-ripping-machine";
+      flake = false;
+    };
     # Fasttext language identification model for languagetool
     fasttext-lid = {
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
+      flake = false;
+    };
+    pydvdid = {
+      url = "github:sjwood/pydvdid/v1.1";
+      flake = false;
+    };
+    robobrowser = {
+      url = "github:jmcarp/robobrowser/v0.5.3";
+      flake = false;
+    };
+    tinydownload = {
+      url = "github:ritiek/tinydownload/d470623b9de4a7469dac2deaf08b73e687fc4cb9";
       flake = false;
     };
   };

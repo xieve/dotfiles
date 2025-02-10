@@ -66,6 +66,22 @@
         "type": "github"
       }
     },
+    "automatic-ripping-machine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738559237,
+        "narHash": "sha256-2IXHuRBDskHr9HprpS0Yon6W0YOT53PCAuUYivlk1g4=",
+        "owner": "automatic-ripping-machine",
+        "repo": "automatic-ripping-machine",
+        "rev": "1ce96f3f95b1e6a83f42af32af503c3f3bda1872",
+        "type": "github"
+      },
+      "original": {
+        "owner": "automatic-ripping-machine",
+        "repo": "automatic-ripping-machine",
+        "type": "github"
+      }
+    },
     "base": {
       "inputs": {
         "agenix": "agenix_2",
@@ -902,6 +918,23 @@
         "type": "github"
       }
     },
+    "pydvdid": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1516844103,
+        "narHash": "sha256-PuhkXu62bc/9n2swaKe/O759xCyJ3LrHCJISbWzSUtk=",
+        "owner": "sjwood",
+        "repo": "pydvdid",
+        "rev": "03914fb7e24283c445e5af724f9d919b23caaf95",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sjwood",
+        "ref": "v1.1",
+        "repo": "pydvdid",
+        "type": "github"
+      }
+    },
     "razer-nari": {
       "flake": false,
       "locked": {
@@ -918,8 +951,26 @@
         "type": "github"
       }
     },
+    "robobrowser": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1433706388,
+        "narHash": "sha256-X1qINLU1Nxz74rOZvBX3ighQJK6Y6NVnrhTv+G6/HNk=",
+        "owner": "jmcarp",
+        "repo": "robobrowser",
+        "rev": "4284c11d00ae1397983e269aa180e5cf7ee5f4cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jmcarp",
+        "ref": "v0.5.3",
+        "repo": "robobrowser",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "automatic-ripping-machine": "automatic-ripping-machine",
         "fasttext-lid": "fasttext-lid",
         "flake-parts": "flake-parts",
         "nix-vscode-extensions": "nix-vscode-extensions",
@@ -927,7 +978,10 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_3",
         "nzbr": "nzbr",
-        "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts"
+        "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
+        "pydvdid": "pydvdid",
+        "robobrowser": "robobrowser",
+        "tinydownload": "tinydownload"
       }
     },
     "rust-overlay": {
@@ -1024,6 +1078,23 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tinydownload": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1575128712,
+        "narHash": "sha256-M2/V5cajETFTS0wvsS0wq7DMDQISs54enIgW3JiFezU=",
+        "owner": "ritiek",
+        "repo": "tinydownload",
+        "rev": "d470623b9de4a7469dac2deaf08b73e687fc4cb9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ritiek",
+        "repo": "tinydownload",
+        "rev": "d470623b9de4a7469dac2deaf08b73e687fc4cb9",
         "type": "github"
       }
     },
