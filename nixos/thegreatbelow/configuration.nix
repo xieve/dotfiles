@@ -116,8 +116,8 @@ in
           ''"cloud.xieve.net." transparent''
         ];
         local-data = [
-          ''"xieve.net. A ${addr.v4}"''
-          ''"xieve.net. AAAA ${addr.v6}"''
+          ''"xieve.net. 60 IN A ${addr.v4}"''
+          ''"xieve.net. 60 IN AAAA ${addr.v6}"''
         ];
       };
       forward-zone = [
