@@ -8,6 +8,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixpkgs.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
     nzbr.url = "github:nzbr/nixos";
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     # Fasttext language identification model for languagetool
     fasttext-lid = {
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
@@ -25,6 +26,10 @@
       inherit (lib) nixosSystem;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.pkgs-by-name-for-flake-parts.flakeModule
+      ];
+
       flake = {
         nixosConfigurations = {
           zerosum = nixosSystem {
@@ -88,10 +93,7 @@
         {
           formatter = pkgs.nixfmt-rfc-style;
 
-          packages = lib.packagesFromDirectoryRecursive {
-            inherit (pkgs) callPackage;
-            directory = ./packages;
-          };
+          pkgsDirectory = ./packages;
         };
     };
 }
