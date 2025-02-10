@@ -10,17 +10,16 @@ in
     commonHttpConfig = ''
       map $http_user_agent $limit_bots {
         default 0;
-        ~*(google|bing|yandex|msnbot|AltaVista|Googlebot|Slurp|BlackWidow|Bot|ChinaClaw|Custo) 1;
-        ~*(DISCo|Download|Demon|eCatch|EirGrabber|EmailSiphon|EmailWolf|SuperHTTP|Surfbot) 1;
-        ~*(WebWhacker|Express|WebPictures|ExtractorPro|EyeNetIE|FlashGet|GetRight|GetWeb!) 1;
-        ~*(Go!Zilla|Go-Ahead-Got-It|GrabNet|Grafula|HMView|Go!Zilla|Go-Ahead-Got-It|rafula) 1;
-        ~*(HMView|HTTrack|Stripper|Sucker|Indy|InterGET|Ninja|JetCar|Spider|larbin|LeechFTP) 1;
-        ~*(Downloader|tool|Navroad|NearSite|NetAnts|tAkeOut|WWWOFFLE|GrabNet|NetSpider|Vampire) 1;
-        ~*(NetZIP|Octopus|Offline|PageGrabber|Foto|pavuk|pcBrowser|RealDownload|ReGet) 1;
-        ~*(SiteSnagger|SmartDownload|SuperBot|WebSpider|Teleport|VoidEYE|Collector|WebAuto) 1;
-        ~*(WebCopier|WebFetch|WebGo|WebLeacher|WebReaper|WebSauger|eXtractor|Quester|WebStripper) 1;
-        ~*(WebZIP|Wget|Widow|Zeus|Twengabot|htmlparser|libwww|Python|perl|urllib|scan|Curl|email) 1;
-        ~*(PycURL|Pyth|PyQ|WebCollector|WebCopy|webcraw) 1;
+        ~*(bot|crawler|google|bing|yandex|altavista|slurp|blackwidow|chinaclaw|custo|disco) 1;
+        ~*(download|demon|ecatch|eirgrabber|emailsiphon|emailwolf|superhttp|webwhacker|express) 1;
+        ~*(webpictures|extractorpro|eyenetie|flashget|getright|getweb!|go!zilla|go-ahead-got-it) 1;
+        ~*(grabnet|grafula|hmview|go!zilla|go-ahead-got-it|rafula|hmview|httrack|stripper|sucker) 1;
+        ~*(indy|interget|ninja|jetcar|spider|larbin|leechftp|downloader|tool|navroad|nearsite) 1;
+        ~*(netants|takeout|wwwoffle|grabnet|netspider|vampire|netzip|octopus|offline|pagegrabber) 1;
+        ~*(foto|pavuk|pcbrowser|realdownload|reget|sitesnagger|smartdownload|webspider|teleport) 1;
+        ~*(voideye|collector|webauto|webcopier|webfetch|webgo|webleacher|webreaper|websauger) 1;
+        ~*(extractor|quester|webstripper|webzip|wget|widow|zeus|htmlparser|libwww|python|perl) 1;
+        ~*(urllib|scan|curl|email|pycurl|pyth|pyq|webcollector|webcopy) 1;
       }
     '';
     virtualHosts =
