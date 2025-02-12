@@ -22,20 +22,23 @@ in
         ~*(urllib|scan|curl|email|pycurl|pyth|pyq|webcollector|webcopy) 1;
       }
     '';
+    # Partly reimplementing the nixpkgs nginx module here because it does not allow to prepend
+    # config inside a server block before the locations, but we need that
     virtualHosts =
       mapAttrs
         (
-          name: paramCfg:
-          let
-            cfg = {
-              localOnly = false;
-            } // paramCfg;
-          in
+          name:
+          cfg@{
+            proxyPass,
+            localOnly ? false,
+            serverAliases ? [ ],
+          }:
           {
+            inherit serverAliases;
             enableACME = true;
             forceSSL = true;
             extraConfig = ''
-              ${optionalString cfg.localOnly ''
+              ${optionalString localOnly ''
                 allow 192.168../24;
                 allow 100.104../32;
                 allow fe80::/10;
@@ -47,11 +50,10 @@ in
               add_header X-Robots-Tag noindex;
 
               location / {
-                proxy_pass ${cfg.proxyPass};
+                proxy_pass ${proxyPass};
               }
             '';
           }
-          // (filterAttrs (name: _: name != "proxyPass" && name != "localOnly") cfg)
         )
         {
           "search.xieve.net" = {
