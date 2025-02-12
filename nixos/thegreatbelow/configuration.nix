@@ -92,7 +92,6 @@ in
   networking.firewall.allowedUDPPorts = [ 53 ];
   networking.firewall.allowedTCPPorts = [
     8080 # SearXNG (temp)
-    8123 # home assistant (also temp)
   ];
 
   # DNS

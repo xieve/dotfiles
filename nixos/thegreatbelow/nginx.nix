@@ -2,7 +2,7 @@
 
 let
   inherit (lib) filterAttrs mapAttrs optionalString;
-  inherit (builtins) head match;
+  inherit (builtins) head match toString;
 in
 {
   services.nginx = {
@@ -30,6 +30,7 @@ in
           name:
           cfg@{
             proxyPass,
+            proxyWebsockets ? false,
             localOnly ? false,
             serverAliases ? [ ],
           }:
@@ -51,6 +52,11 @@ in
 
               location / {
                 proxy_pass ${proxyPass};
+                ${optionalString proxyWebsockets ''
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade $http_upgrade;
+                  proxy_set_header Connection $connection_upgrade;
+                ''}
               }
             '';
           }
@@ -68,6 +74,15 @@ in
             proxyPass = "http://${head (match "(.*):.*?" (head config.virtualisation.oci-containers.containers.arm.ports))}";
             localOnly = true;
           };
+          "home.xieve.net" =
+            let
+              cfg = config.services.home-assistant.config.http;
+            in
+            {
+              proxyPass = "http://[::1]:${toString cfg.server_port}";
+              localOnly = true;
+              proxyWebsockets = true;
+            };
           "cockring.xieve.net" = {
             proxyPass = "http://192.168.178.84:30000";
           };

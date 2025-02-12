@@ -8,7 +8,9 @@
       "motionblinds_ble"
     ];
     config = {
-
+      http = {
+        server_host = "::1";
+      };
     };
   };
 }
