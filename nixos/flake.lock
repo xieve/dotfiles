@@ -493,6 +493,22 @@
         "type": "github"
       }
     },
+    "localtuya": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736863527,
+        "narHash": "sha256-I3NbccY6ooo+ESQTIT5oM9+5qfTeAEzByWUeOEuLKyU=",
+        "owner": "rospogrigio",
+        "repo": "localtuya",
+        "rev": "5f2c027c1e9421a93dcc937bf151b9456add04c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rospogrigio",
+        "repo": "localtuya",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -973,6 +989,7 @@
         "automatic-ripping-machine": "automatic-ripping-machine",
         "fasttext-lid": "fasttext-lid",
         "flake-parts": "flake-parts",
+        "localtuya": "localtuya",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",

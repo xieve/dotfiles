@@ -19,6 +19,10 @@
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
       flake = false;
     };
+    localtuya = {
+      url = "github:rospogrigio/localtuya";
+      flake = false;
+    };
     pydvdid = {
       url = "github:sjwood/pydvdid/v1.1";
       flake = false;
