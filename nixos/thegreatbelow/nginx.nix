@@ -21,6 +21,13 @@ in
         ~*(extractor|quester|webstripper|webzip|wget|widow|zeus|htmlparser|libwww|python|perl) 1;
         ~*(urllib|scan|curl|email|pycurl|pyth|pyq|webcollector|webcopy) 1;
       }
+
+      # TODO: This is not great. I should probably do separate server blocks instead.
+      map $server_addr $dest_local {
+        default 0;
+        fd00::acab 1;
+        192.168.0.2 1;
+      }
     '';
     # Partly reimplementing the nixpkgs nginx module here because it does not allow to prepend
     # config inside a server block before the locations, but we need that
@@ -39,15 +46,18 @@ in
             enableACME = true;
             forceSSL = true;
             extraConfig = ''
-              ${optionalString localOnly ''
-                allow 192.168../24;
-                allow 100.104../32;
-                allow fe80::/10;
-                deny all;
-              ''}
               if ($limit_bots = 1) {
                 return 403;
               }
+              ${optionalString localOnly ''
+                allow 192.168../24;
+                allow 100.104../32;
+                allow ::/0;
+                deny all;
+                if ($dest_local = 0) {
+                  return 403;
+                }
+              ''}
               add_header X-Robots-Tag noindex;
 
               location / {
