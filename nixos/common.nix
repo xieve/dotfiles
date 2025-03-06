@@ -1,4 +1,5 @@
 {
+  self,
   config,
   lib,
   pkgs,
@@ -17,6 +18,11 @@ in {
       experimental-features = "nix-command flakes";
     };
   };
+
+  # Consume own overlay; makes local packages accessible through pkgs.xieve
+  nixpkgs.overlays = [
+    self.overlays.default
+  ];
 
   # Optimise system nix store and collect garbage on every rebuild
   system.userActivationScripts.optimise-storage = ''

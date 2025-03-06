@@ -51,82 +51,90 @@
 
   outputs =
     inputs@{
-      self,
       ...
     }:
     let
       inherit (inputs.nixpkgs) lib;
       inherit (lib) nixosSystem;
     in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        inputs.pkgs-by-name-for-flake-parts.flakeModule
-      ];
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      { withSystem, inputs, ... }:
+      {
+        imports = [
+          inputs.pkgs-by-name-for-flake-parts.flakeModule
+        ];
 
-      flake = {
-        nixosConfigurations = {
-          zerosum = nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = inputs; # Pass inputs to modules
-            modules = [
-              ./overlays.nix
-              ./gnome.nix
-              inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
-              ./zerosum/configuration.nix
-            ];
-          };
-          thegreatbelow = nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = inputs;
-            modules = [
-              inputs.nzbr.nixosModules."service/urbackup.nix"
-              ./thegreatbelow/configuration.nix
-            ];
-          };
-          theeaterofdreams = nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              inputs.nixos-wsl.nixosModules.wsl
-              ./theeaterofdreams/configuration.nix
-            ];
-          };
-          warmplace =
-            let
-              system = "aarch64-linux";
-            in
-            nixosSystem {
-              inherit system;
-              specialArgs = {
-                self-pkgs = self.packages.${system};
-              };
+        flake = {
+          nixosConfigurations = {
+            zerosum = nixosSystem {
+              system = "x86_64-linux";
+              specialArgs = inputs; # Pass inputs to modules
               modules = [
-                inputs.nixos-hardware.nixosModules.raspberry-pi-4
-                ./warmplace/configuration.nix
+                ./overlays.nix
+                ./gnome.nix
+                inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
+                ./zerosum/configuration.nix
               ];
             };
+            thegreatbelow = nixosSystem {
+              system = "x86_64-linux";
+              specialArgs = inputs;
+              modules = [
+                inputs.nzbr.nixosModules."service/urbackup.nix"
+                ./thegreatbelow/configuration.nix
+              ];
+            };
+            theeaterofdreams = nixosSystem {
+              system = "x86_64-linux";
+              modules = [
+                inputs.nixos-wsl.nixosModules.wsl
+                ./theeaterofdreams/configuration.nix
+              ];
+            };
+            warmplace =
+              let
+                system = "aarch64-linux";
+              in
+              nixosSystem {
+                inherit system;
+                modules = [
+                  inputs.nixos-hardware.nixosModules.raspberry-pi-4
+                  ./warmplace/configuration.nix
+                ];
+              };
+          };
+
+          nixosModules = lib.foldl (a: b: a // b) { } (
+            map (filename: {
+              ${lib.strings.removePrefix "${toString ./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} =
+                import filename;
+            }) (lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules))
+          );
+
+          overlays.default =
+            final: prev:
+            withSystem prev.stdenv.hostPlatform.system (
+              { config, ... }:
+              {
+                xieve = config.packages;
+              }
+            );
         };
 
-        nixosModules = lib.foldl (a: b: a // b) { } (
-          map (filename: {
-            ${lib.strings.removePrefix "${toString ./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} =
-              import filename;
-          }) (lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules))
-        );
-      };
+        systems = [
+          "aarch64-darwin"
+          "aarch64-linux"
+          "x86_64-darwin"
+          "x86_64-linux"
+        ];
 
-      systems = [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ];
+        perSystem =
+          { pkgs, config, ... }:
+          {
+            formatter = pkgs.nixfmt-rfc-style;
 
-      perSystem =
-        { pkgs, ... }:
-        {
-          formatter = pkgs.nixfmt-rfc-style;
-
-          pkgsDirectory = ./packages;
-        };
-    };
+            pkgsDirectory = ./packages;
+          };
+      }
+    );
 }

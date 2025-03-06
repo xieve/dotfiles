@@ -3,7 +3,6 @@
   pkgs,
   config,
   modulesPath,
-  self-pkgs,
   ...
 }:
 let

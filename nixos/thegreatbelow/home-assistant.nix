@@ -1,5 +1,4 @@
 {
-  self,
   lib,
   pkgs,
   home-assistant-theme-bubble,
@@ -16,9 +15,8 @@ in {
       "esphome"
       "motionblinds_ble"
     ];
-    customComponents = [
-      # TODO: having to specify the arch like this is super ugly. probably should use an overlay
-      self.packages.${pkgs.system}.homeassistant-localtuya
+    customComponents = with pkgs; [
+      xieve.homeassistant-localtuya
     ];
     customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
       bubble-card
