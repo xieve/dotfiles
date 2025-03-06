@@ -13,6 +13,7 @@ in {
   services.home-assistant = {
     enable = true;
     extraComponents = [
+      "esphome"
       "motionblinds_ble"
     ];
     customComponents = [
