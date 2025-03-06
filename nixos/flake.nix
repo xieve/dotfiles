@@ -14,6 +14,18 @@
       url = "github:automatic-ripping-machine/automatic-ripping-machine";
       flake = false;
     };
+    home-assistant-card-big-slider = {
+      url = "github:nicufarmache/lovelace-big-slider-card";
+      flake = false;
+    };
+    home-assistant-theme-bubble = {
+      url = "github:Clooos/Bubble";
+      flake = false;
+    };
+    home-assistant-theme-material-you = {
+      url = "github:Nerwyn/material-rounded-theme";
+      flake = false;
+    };
     # Fasttext language identification model for languagetool
     fasttext-lid = {
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";

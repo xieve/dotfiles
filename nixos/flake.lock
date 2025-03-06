@@ -426,6 +426,54 @@
         "type": "github"
       }
     },
+    "home-assistant-card-big-slider": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707392961,
+        "narHash": "sha256-V0lYPI15uGakQhNDVhTy4sTTScn+PfaztRCb6lTAGh0=",
+        "owner": "nicufarmache",
+        "repo": "lovelace-big-slider-card",
+        "rev": "d1556bdf2bf28274ce35b7e6ff65f5cb60b66c2a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nicufarmache",
+        "repo": "lovelace-big-slider-card",
+        "type": "github"
+      }
+    },
+    "home-assistant-theme-bubble": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737710738,
+        "narHash": "sha256-XaU929WNHyBms+BC3KA9TnMXQ2vWfMMpH7dMHqDhJsg=",
+        "owner": "Clooos",
+        "repo": "Bubble",
+        "rev": "b93de431ba1cada93a7bbc7aef01120ffca0d461",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Clooos",
+        "repo": "Bubble",
+        "type": "github"
+      }
+    },
+    "home-assistant-theme-material-you": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739380615,
+        "narHash": "sha256-G33tdzee2M+u1dchuoQQr81tVBQYDBh4w/Ad14koAR4=",
+        "owner": "Nerwyn",
+        "repo": "material-rounded-theme",
+        "rev": "9e34d468dfa144dfe78e65103052115caed14af6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Nerwyn",
+        "repo": "material-rounded-theme",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -989,6 +1037,9 @@
         "automatic-ripping-machine": "automatic-ripping-machine",
         "fasttext-lid": "fasttext-lid",
         "flake-parts": "flake-parts",
+        "home-assistant-card-big-slider": "home-assistant-card-big-slider",
+        "home-assistant-theme-bubble": "home-assistant-theme-bubble",
+        "home-assistant-theme-material-you": "home-assistant-theme-material-you",
         "localtuya": "localtuya",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
