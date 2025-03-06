@@ -10,8 +10,6 @@
 let
   inherit (lib) concatMapAttrs mapAttrs;
 in {
-  hardware.bluetooth.enable = true;
-
   services.home-assistant = {
     enable = true;
     extraComponents = [
