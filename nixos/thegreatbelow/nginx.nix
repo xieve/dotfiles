@@ -95,6 +95,7 @@ in
             };
           "cockring.xieve.net" = {
             proxyPass = "http://192.168.178.84:30000";
+            proxyWebsockets = true;
           };
         };
   };
