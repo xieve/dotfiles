@@ -42,7 +42,14 @@ in
 
   services = {
     openssh.enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      extraSetFlags = [
+        "--advertise-exit-node"
+        "--exit-node-allow-lan-access"
+      ];
+      useRoutingFeatures = "server";
+    };
     avahi.enable = true; # mdns, needed by esphome
 
     mosquitto = {

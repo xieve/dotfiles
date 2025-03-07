@@ -152,7 +152,14 @@ in
   services = {
     openssh.enable = true;
     searx.enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      extraSetFlags = [
+        "--advertise-exit-node"
+        "--exit-node-allow-lan-access"
+      ];
+      useRoutingFeatures = "server";
+    };
   };
 
   # jellyfin
