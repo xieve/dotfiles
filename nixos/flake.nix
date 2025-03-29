@@ -9,6 +9,7 @@
     nixpkgs.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
     nzbr.url = "github:nzbr/nixos";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
+    systems.url = "github:nix-systems/default";
 
     automatic-ripping-machine = {
       url = "github:automatic-ripping-machine/automatic-ripping-machine";
@@ -60,6 +61,8 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
       { withSystem, inputs, ... }:
       {
+        systems = import inputs.systems;
+
         imports = [
           inputs.pkgs-by-name-for-flake-parts.flakeModule
         ];
@@ -120,13 +123,6 @@
               }
             );
         };
-
-        systems = [
-          "aarch64-darwin"
-          "aarch64-linux"
-          "x86_64-darwin"
-          "x86_64-linux"
-        ];
 
         perSystem =
           { pkgs, config, ... }:
