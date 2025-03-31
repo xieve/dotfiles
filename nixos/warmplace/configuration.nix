@@ -41,7 +41,10 @@ in
   users.users.nginx.extraGroups = [ "acme" ];
 
   services = {
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+    };
     tailscale = {
       enable = true;
       extraSetFlags = [
