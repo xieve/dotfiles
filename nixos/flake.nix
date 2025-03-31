@@ -89,6 +89,7 @@
             };
             theeaterofdreams = nixosSystem {
               system = "x86_64-linux";
+              specialArgs = inputs;
               modules = [
                 inputs.nixos-wsl.nixosModules.wsl
                 ./theeaterofdreams/configuration.nix
@@ -100,6 +101,7 @@
               in
               nixosSystem {
                 inherit system;
+                specialArgs = inputs;
                 modules = [
                   inputs.nixos-hardware.nixosModules.raspberry-pi-4
                   ./warmplace/configuration.nix
