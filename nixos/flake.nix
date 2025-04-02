@@ -12,7 +12,7 @@
     systems.url = "github:nix-systems/default";
 
     automatic-ripping-machine = {
-      url = "github:automatic-ripping-machine/automatic-ripping-machine";
+      url = "github:xieve/automatic-ripping-machine/main";
       flake = false;
     };
     home-assistant-card-big-slider = {

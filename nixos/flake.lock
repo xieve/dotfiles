@@ -69,15 +69,16 @@
     "automatic-ripping-machine": {
       "flake": false,
       "locked": {
-        "lastModified": 1738559237,
-        "narHash": "sha256-2IXHuRBDskHr9HprpS0Yon6W0YOT53PCAuUYivlk1g4=",
-        "owner": "automatic-ripping-machine",
+        "lastModified": 1743695400,
+        "narHash": "sha256-1FRNsw1OM8sLXheX9V4FcFswcQEgpjC2vfCbtFzHj1c=",
+        "owner": "xieve",
         "repo": "automatic-ripping-machine",
-        "rev": "1ce96f3f95b1e6a83f42af32af503c3f3bda1872",
+        "rev": "9b8ab5ee7e42e743a1db241427bc57de7bdc22f4",
         "type": "github"
       },
       "original": {
-        "owner": "automatic-ripping-machine",
+        "owner": "xieve",
+        "ref": "main",
         "repo": "automatic-ripping-machine",
         "type": "github"
       }

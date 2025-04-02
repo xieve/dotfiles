@@ -80,10 +80,10 @@ in
             proxyPass = "http://localhost:8096";
             localOnly = true;
           };
-          "arm.xieve.net" = {
-            proxyPass = "http://${head (match "(.*):.*?" (head config.virtualisation.oci-containers.containers.arm.ports))}";
-            localOnly = true;
-          };
+          # "arm.xieve.net" = {
+          #   proxyPass = "http://${head (match "(.*):.*?" (head config.virtualisation.oci-containers.containers.arm.ports))}";
+          #   localOnly = true;
+          # };
           "home.xieve.net" =
             let
               cfg = config.services.home-assistant.config.http;
