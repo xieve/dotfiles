@@ -20,7 +20,11 @@ let
   cfg = config.services.automatic-ripping-machine;
   cfgFile = settingsFormat.generate "arm.yaml" cfg.settings;
   cfgPath = "/etc/arm";
-  BindPaths = with cfg.settings; [ RAW_PATH TRANSCODE_PATH COMPLETED_PATH ];
+  BindPaths = with cfg.settings; [
+    RAW_PATH
+    TRANSCODE_PATH
+    COMPLETED_PATH
+  ];
 in
 {
   options.services.automatic-ripping-machine = with lib.types; {
@@ -125,26 +129,27 @@ in
       tmpfiles.settings = {
         "50-automatic-ripping-machine" =
           let
-            owned = {inherit (cfg) user group;};
+            owned = { inherit (cfg) user group; };
           in
           {
             "/var/log/arm/progress"."D" = owned;
-            "/mnt/dev"."D" = {};
+            "/mnt/dev"."D" = { };
             "/opt/arm"."L+" = {
               argument = "${arm}/opt/arm";
             };
             "${cfgPath}/arm.yaml"."L+".argument = "${cfgFile}";
           }
-          // concatMapAttrs
-            (filename: type: {
-              "${cfgPath}/${filename}".${type} = {
-                argument = "${arm}${cfgPath}/${filename}";
+          //
+            concatMapAttrs
+              (filename: type: {
+                "${cfgPath}/${filename}".${type} = {
+                  argument = "${arm}${cfgPath}/${filename}";
+                };
+              })
+              {
+                "apprise.yaml" = "L+";
+                "abcde.conf" = "L+";
               };
-            })
-            {
-              "apprise.yaml" = "L+";
-              "abcde.conf" = "L+";
-            };
       };
     };
   };
