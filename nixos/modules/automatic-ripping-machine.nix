@@ -15,10 +15,13 @@ let
     mkOption
     ;
   inherit (pkgs) writeShellScript;
-  settingsFormat = pkgs.formats.json { };
+  json = pkgs.formats.json { };
+  ini = pkgs.formats.iniWithGlobalSection { };
   arm = self.packages.${pkgs.stdenv.hostPlatform.system}.automatic-ripping-machine;
   cfg = config.services.automatic-ripping-machine;
-  cfgFile = settingsFormat.generate "arm.yaml" cfg.settings;
+  cfgFile = json.generate "arm.yaml" cfg.settings;
+  appriseFile = json.generate "apprise.yaml" cfg.appriseSettings;
+  abcdeFile = ini.generate "abcde.conf" { globalSection = cfg.abcdeSettings; };
   cfgPath = "/etc/arm";
   BindPaths = with cfg.settings; [
     RAW_PATH
@@ -41,7 +44,17 @@ in
     };
 
     settings = mkOption {
-      type = settingsFormat.type;
+      inherit (json) type;
+      default = { };
+    };
+
+    appriseSettings = mkOption {
+      inherit (json) type;
+      default = { };
+    };
+
+    abcdeSettings = mkOption {
+      type = attrsOf ini.lib.types.atom;
       default = { };
     };
   };
@@ -78,6 +91,8 @@ in
         confinement = {
           enable = true;
           packages = with pkgs; [
+            abcdeFile
+            appriseFile
             cacert
             cfgFile
           ];
@@ -127,29 +142,11 @@ in
       };
 
       tmpfiles.settings = {
-        "50-automatic-ripping-machine" =
-          let
-            owned = { inherit (cfg) user group; };
-          in
-          {
-            "/var/log/arm/progress"."D" = owned;
-            "/mnt/dev"."D" = { };
-            "/opt/arm"."L+" = {
-              argument = "${arm}/opt/arm";
-            };
-            "${cfgPath}/arm.yaml"."L+".argument = "${cfgFile}";
-          }
-          //
-            concatMapAttrs
-              (filename: type: {
-                "${cfgPath}/${filename}".${type} = {
-                  argument = "${arm}${cfgPath}/${filename}";
-                };
-              })
-              {
-                "apprise.yaml" = "L+";
-                "abcde.conf" = "L+";
-              };
+        "50-automatic-ripping-machine" = {
+          "${cfgPath}/arm.yaml"."L+".argument = "${cfgFile}";
+          "${cfgPath}/apprise.yaml"."L+".argument = "${appriseFile}";
+          "${cfgPath}/abcde.conf"."L+".argument = "${abcdeFile}";
+        };
       };
     };
   };
