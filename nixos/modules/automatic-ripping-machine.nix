@@ -44,16 +44,28 @@ in
     };
 
     settings = mkOption {
+      description = "Settings for ARM. Will be used to generate arm.yaml.";
       inherit (json) type;
       default = { };
+      example = {
+        DISABLE_LOGIN = true;
+        DATE_FORMAT = "%Y-%m-%d %H:%M:%S";
+        UNIDENTIFIED_EJECT = false;
+        RAW_PATH = "/mnt/tank/raw/";
+        TRANSCODE_PATH = "/mnt/tank/transcoded/";
+        COMPLETED_PATH = "/mnt/tank/completed/";
+        LOGLEVEL = "DEBUG";
+      };
     };
 
     appriseSettings = mkOption {
+      description = "Settings for Apprise. Will be used to generate apprise.yaml.";
       inherit (json) type;
       default = { };
     };
 
     abcdeSettings = mkOption {
+      description = "Settings for abcde. Will be used to generate abcde.yaml.";
       type = attrsOf ini.lib.types.atom;
       default = { };
     };
