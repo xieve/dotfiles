@@ -121,13 +121,12 @@ in
 
       services."arm@" = {
         description = "Automatic Ripping Machine Worker";
-        script = ''
-          ${arm}/bin/arm --no-syslog --devpath "$1"
-        '';
         # confinement.enable = true;
-        scriptArgs = "%I";
         serviceConfig = {
           User = "arm";
+          ExecStart = ''
+            ${arm}/bin/arm --no-syslog --devpath "%I"
+          '';
           ProtectSystem = "strict";
           ProtectHome = true;
           ConfigurationDirectory = "arm";
