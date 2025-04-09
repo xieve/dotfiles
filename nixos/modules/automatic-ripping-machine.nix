@@ -8,11 +8,14 @@
 let
   inherit (lib)
     concatMapAttrs
+    getExe
     mkDefault
     mkEnableOption
     mkForce
     mkIf
     mkOption
+    optional
+    optionalString
     ;
   inherit (pkgs) writeShellScript;
   json = pkgs.formats.json { };
@@ -41,6 +44,13 @@ in
     group = mkOption {
       type = str;
       default = "media";
+    };
+
+    enableTranscoding = mkOption {
+      description = "Whether to enable automatic transcoding using HandBrake.";
+      type = bool;
+      default = true;
+      example = false;
     };
 
     settings = mkOption {
@@ -75,11 +85,20 @@ in
     # Needed for MakeMKV
     boot.kernelModules = [ "sg" ];
 
-    services.automatic-ripping-machine.settings = {
-      DBFILE = "/var/lib/arm/arm.db";
-      LOGPATH = "/var/log/arm/";
-      INSTALLPATH = "${arm}/opt/arm/";
-    };
+    services.automatic-ripping-machine.settings =
+      let
+        # Workaround for https://github.com/NixOS/nixpkgs/issues/244934
+        HANDBRAKE_CLI = optionalString cfg.enableTranscoding
+          "/usr/bin/env \"LD_LIBRARY_PATH=/run/opengl-driver/lib:$LD_LIBRARY_PATH\" '${getExe pkgs.handbrake}'";
+      in
+      {
+        inherit HANDBRAKE_CLI;
+        HANDBRAKE_LOCAL = HANDBRAKE_CLI;
+        DBFILE = "/var/lib/arm/arm.db";
+        LOGPATH = "/var/log/arm/";
+        INSTALLPATH = "${arm}/opt/arm/";
+        SKIP_TRANSCODE = !cfg.enableTranscoding;
+      };
 
     users = {
       users.${cfg.user} = {
@@ -102,12 +121,15 @@ in
         wantedBy = [ "multi-user.target" ];
         confinement = {
           enable = true;
-          packages = with pkgs; [
-            abcdeFile
-            appriseFile
-            cacert
-            cfgFile
-          ];
+          packages =
+            with pkgs;
+            [
+              abcdeFile
+              appriseFile
+              cacert
+              cfgFile
+            ]
+            ++ optional cfg.enableTranscoding handbrake;
         };
         environment = {
           SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
