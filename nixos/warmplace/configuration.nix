@@ -281,7 +281,7 @@ in
       virtualHosts.${config.networking.hostName} = {
         # We're abusing the fallback self-signed cert here
         enableACME = true;
-        forceSSL = true;
+        # forceSSL = true;
         extraConfig = ''
           proxy_buffering off;
         '';
