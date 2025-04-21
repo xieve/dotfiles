@@ -23,6 +23,7 @@
     options = [
       "noatime"
       "discard"
+      "commit=60"
     ];
   };
 
