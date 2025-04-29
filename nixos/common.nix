@@ -117,7 +117,6 @@ in {
     htop
     killall
     nixfmt-rfc-style
-    python3
     smartmontools
     tmux
     unzip
