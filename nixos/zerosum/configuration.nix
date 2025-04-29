@@ -17,6 +17,8 @@ in
     bluetooth = {
       enable = true;
       powerOnBoot = false;
+      # Enable A2DP sink
+      settings.General.Enable = "Source,Sink,Media,Socket";
     };
 
     # Enable screen rotation
