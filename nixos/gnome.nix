@@ -48,12 +48,22 @@ in
   # TODO: look at TODOs xd
   networking.networkmanager.enable = true;
 
-  boot.plymouth = {
-    enable = true;
-    themePackages = [
-      pkgs.adi1090x-plymouth-themes
+  boot = {
+    plymouth = {
+      enable = true;
+      themePackages = [
+        pkgs.adi1090x-plymouth-themes
+      ];
+      theme = "sphere";
+    };
+    # Display Plymouth via UEFI framebuffer ("flicker-free boot")
+    kernelParams = [
+      "plymouth.use-simpledrm"
     ];
-    theme = "sphere";
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
   };
 
   # Hardware decoding
