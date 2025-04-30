@@ -262,6 +262,11 @@ in
               ];
               opacity = mkInt32 255;
             };
+            # Just Perfection
+            "org/gnome/shell/extensions/just-perfection" = {
+              panel-size = mkInt32 32;
+              panel-button-padding-size = mkInt32 9;
+            };
           };
       }
     ];
