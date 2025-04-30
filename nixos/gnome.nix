@@ -42,6 +42,7 @@ in
     ]);
 
   fonts.packages = with pkgs; [
+    inter
     newcomputermodern
   ];
 
@@ -226,6 +227,8 @@ in
               # Make GTK3 apps look more consistent with libadwaita (GTK4) apps
               gtk-theme = "adw-gtk3-dark";
               font-antialiasing = "rgba";
+              font-name = "Inter Display 11";
+              document-font-name = "Inter 11";
               monospace-font-name = "FiraCode Nerd Font weight=450 10";
               cursor-theme = "breeze_cursors";
             };
