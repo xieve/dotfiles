@@ -32,6 +32,7 @@ in
       burn-my-windows
       just-perfection
       pop-shell
+      removable-drive-menu
       steal-my-focus-window
     ])
     ++ (with pkgs.kdePackages; [
@@ -237,6 +238,7 @@ in
                 "appindicatorsupport@rgcjonas.gmail.com"
                 "blur-my-shell@aunetx"
                 "burn-my-windows@schneegans.github.com"
+                "drive-menu@gnome-shell-extensions.gcampax.github.com"
                 "gsconnect@andyholmes.github.io"
                 "just-perfection-desktop@just-perfection"
                 "pop-shell@system76.com"
