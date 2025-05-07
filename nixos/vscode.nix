@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     (vscode-with-extensions.override {
-      vscode = vscodium;
+      # vscode = vscodium;
       vscodeExtensions =
         (with vscode-extensions; [
           asvetliakov.vscode-neovim
