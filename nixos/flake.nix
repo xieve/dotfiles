@@ -11,6 +11,11 @@
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     systems.url = "github:nix-systems/default";
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     automatic-ripping-machine = {
       url = "github:xieve/automatic-ripping-machine/main";
       flake = false;

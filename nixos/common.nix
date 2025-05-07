@@ -3,14 +3,18 @@
   config,
   lib,
   pkgs,
+  nix-index-database,
   ...
 }:
 
 let
   inherit (lib) fileset mkIf mkDefault;
   secrets = lib.importTOML ./secrets.toml;
-in {
-  imports = fileset.toList (fileset.fileFilter (file: file.hasExt "nix") ./modules);
+in
+{
+  imports = [
+    nix-index-database.nixosModules.nix-index
+  ] ++ fileset.toList (fileset.fileFilter (file: file.hasExt "nix") ./modules);
 
   # Enable flakes
   nix = {
