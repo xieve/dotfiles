@@ -37,6 +37,10 @@ in
     "pci=hpiosize=0"
   ];
 
+  boot.extraModprobeConfig = ''
+    softdep soc_button_array pre: pinctrl_icelake
+  '';
+
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   }; # Force intel-media-driver
