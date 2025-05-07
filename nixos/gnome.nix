@@ -24,6 +24,7 @@ in
       keepassxc
       nerd-fonts.fira-code
       obsidian
+      piper
       xclip # clipboard support for term apps (neovim, ssh) (works on gnome, while wl-clipboard does not)
     ])
     ++ (with pkgs.gnomeExtensions; [
@@ -101,6 +102,9 @@ in
 
     # Enable CUPS
     #printing.enable = true;
+
+    # Logitech devices daemon (for piper)
+    ratbagd.enable = true;
   };
 
   # Enable sound with pipewire.
