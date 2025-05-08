@@ -37,6 +37,10 @@
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
       flake = false;
     };
+    lattice-diamond = {
+      url = "https://files.latticesemi.com/Diamond/3.13/diamond_3_13-base-56-2-x86_64-linux.rpm";
+      flake = false;
+    };
     localtuya = {
       url = "github:rospogrigio/localtuya";
       flake = false;
