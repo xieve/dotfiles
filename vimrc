@@ -162,4 +162,4 @@ set tildeop
 " Automatically insert comment leaders when creating a new line from a comment
 set formatoptions+=ro/
 
-set textwidth=100
+"set textwidth=100
