@@ -17,12 +17,12 @@ in
 {
   services.automatic-ripping-machine = {
     enable = true;
+    enableTranscoding = true;
     settings = {
       DISABLE_LOGIN = true;
       OMDB_API_KEY = secrets.omdb;
       DATE_FORMAT = "%Y-%m-%d %H:%M:%S";
       UNIDENTIFIED_EJECT = false;
-      SKIP_TRANSCODE = true;
       RAW_PATH = "${baseFolder}/raw/";
       TRANSCODE_PATH = "${baseFolder}/transcoded/";
       COMPLETED_PATH = "${baseFolder}/completed/";
@@ -31,7 +31,7 @@ in
   };
 
   # ---
-  
+
   users.users.arm = {
     group = "media";
     inherit uid;

@@ -201,7 +201,10 @@ in
 
     # misc services
     services = {
-      openssh.enable = true;
+      openssh = {
+        enable = true;
+        settings.PasswordAuthentication = false;
+      };
       searx.enable = true;
       tailscale = {
         enable = true;
