@@ -69,15 +69,12 @@ python3Packages.buildPythonApplication {
         {
           "bin/armui" = "arm/runui.py";
           "bin/arm" = "arm/ripper/main.py";
-          "${cfgPath}/arm.yaml" = "setup/arm.yaml";
-          "opt/arm/setup/arm.yaml" = "setup/arm.yaml";
-          "${cfgPath}/abcde.conf" = "setup/.abcde.conf";
-          "${cfgPath}/apprise.yaml" = "setup/apprise.yaml";
-          "opt/arm/arm/ui/comments.json" = "arm/ui/comments.json";
-          "opt/arm/VERSION" = "VERSION";
+          "lib/arm/setup/arm.yaml" = "setup/arm.yaml";
+          "lib/arm/arm/ui/comments.json" = "arm/ui/comments.json";
+          "lib/arm/VERSION" = "VERSION";
         }
       }
-      cp -r arm/migrations $out/opt/arm/arm
+      cp -r arm/migrations $out/lib/arm/arm
 
       mkdir -p $out/lib/udev/rules.d
       echo 'ACTION=="change", KERNEL=="s[rg][0-9]*",' \

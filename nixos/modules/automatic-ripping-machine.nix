@@ -96,7 +96,7 @@ in
         HANDBRAKE_LOCAL = HANDBRAKE_CLI;
         DBFILE = "/var/lib/arm/arm.db";
         LOGPATH = "/var/log/arm/";
-        INSTALLPATH = "${arm}/opt/arm/";
+        INSTALLPATH = "${arm}/lib/arm/";
         SKIP_TRANSCODE = !cfg.enableTranscoding;
       };
 
