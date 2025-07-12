@@ -93,6 +93,10 @@ in
               localOnly = true;
               proxyWebsockets = true;
             };
+          "nodered.xieve.net" = {
+            proxyPass = "http://localhost:${toString config.services.node-red.port}";
+            localOnly = true;
+          };
           "cockring.xieve.net" = {
             proxyPass = "http://192.168.178.84:30000";
             proxyWebsockets = true;

@@ -214,6 +214,9 @@ in
         ];
         useRoutingFeatures = "server";
       };
+      node-red = {
+        enable = true;
+      };
     };
 
     # jellyfin
