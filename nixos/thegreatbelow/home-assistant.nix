@@ -8,12 +8,15 @@
 }:
 let
   inherit (lib) concatMapAttrs mapAttrs;
-in {
+in
+{
   services.home-assistant = {
     enable = true;
     extraComponents = [
       "esphome"
       "motionblinds_ble"
+      "mqtt"
+      "tasmota"
     ];
     customComponents = with pkgs; [
       xieve.homeassistant-localtuya
