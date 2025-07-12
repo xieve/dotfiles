@@ -16,6 +16,7 @@ in
   imports = [
     ./hardware.nix
     ../common.nix
+    ./acme.nix
     ./home-assistant.nix
     ./samba.nix
     ./searxng.nix

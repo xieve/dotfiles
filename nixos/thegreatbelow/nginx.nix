@@ -43,7 +43,7 @@ in
           }:
           {
             inherit serverAliases;
-            enableACME = true;
+            useACMEHost = "xieve.net";
             forceSSL = true;
             extraConfig = ''
               if ($limit_bots = 1) {
@@ -73,7 +73,7 @@ in
         )
         {
           "search.xieve.net" = {
-            serverAliases = [ "xieve.net" ];
+            # serverAliases = [ "xieve.net" ];
             proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
           };
           "jellyfin.xieve.net" = {
