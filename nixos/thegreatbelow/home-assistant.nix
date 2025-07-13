@@ -20,6 +20,7 @@ in
     ];
     customComponents = with pkgs; [
       xieve.homeassistant-localtuya
+      xieve.homeassistant-node-red
     ];
     customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
       bubble-card

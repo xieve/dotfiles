@@ -32,6 +32,10 @@
       url = "github:Nerwyn/material-rounded-theme";
       flake = false;
     };
+    home-assistant-node-red = {
+      url = "github:zachowj/hass-node-red";
+      flake = false;
+    };
     # Fasttext language identification model for languagetool
     fasttext-lid = {
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
