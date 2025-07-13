@@ -96,6 +96,7 @@ in
           "nodered.xieve.net" = {
             proxyPass = "http://localhost:${toString config.services.node-red.port}";
             localOnly = true;
+            proxyWebsockets = true;
           };
           "cockring.xieve.net" = {
             proxyPass = "http://192.168.178.84:30000";
