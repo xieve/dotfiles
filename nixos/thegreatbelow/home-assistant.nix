@@ -17,6 +17,7 @@ in
       "motionblinds_ble"
       "mqtt"
       "tasmota"
+      "local_calendar"
     ];
     customComponents = with pkgs; [
       xieve.homeassistant-localtuya
