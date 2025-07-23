@@ -27,7 +27,7 @@ in
       RAW_PATH = "${baseFolder}/raw/";
       TRANSCODE_PATH = "${baseFolder}/transcoded/";
       # Media will be put into movies/ and shows/ subdirectories
-      COMPLETED_PATH = "/mnt/frail/srv/";
+      COMPLETED_PATH = "${baseFolder}/completed/";
       # TODO: remove when config is final
       LOGLEVEL = "DEBUG";
       DELRAWFILES = false;
