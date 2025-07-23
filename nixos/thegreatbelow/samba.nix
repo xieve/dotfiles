@@ -37,6 +37,7 @@
           "guest account" = "nobody";
 
           browseable = "yes";
+          writeable = "yes";
           "force create mode" = "0664";
           "force directory mode" = "0775";
           #force user = nobody
@@ -46,28 +47,19 @@
         };
         public = {
           path = "/mnt/frail/srv/public";
-          writeable = "yes";
           public = "yes";
           #"guest ok" = "yes";
         };
         hidden = {
           path = "/mnt/frail/srv/hidden";
-          writeable = "yes";
           "valid users" = [ "xieve" ];
         };
         kopia = {
           path = "/mnt/frail/kopia";
-          writeable = "yes";
           "valid users" = [ "xieve" ];
         };
-        movies = {
-          path = "/mnt/frail/srv/movies";
-          writeable = "yes";
-        };
-        shows = {
-          path = "/mnt/frail/srv/shows";
-          writeable = "yes";
-        };
+        movies.path = "/mnt/frail/srv/movies";
+        shows.path = "/mnt/frail/srv/shows";
       };
     };
     samba-wsdd = {
