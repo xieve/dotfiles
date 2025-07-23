@@ -60,6 +60,7 @@
         };
         movies.path = "/mnt/frail/srv/movies";
         shows.path = "/mnt/frail/srv/shows";
+        rips.path = "/mnt/frail/srv/rips";
       };
     };
     samba-wsdd = {
