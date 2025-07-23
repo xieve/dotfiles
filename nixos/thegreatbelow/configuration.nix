@@ -20,6 +20,7 @@ in
     ./searxng.nix
     ./automatic-ripping-machine.nix
     ./nginx.nix
+    ./kanidm.nix
   ];
 
   options.thegreatbelow =
