@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  pkgs,
   python3Packages,
   writeText,
   fd,
@@ -12,7 +13,6 @@
   curl,
   eject,
   lsdvd,
-  makemkv,
   systemd,
   util-linux,
 }:
@@ -95,7 +95,6 @@ python3Packages.buildPythonApplication {
         curl
         eject
         lsdvd
-        makemkv
         util-linux # mount, umount, findmnt
       ]
     }"

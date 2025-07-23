@@ -6,7 +6,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixpkgs.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nzbr.url = "github:nzbr/nixos";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     systems.url = "github:nix-systems/default";

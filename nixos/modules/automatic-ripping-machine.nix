@@ -115,7 +115,9 @@ in
     systemd = {
       services.armui = {
         description = "Automatic Ripping Machine Web UI";
-        path = [ ];
+        path = [
+          pkgs.makemkv
+        ];
         wants = [ "network-online.target" ];
         after = [ "network-online.target" ];
         wantedBy = [ "multi-user.target" ];
