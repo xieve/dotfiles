@@ -218,6 +218,12 @@ in
         enable = true;
         withNpmAndGcc = true;
       };
+      avahi = {
+        enable = true;
+        publish.enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
     };
 
     # jellyfin
