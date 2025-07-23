@@ -60,6 +60,14 @@
           writeable = "yes";
           "valid users" = [ "xieve" ];
         };
+        movies = {
+          path = "/mnt/frail/srv/movies";
+          writeable = "yes";
+        };
+        shows = {
+          path = "/mnt/frail/srv/shows";
+          writeable = "yes";
+        };
       };
     };
     samba-wsdd = {
