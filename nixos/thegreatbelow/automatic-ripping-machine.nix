@@ -28,7 +28,9 @@ in
       TRANSCODE_PATH = "${baseFolder}/transcoded/";
       # Media will be put into movies/ and shows/ subdirectories
       COMPLETED_PATH = "/mnt/frail/srv/";
+      # TODO: remove when config is final
       LOGLEVEL = "DEBUG";
+      DELRAWFILES = false;
 
       # HandBrake
       HB_ARGS_DVD = handbrakeArgs "MKV 720p30 x265 Slow CRF19";
