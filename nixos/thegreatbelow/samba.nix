@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   # allow multicast for wsdd
@@ -10,6 +15,9 @@
 
   services = {
     samba = {
+      # Needed to enable mDNS support
+      # See https://github.com/NixOS/nixpkgs/blob/592047fc9e4f7b74a4dc85d1b9f5243dfe4899e3/pkgs/top-level/all-packages.nix#L27268
+      package = pkgs.samba4Full;
       enable = true;
       openFirewall = true;
       settings = {
@@ -67,6 +75,16 @@
       enable = true;
       openFirewall = true;
       extraOptions = [ "--verbose" ];
+    };
+    avahi = {
+      enable = true;
+      publish = {
+        enable = true;
+        # Needed for samba to automatically register mDNS records
+        userServices = true;
+      };
+      nssmdns4 = true;
+      openFirewall = true;
     };
   };
 }
