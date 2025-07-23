@@ -40,7 +40,7 @@
           "hosts allow" = "192.168.0.";
           "hosts deny" = "ALL";
           "restrict anonymous" = 2;
-          "map to guest" = "never";
+          "map to guest" = "bad user"; # needed to make public work
           "access based share enum" = "yes";
           "guest account" = "nobody";
 
