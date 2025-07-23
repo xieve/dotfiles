@@ -25,7 +25,8 @@ in
       UNIDENTIFIED_EJECT = false;
       RAW_PATH = "${baseFolder}/raw/";
       TRANSCODE_PATH = "${baseFolder}/transcoded/";
-      COMPLETED_PATH = "${baseFolder}/completed/";
+      # Media will be put into movies/ and shows/ subdirectories
+      COMPLETED_PATH = "/mnt/frail/srv/";
       LOGLEVEL = "DEBUG";
     };
   };
