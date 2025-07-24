@@ -115,9 +115,6 @@ in
     systemd = {
       services.armui = {
         description = "Automatic Ripping Machine Web UI";
-        path = [
-          pkgs.makemkv
-        ];
         wants = [ "network-online.target" ];
         after = [ "network-online.target" ];
         wantedBy = [ "multi-user.target" ];
@@ -157,6 +154,9 @@ in
 
       services."arm@" = {
         description = "Automatic Ripping Machine Worker";
+        path = [
+          pkgs.makemkv
+        ];
         # confinement.enable = true;
         serviceConfig = {
           User = "arm";
