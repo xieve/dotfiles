@@ -125,8 +125,8 @@
 
           nixosModules = lib.foldl (a: b: a // b) { } (
             map (filename: {
-              ${lib.strings.removePrefix "${toString ./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} =
-                import filename;
+              ${lib.strings.removePrefix "${./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} =
+                args@{ pkgs, ... }: ((import filename) (args // { inherit self; }));
             }) (lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules))
           );
 
