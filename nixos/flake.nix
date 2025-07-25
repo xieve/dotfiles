@@ -138,11 +138,6 @@
                 xieve = config.packages;
               }
             );
-
-          # Hydra CI: Build all systems for x86_64, cross-compilations sucks (because substituters don't work)
-          hydraJobs.nixosConfigurations = mapAttrs (_: { config, ... }: config.system.build.toplevel) (
-            filterAttrs (_: { pkgs, ... }: pkgs.system == "x86_64-linux") self.nixosConfigurations
-          );
         };
 
         perSystem =
