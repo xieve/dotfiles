@@ -8,13 +8,13 @@
 }:
 
 let
-  inherit (lib) fileset mkIf mkDefault;
+  inherit (lib) attrValues fileset mkIf mkDefault;
   secrets = lib.importTOML ./secrets.toml;
 in
 {
   imports = [
     nix-index-database.nixosModules.nix-index
-  ] ++ fileset.toList (fileset.fileFilter (file: file.hasExt "nix") ./modules);
+  ] ++ attrValues self.nixosModules;
 
   # Enable flakes
   nix = {
