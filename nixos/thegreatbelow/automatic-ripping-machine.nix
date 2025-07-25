@@ -23,6 +23,8 @@ in
     enableTranscoding = true;
     settings = {
       DISABLE_LOGIN = true;
+      WEBSERVER_IP = "127.0.0.1";
+      WEBSERVER_PORT = 27570;
       OMDB_API_KEY = secrets.omdb;
       DATE_FORMAT = "%Y-%m-%d %H:%M:%S";
       UNIDENTIFIED_EJECT = false;

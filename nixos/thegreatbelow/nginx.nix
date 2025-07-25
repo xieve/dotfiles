@@ -81,10 +81,14 @@ in
             proxyPass = "http://localhost:8096";
             localOnly = true;
           };
-          # "arm.xieve.net" = {
-          #   proxyPass = "http://${head (match "(.*):.*?" (head config.virtualisation.oci-containers.containers.arm.ports))}";
-          #   localOnly = true;
-          # };
+          "arm.xieve.net" =
+            let
+              cfg = config.services.automatic-ripping-machine.settings;
+            in
+            {
+              proxyPass = "http://${cfg.WEBSERVER_IP}:${toString cfg.WEBSERVER_PORT}";
+              localOnly = true;
+            };
           "home.xieve.net" =
             let
               cfg = config.services.home-assistant.config.http;
