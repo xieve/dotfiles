@@ -13,7 +13,9 @@ let
   gid = config.users.groups.media.gid;
   uidStr = toString uid;
   gidStr = toString gid;
-  handbrakeArgs = preset: "--preset-import-gui '${configFolder}/handbrake/${preset}.json'";
+  handbrakeArgs = preset: "--preset-import-file '${configFolder}/handbrake/${preset}.json'";
+  HB_PRESET_DVD = "MKV 720p30 x265";
+  HB_PRESET_BD = "MKV 1080p30 x265";
 in
 {
   services.automatic-ripping-machine = {
@@ -33,8 +35,9 @@ in
       DELRAWFILES = false;
 
       # HandBrake
-      HB_ARGS_DVD = handbrakeArgs "MKV 720p30 x265 Slow CRF19";
-      HB_ARGS_BD = handbrakeArgs "MKV 1080p30 x265 Slow CRF20";
+      inherit HB_PRESET_BD HB_PRESET_DVD;
+      HB_ARGS_DVD = handbrakeArgs HB_PRESET_DVD;
+      HB_ARGS_BD = handbrakeArgs HB_PRESET_BD;
     };
   };
 
