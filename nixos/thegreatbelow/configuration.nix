@@ -72,8 +72,16 @@ in
     services.zfs.autoScrub.enable = true;
 
     # Network
-    networking.hostName = "thegreatbelow";
-    networking.useDHCP = false; # Disable dhcpcd because we'll use networkd
+    networking = {
+      hostName = "thegreatbelow";
+      useDHCP = false; # Disable dhcpcd because we'll use networkd
+      nameservers = [
+        "127.0.0.1"
+        "192.168.0.1"
+        "9.9.9.9"
+      ];
+    };
+    services.resolved.domains = [ "~xieve.net" ];
 
     systemd.network = {
       enable = true;
@@ -99,6 +107,7 @@ in
         linkConfig.RequiredForOnline = "routable";
 
         dns = [
+          "127.0.0.1"
           "192.168.0.1"
           "9.9.9.9"
         ];
