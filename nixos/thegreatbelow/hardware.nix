@@ -41,7 +41,7 @@
         boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/a2d6a018-51a9-46fc-9875-1f6a014609da";
 
         fileSystems."/boot" = {
-          device = "/dev/disk/by-uuid/3CB3-5E84";
+          device = "/dev/disk/by-uuid/374B-D793";
           fsType = "vfat";
           options = [
             "fmask=0077"
