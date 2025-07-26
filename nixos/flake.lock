@@ -68,31 +68,20 @@
     },
     "automatic-ripping-machine": {
       "inputs": {
-        "automatic-ripping-machine": "automatic-ripping-machine_2",
         "nixpkgs": "nixpkgs",
         "pydvdid": "pydvdid"
       },
       "locked": {
-        "path": "flakes/automatic-ripping-machine",
-        "type": "path"
-      },
-      "original": {
-        "path": "flakes/automatic-ripping-machine",
-        "type": "path"
-      },
-      "parent": []
-    },
-    "automatic-ripping-machine_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1744207622,
-        "narHash": "sha256-F5IRIDDb6L18v9gC+/IWPPFwnyNQD2k/gioYWshAOoY=",
+        "dir": "nixos",
+        "lastModified": 1753529328,
+        "narHash": "sha256-yS3IzWzSdcCtlAoSQK6KAIg0tUmQ0r7m8RzJxukH+Po=",
         "owner": "xieve",
         "repo": "automatic-ripping-machine",
-        "rev": "8afaa23f27602c01655308760f0eda2be134d0c3",
+        "rev": "b98e06a91ffb2231f449c03865052041f80be5ad",
         "type": "github"
       },
       "original": {
+        "dir": "nixos",
         "owner": "xieve",
         "ref": "main",
         "repo": "automatic-ripping-machine",
@@ -800,16 +789,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1753250450,
-        "narHash": "sha256-i+CQV2rPmP8wHxj0aq4siYyohHwVlsh40kV89f3nw1s=",
+        "lastModified": 1753345091,
+        "narHash": "sha256-CdX2Rtvp5I8HGu9swBmYuq+ILwRxpXdJwlpg8jvN4tU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fc02ee70efb805d3b2865908a13ddd4474557ecf",
+        "rev": "3ff0e34b1383648053bba8ed03f201d3466f90c9",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixos-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
