@@ -1,6 +1,6 @@
 {
   lib,
-  inputs,
+  src,
   pkgs,
   python3Packages,
   writeText,
@@ -18,7 +18,6 @@
 }:
 
 let
-  src = inputs.automatic-ripping-machine;
   version = builtins.replaceStrings [ "\n" ] [ "" ] (lib.readFile "${src}/VERSION");
   pyproject = writeText "pyproject.toml" ''
     [build-system]

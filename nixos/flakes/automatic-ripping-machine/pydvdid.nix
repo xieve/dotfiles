@@ -1,13 +1,13 @@
 {
   lib,
-  inputs,
+  src,
   python3Packages,
 }:
 
 python3Packages.buildPythonPackage {
+  inherit src;
   pname = "pydvdid";
   version = "1.1";
-  src = inputs.pydvdid;
   pyproject = true;
   build-system = with python3Packages; [
     setuptools

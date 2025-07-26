@@ -2,24 +2,19 @@
   description = "xieve's nixos flake";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nzbr.url = "github:nzbr/nixos";
-    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
-    systems.url = "github:nix-systems/default";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    automatic-ripping-machine = {
-      url = "github:xieve/automatic-ripping-machine/main";
-      flake = false;
-    };
+    automatic-ripping-machine.url = ./flakes/automatic-ripping-machine;
+
     home-assistant-card-big-slider = {
       url = "github:nicufarmache/lovelace-big-slider-card";
       flake = false;
@@ -49,10 +44,6 @@
       url = "github:rospogrigio/localtuya";
       flake = false;
     };
-    pydvdid = {
-      url = "github:sjwood/pydvdid/v1.1";
-      flake = false;
-    };
     robobrowser = {
       url = "github:jmcarp/robobrowser/v0.5.3";
       flake = false;
@@ -71,82 +62,70 @@
     let
       inherit (inputs.nixpkgs) lib;
       inherit (lib) nixosSystem mapAttrs filterAttrs;
+      forEachSystem = import ./systems.nix inputs.nixpkgs;
     in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
-      { withSystem, inputs, ... }:
-      {
-        systems = import inputs.systems;
-
-        imports = [
-          inputs.pkgs-by-name-for-flake-parts.flakeModule
-        ];
-
-        flake = {
-          nixosConfigurations = {
-            zerosum = nixosSystem {
-              system = "x86_64-linux";
-              specialArgs = inputs; # Pass inputs to modules
-              modules = [
-                ./overlays.nix
-                ./gnome.nix
-                inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
-                ./zerosum/configuration.nix
-              ];
-            };
-            thegreatbelow = nixosSystem {
-              system = "x86_64-linux";
-              specialArgs = inputs;
-              modules = [
-                inputs.nzbr.nixosModules."service/urbackup.nix"
-                ./thegreatbelow/configuration.nix
-              ];
-            };
-            theeaterofdreams = nixosSystem {
-              system = "x86_64-linux";
-              specialArgs = inputs;
-              modules = [
-                inputs.nixos-wsl.nixosModules.wsl
-                ./theeaterofdreams/configuration.nix
-              ];
-            };
-            warmplace =
-              let
-                system = "aarch64-linux";
-              in
-              nixosSystem {
-                inherit system;
-                specialArgs = inputs;
-                modules = [
-                  inputs.nixos-hardware.nixosModules.raspberry-pi-4
-                  ./warmplace/configuration.nix
-                ];
-              };
-          };
-
-          nixosModules = lib.foldl (a: b: a // b) { } (
-            map (filename: {
-              ${lib.strings.removePrefix "${./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} =
-                args@{ pkgs, ... }: ((import filename) (args // { inherit self; }));
-            }) (lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules))
-          );
-
-          overlays.default =
-            final: prev:
-            withSystem prev.stdenv.hostPlatform.system (
-              { config, ... }:
-              {
-                xieve = config.packages;
-              }
-            );
+    {
+      nixosConfigurations = {
+        zerosum = nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = inputs; # Pass inputs to modules
+          modules = [
+            ./overlays.nix
+            ./gnome.nix
+            inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            ./zerosum/configuration.nix
+          ];
         };
-
-        perSystem =
-          { pkgs, config, ... }:
-          {
-            formatter = pkgs.nixfmt-rfc-style;
-
-            pkgsDirectory = ./packages;
+        thegreatbelow = nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = inputs;
+          modules = [
+            inputs.nzbr.nixosModules."service/urbackup.nix"
+            inputs.automatic-ripping-machine.nixosModules.default
+            ./thegreatbelow/configuration.nix
+          ];
+        };
+        theeaterofdreams = nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = inputs;
+          modules = [
+            inputs.nixos-wsl.nixosModules.wsl
+            ./theeaterofdreams/configuration.nix
+          ];
+        };
+        warmplace =
+          let
+            system = "aarch64-linux";
+          in
+          nixosSystem {
+            inherit system;
+            specialArgs = inputs;
+            modules = [
+              inputs.nixos-hardware.nixosModules.raspberry-pi-4
+              ./warmplace/configuration.nix
+            ];
           };
-      }
-    );
+      };
+
+      nixosModules = lib.foldl (a: b: a // b) { } (
+        map (filename: {
+          ${lib.strings.removePrefix "${./modules}/" (lib.strings.removeSuffix ".nix" (toString filename))} =
+            args@{ pkgs, ... }: ((import filename) (args // { inherit self; }));
+        }) (lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./modules))
+      );
+
+      packages = forEachSystem (
+        { pkgs }:
+        filterAttrs (_: lib.isDerivation) (
+          lib.packagesFromDirectoryRecursive {
+            directory = ./packages;
+            callPackage = pkgs.newScope {
+              inherit inputs;
+            };
+          }
+        )
+      );
+
+      formatter = forEachSystem ({ pkgs }: pkgs.nixfmt-rfc-style);
+    };
 }

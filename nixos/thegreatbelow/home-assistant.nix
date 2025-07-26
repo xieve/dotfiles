@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  selfPkgs,
   home-assistant-theme-bubble,
   home-assistant-theme-material-you,
   home-assistant-card-big-slider,
@@ -20,8 +21,8 @@ in
       "local_calendar"
     ];
     customComponents = with pkgs; [
-      xieve.homeassistant-localtuya
-      xieve.homeassistant-node-red
+      selfPkgs.homeassistant-localtuya
+      selfPkgs.homeassistant-node-red
     ];
     customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
       bubble-card

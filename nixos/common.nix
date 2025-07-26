@@ -16,6 +16,11 @@ in
     nix-index-database.nixosModules.nix-index
   ] ++ attrValues self.nixosModules;
 
+  # Provide shortcut to own packages to other modules
+  _module.args = {
+    selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+  };
+
   # Enable flakes
   nix = {
     settings = {
@@ -23,16 +28,11 @@ in
     };
   };
 
-  # Consume own overlay; makes local packages accessible through pkgs.xieve
-  nixpkgs.overlays = [
-    self.overlays.default
-  ];
-
   # Optimise system nix store and collect garbage on every rebuild
-  system.userActivationScripts.optimise-storage = ''
-    nix-store --optimise
-    nix-collect-garbage --delete-older-than 30d
-  '';
+  # system.userActivationScripts.optimise-storage = ''
+  #   nix-store --optimise
+  #   nix-collect-garbage --delete-older-than 30d
+  # '';
 
   # Bootloader
   boot.loader = mkIf (!((config ? wsl) && config.wsl.enable)) {
