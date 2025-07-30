@@ -72,7 +72,7 @@ in
           }
         )
         {
-          "auth.xieve.net".proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";
+          # "auth.xieve.net".proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";
           "search.xieve.net" = {
             # serverAliases = [ "xieve.net" ];
             proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
