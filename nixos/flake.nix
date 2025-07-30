@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    automatic-ripping-machine.url = "github:xieve/automatic-ripping-machine/main?dir=nixos";
+    automatic-ripping-machine.url = "github:xieve/automatic-ripping-machine/dev?dir=nixos";
 
     home-assistant-card-big-slider = {
       url = "github:nicufarmache/lovelace-big-slider-card";

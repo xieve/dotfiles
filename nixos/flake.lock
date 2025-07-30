@@ -73,17 +73,17 @@
       },
       "locked": {
         "dir": "nixos",
-        "lastModified": 1753529328,
-        "narHash": "sha256-yS3IzWzSdcCtlAoSQK6KAIg0tUmQ0r7m8RzJxukH+Po=",
+        "lastModified": 1753702555,
+        "narHash": "sha256-gwn9ZhdcUR6XLdtvqL7n5MYkIA7HnLOBPQFDqiF8C0A=",
         "owner": "xieve",
         "repo": "automatic-ripping-machine",
-        "rev": "b98e06a91ffb2231f449c03865052041f80be5ad",
+        "rev": "e89ca58618548c3cad7fb6e99f33fb44580e1018",
         "type": "github"
       },
       "original": {
         "dir": "nixos",
         "owner": "xieve",
-        "ref": "main",
+        "ref": "dev",
         "repo": "automatic-ripping-machine",
         "type": "github"
       }
