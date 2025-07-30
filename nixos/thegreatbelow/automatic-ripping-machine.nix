@@ -27,7 +27,6 @@ in
       WEBSERVER_PORT = 27570;
       OMDB_API_KEY = secrets.omdb;
       DATE_FORMAT = "%Y-%m-%d %H:%M:%S";
-      UNIDENTIFIED_EJECT = false;
       RAW_PATH = "${baseFolder}/raw/";
       TRANSCODE_PATH = "${baseFolder}/transcoded/";
       # Media will be put into movies/ and shows/ subdirectories
@@ -49,6 +48,11 @@ in
     group = "media";
     inherit uid;
   };
+
+  systemd.services."arm@".serviceConfig.ReadWritePaths = [
+    "/mnt/frail/srv/movies"
+    "/mnt/frail/srv/shows"
+  ];
 
   systemd.tmpfiles.settings."50-arm-handbrake-presets" = {
     "${configFolder}/handbrake"."L+".argument = toString ./handbrake;
