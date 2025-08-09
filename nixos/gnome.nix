@@ -22,6 +22,7 @@ in
       firefox
       gnome-tweaks
       keepassxc
+      mpv
       nerd-fonts.fira-code
       obsidian
       piper
