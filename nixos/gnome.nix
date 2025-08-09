@@ -68,6 +68,12 @@ in
     # It's still possible to open the bootloader list by pressing any key
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
+
+    # Backlight control driver for external monitors via DDC/CI
+    extraModulePackages = with config.boot.kernelPackages; [
+      ddcci-driver
+    ];
+    kernelModules = [ "ddcci" ];
   };
 
   # Hardware decoding
