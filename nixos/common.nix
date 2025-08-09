@@ -79,6 +79,7 @@ in
     isNormalUser = true;
     description = "xieve";
     extraGroups = [
+      "cdrom"
       "wheel"
       "dialout"
     ];
