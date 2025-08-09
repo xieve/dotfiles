@@ -1,19 +1,106 @@
 {
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
-    "svelte.enable-ts-plugin": true,
-    "[svelte]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "security.workspace.trust.enabled": false,
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "redhat.telemetry.enabled": false,
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.fontFamily": "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace'",
-    "editor.fontWeight": "normal"
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[vhdl]": {
+		"editor.fontLigatures": "\"cv20\""
+	},
+	"[haskell]": {
+		"editor.fontLigatures": "\"ss06\", \"cv24\""
+	},
+	"debug.onTaskErrors": "debugAnyway",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.organizeImports": "explicit"
+	},
+	"editor.experimentalWhitespaceRendering": "font",
+	"editor.fontFamily": "'FiraCode Nerd Font', 'Fira Code', 'Droid Sans Mono', 'monospace'",
+	"editor.fontLigatures": "\"ss06\"",
+	"editor.fontWeight": "normal",
+	"editor.inlayHints.fontSize": 11,
+	"editor.inlayHints.padding": true,
+	"editor.renderWhitespace": "boundary",
+	"extensions.experimental.affinity": {
+		"asvetliakov.vscode-neovim": 1
+	},
+	"files.exclude": {
+		"**/.direnv/": true,
+		"**/.history/": true
+	},
+	"files.trimTrailingWhitespace": true,
+	"files.watcherExclude": {
+		"**/.direnv/**": true,
+		"**/node_modules/**": true
+	},
+	"javascript.inlayHints.enumMemberValues.enabled": true,
+	"javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+	"javascript.inlayHints.parameterNames.enabled": "all",
+	"javascript.inlayHints.parameterTypes.enabled": true,
+	"javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+	"javascript.inlayHints.variableTypes.enabled": true,
+	"npm.exclude": "**/.direnv/**",
+	"prettier.experimentalTernaries": true,
+	"prettier.printWidth": 100,
+	"prettier.useTabs": true,
+	"python.analysis.autoFormatStrings": true,
+	"python.analysis.autoImportCompletions": true,
+	"python.analysis.inlayHints.callArgumentNames": "partial",
+	"python.analysis.inlayHints.functionReturnTypes": true,
+	"python.analysis.inlayHints.pytestParameters": true,
+	"python.analysis.inlayHints.variableTypes": true,
+	"redhat.telemetry.enabled": false,
+	"security.workspace.trust.enabled": false,
+	"svelte.enable-ts-plugin": true,
+	"svelte.plugin.svelte.defaultScriptLanguage": "ts",
+	"typescript.inlayHints.enumMemberValues.enabled": true,
+	"typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+	"typescript.inlayHints.parameterNames.enabled": "all",
+	"typescript.inlayHints.parameterTypes.enabled": true,
+	"typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+	"typescript.inlayHints.variableTypes.enabled": true,
+	"typescript.preferences.preferTypeOnlyAutoImports": true,
+	"typescript.tsserver.experimental.enableProjectDiagnostics": true,
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"window.commandCenter": false,
+	"window.titleBarStyle": "custom",
+	"workbench.layoutControl.enabled": false,
+	"editor.formatOnSaveMode": "modificationsIfAvailable",
+	"git.mergeEditor": true,
+	"terminal.integrated.fontLigatures": true,
+	"[scss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"flake8.args": [
+		"--max-line-length=88"
+	],
+	"git.autofetch": true,
+	"python.terminal.executeInFileDir": true,
+	"terminal.integrated.scrollback": 10000,
+	"prettier.documentSelectors": [
+		"*.svelte"
+	],
+	"gitlens.telemetry.enabled": false,
+	"notebook.markup.fontSize": 15.4,
+	"notebook.markdown.lineHeight": 26,
+	"notebook.markup.fontFamily": "\"Inter\"",
+	"diffEditor.ignoreTrimWhitespace": false,
+	"haskell.manageHLS": "GHCup",
+	"terminal.integrated.fontLigatures.enabled": true,
+	"nix.enableLanguageServer": true,
+	"nix.serverPath": "nixd"
 }
