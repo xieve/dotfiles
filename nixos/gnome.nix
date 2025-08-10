@@ -174,6 +174,12 @@ in
               auto-raise = "false";
             };
 
+            # Default Terminal
+            "org/gnome/desktop/applications/terminal" = {
+              exec = "wezterm";
+              exec-arg = "start --new-tab --";
+            };
+
             # Keybindings
             "org/gnome/desktop/wm/keybindings" = {
               minimize = [ "<Super>z" ];
