@@ -112,6 +112,14 @@ in
       text = ''SUBSYSTEM=="usb", ATTRS{removable}=="removable", MODE="0660", TAG+="uaccess"'';
       destination = "/etc/udev/rules.d/70-usb-storage.rules";
     })
+    # Lattice FPGAs
+    (writeTextFile {
+      name = "lattice-fpga-udev-rules";
+      text = ''
+        SUBSYSTEM=="usb", ACTION=="add", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", MODE="0660", TAG+="uaccess", SYMLINK+="ftdi-$number", RUN+="/bin/sh -c 'echo $kernel > /sys/bus/usb/drivers/ftdi_sio/unbind'"
+      '';
+      destination = "/etc/udev/rules.d/51-lattice.rules";
+    })
   ];
 
   # Steam
