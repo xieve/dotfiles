@@ -19,6 +19,7 @@
           mhutchie.git-graph
           ms-python.black-formatter
           ms-python.debugpy
+          ms-python.flake8
           ms-python.isort
           ms-python.python
           ms-python.vscode-pylance
