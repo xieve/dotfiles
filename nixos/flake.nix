@@ -36,7 +36,7 @@
       flake = false;
     };
     lattice-diamond = {
-      url = "https://files.latticesemi.com/Diamond/3.13/diamond_3_13-base-56-2-x86_64-linux.rpm";
+      url = "https://files.latticesemi.com/Diamond/3.13/diamond_3_13-base-56-2-x86_64-linux.rpm?narHash=sha256-T2b5ulnJJwyljoFc1VvqAOoqPMyyhLKMDe7JrXojs28=";
       flake = false;
     };
     localtuya = {
@@ -79,7 +79,6 @@
           system = "x86_64-linux";
           specialArgs = inputs;
           modules = [
-            inputs.nzbr.nixosModules."service/urbackup.nix"
             inputs.automatic-ripping-machine.nixosModules.default
             ./thegreatbelow/configuration.nix
           ];
