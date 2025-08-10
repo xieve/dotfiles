@@ -6,7 +6,6 @@
     nixos-hardware.url = "github:nixos/nixos-hardware/6aabf68429c0a414221d1790945babfb6a0bd068";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nzbr.url = "github:nzbr/nixos";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
