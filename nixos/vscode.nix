@@ -39,5 +39,6 @@
           rutger-de-jong.haskell-interactive
         ]);
     })
+    nixd # Dependency for nix-ide
   ];
 }
