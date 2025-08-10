@@ -13,7 +13,9 @@
           eamodio.gitlens
           esbenp.prettier-vscode
           gruntfuggly.todo-tree
+          haskell.haskell
           jnoortheen.nix-ide
+          justusadam.language-haskell
           mhutchie.git-graph
           ms-python.black-formatter
           ms-python.debugpy
@@ -31,6 +33,7 @@
         ])
         ++ (with vscode-marketplace; [
           dozerg.tsimportsorter
+          rutger-de-jong.haskell-interactive
         ]);
     })
   ];
