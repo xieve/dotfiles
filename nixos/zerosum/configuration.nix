@@ -38,8 +38,13 @@ in
   ];
 
   boot.extraModprobeConfig = ''
-    softdep soc_button_array pre: pinctrl_icelake
+    softdep soc_button_array pre: pinctrl_tigerlake
   '';
+
+  boot.initrd.kernelModules = [
+    "surface_hid"
+    "pinctrl_tigerlake"
+  ];
 
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
