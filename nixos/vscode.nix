@@ -35,6 +35,7 @@
         ])
         ++ (with vscode-marketplace; [
           dozerg.tsimportsorter
+          hbohlin.vhdl-ls
           rutger-de-jong.haskell-interactive
         ]);
     })
