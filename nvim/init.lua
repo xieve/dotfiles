@@ -24,6 +24,7 @@ require("nvim-ts-autotag").setup {}
 vim.cmd.packadd("vim-matchup")
 vim.g.matchup_matchparen_deferred = 1
 
+-- Automatic whitespace
 vim.cmd.packadd("sleuth")
 vim.cmd.packadd("suda.vim")
 vim.cmd.packadd("targets.vim")
