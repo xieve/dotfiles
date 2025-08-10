@@ -3,7 +3,7 @@
 
   inputs = {
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    nixos-hardware.url = "github:nixos/nixos-hardware/6aabf68429c0a414221d1790945babfb6a0bd068";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nzbr.url = "github:nzbr/nixos";
