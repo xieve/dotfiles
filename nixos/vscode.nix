@@ -29,6 +29,7 @@
           svelte.svelte-vscode
           tamasfe.even-better-toml
           timonwong.shellcheck
+          tomoki1207.pdf
           xadillax.viml
           xyz.local-history
         ])
