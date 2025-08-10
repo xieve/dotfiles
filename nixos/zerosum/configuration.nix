@@ -128,30 +128,54 @@ in
     remotePlay.openFirewall = true;
   };
 
-  systemd.user.services =
-    builtins.mapAttrs
-      (
-        name: unit:
-        let
-          wantedBy = [ "graphical-session.target" ];
-        in
-        {
-          inherit wantedBy;
-          bindsTo = wantedBy;
-          after = wantedBy;
-          enable = true;
-          path = [ pkgs.${name} ];
-        }
-        // unit
-      )
-      {
-        trayscale = {
-          script = "sleep 5; trayscale --hide-window";
-        };
-        syncthingtray = {
-          script = "QT_QPA_PLATFORM=xcb syncthingtray --wait";
+  systemd.user =
+    let
+      autostartWantedBy = [ "graphical-session.target" ];
+    in
+    {
+      # Autostart applications are delayed by 3 seconds to wait for XWayland to start
+      # up properly. If we don't do this then scaling and theming are all fucked up
+      timers.autostart = {
+        enable = true;
+        wantedBy = autostartWantedBy;
+        bindsTo = autostartWantedBy;
+        # xdg-desktop-portal is the last component of gnome that starts up
+        after = autostartWantedBy ++ [ "xdg-desktop-portal.service" ];
+        timerConfig = {
+          OnActiveSec = 3;
+          AccuracySec = "100ms";
+          Unit = "autostart.target";
         };
       };
+      targets.autostart = {
+        bindsTo = autostartWantedBy;
+      };
+      services =
+        builtins.mapAttrs
+          (
+            name: unit:
+            let
+              wantedBy = [ "autostart.target" ];
+            in
+            {
+              inherit wantedBy;
+              enable = true;
+              bindsTo = wantedBy;
+              after = wantedBy;
+              path = [ pkgs.${name} ];
+            }
+            // unit
+          )
+          {
+            trayscale = {
+              script = "trayscale --hide-window";
+            };
+            syncthingtray = {
+              script = "QT_QPA_PLATFORM=xcb syncthingtray --wait";
+            };
+            keepassxc.script = "keepassxc $@";
+          };
+    };
 
   programs.dconf.profiles.user.databases = [
     {
@@ -171,4 +195,6 @@ in
   nixpkgs.config.permittedInsecurePackages = pkgs.lib.optional (
     pkgs.obsidian.version == "1.5.3"
   ) "electron-25.9.0";
+
+  virtualisation.docker.enable = true;
 }
