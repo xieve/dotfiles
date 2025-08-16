@@ -28,6 +28,10 @@ in
     };
   };
 
+  environment.variables = {
+     NIXPKGS_ALLOW_UNFREE = "1";
+  };
+
   # Optimise system nix store and collect garbage on every rebuild
   # system.userActivationScripts.optimise-storage = ''
   #   nix-store --optimise
