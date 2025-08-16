@@ -32,6 +32,7 @@ in
       appindicator
       blur-my-shell
       burn-my-windows
+      gjs-osk
       just-perfection
       pop-shell
       removable-drive-menu
@@ -283,6 +284,19 @@ in
             "org/gnome/shell/extensions/just-perfection" = {
               panel-size = mkInt32 32;
               panel-button-padding-size = mkInt32 9;
+            };
+            "org/gnome/shell/extensions/gjsosk" = {
+              enable-drag = false;
+              font-bold = true;
+              font-size-px = mkInt32 20;
+              landscape-height-percent = mkInt32 45;
+              landscape-width-percent = mkInt32 100;
+              layout-landscape = mkInt32 5;
+              layout-portrait = mkInt32 5;
+              outer-spacing = mkInt32 16;
+              play-sound = false;
+              round-key-corners= true;
+              snap-spacing-px = mkInt32 8;
             };
           };
       }
