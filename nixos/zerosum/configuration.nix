@@ -120,6 +120,14 @@ in
       '';
       destination = "/etc/udev/rules.d/51-lattice.rules";
     })
+    # led badge
+    (writeTextFile {
+      name = "badgemagic-udev-rules";
+      text = ''
+        SUBSYSTEM=="usb",  ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", MODE="0660", TAG+="uaccess"
+        KERNEL=="hidraw*", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", ATTRS{busnum}=="1", MODE="0660", TAG+="uaccess"
+      '';
+    })
   ];
 
   # Steam
