@@ -3,7 +3,9 @@
 {
   environment.systemPackages = with pkgs; [
     (vscode-with-extensions.override {
-      # vscode = vscodium;
+      vscode = vscode.override {
+        commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+      };
       vscodeExtensions =
         (with vscode-extensions; [
           asvetliakov.vscode-neovim
