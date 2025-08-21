@@ -18,12 +18,10 @@ in
     (with pkgs; [
       adw-gtk3
       adwaita-icon-theme-legacy
-      fira-code
       firefox
       gnome-tweaks
       keepassxc
       mpv
-      nerd-fonts.fira-code
       obsidian
       piper
       xclip # clipboard support for term apps (neovim, ssh) (works on gnome, while wl-clipboard does not)
@@ -45,7 +43,9 @@ in
     ]);
 
   fonts.packages = with pkgs; [
+    fira-code
     inter
+    nerd-fonts.fira-code
     newcomputermodern
   ];
 
