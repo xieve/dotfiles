@@ -3,7 +3,8 @@
 
   inputs = {
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    nixos-hardware.url = "github:nixos/nixos-hardware/6aabf68429c0a414221d1790945babfb6a0bd068";
+    nixos-hardware-warmplace.url = "github:nixos/nixos-hardware/ca30f8501ab452ca687a7fdcb2d43e1fb1732317";
+    nixos-hardware-zerosum.url = "github:nixos/nixos-hardware/6aabf68429c0a414221d1790945babfb6a0bd068";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
@@ -71,7 +72,7 @@
           modules = [
             ./overlays.nix
             ./gnome.nix
-            inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            inputs.nixos-hardware-zerosum.nixosModules.microsoft-surface-pro-intel
             ./zerosum/configuration.nix
           ];
         };
@@ -99,7 +100,7 @@
             inherit system;
             specialArgs = inputs;
             modules = [
-              inputs.nixos-hardware.nixosModules.raspberry-pi-4
+              inputs.nixos-hardware-warmplace.nixosModules.raspberry-pi-4
               ./warmplace/configuration.nix
             ];
           };
