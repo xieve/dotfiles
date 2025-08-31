@@ -332,23 +332,6 @@
         "type": "github"
       }
     },
-    "robobrowser": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1433706388,
-        "narHash": "sha256-X1qINLU1Nxz74rOZvBX3ighQJK6Y6NVnrhTv+G6/HNk=",
-        "owner": "jmcarp",
-        "repo": "robobrowser",
-        "rev": "4284c11d00ae1397983e269aa180e5cf7ee5f4cf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jmcarp",
-        "ref": "v0.5.3",
-        "repo": "robobrowser",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "automatic-ripping-machine": "automatic-ripping-machine",
@@ -364,9 +347,7 @@
         "nixos-hardware-warmplace": "nixos-hardware-warmplace",
         "nixos-hardware-zerosum": "nixos-hardware-zerosum",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_4",
-        "robobrowser": "robobrowser",
-        "tinydownload": "tinydownload"
+        "nixpkgs": "nixpkgs_4"
       }
     },
     "systems": {
@@ -381,23 +362,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tinydownload": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1575128712,
-        "narHash": "sha256-M2/V5cajETFTS0wvsS0wq7DMDQISs54enIgW3JiFezU=",
-        "owner": "ritiek",
-        "repo": "tinydownload",
-        "rev": "d470623b9de4a7469dac2deaf08b73e687fc4cb9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ritiek",
-        "repo": "tinydownload",
-        "rev": "d470623b9de4a7469dac2deaf08b73e687fc4cb9",
         "type": "github"
       }
     }

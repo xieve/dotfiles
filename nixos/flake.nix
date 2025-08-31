@@ -44,14 +44,6 @@
       url = "github:rospogrigio/localtuya";
       flake = false;
     };
-    robobrowser = {
-      url = "github:jmcarp/robobrowser/v0.5.3";
-      flake = false;
-    };
-    tinydownload = {
-      url = "github:ritiek/tinydownload/d470623b9de4a7469dac2deaf08b73e687fc4cb9";
-      flake = false;
-    };
   };
 
   outputs =
