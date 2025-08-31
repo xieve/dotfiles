@@ -26,6 +26,7 @@ in
       "console=ttyS0,115200n8"
       "console=tty0"
       ''root="LABEL=nixos"''
+      "fsck.repair=yes" # Always try to repair a broken fs, even if deemed risky
     ];
     # Override common.nix
     loader.systemd-boot.enable = false;
