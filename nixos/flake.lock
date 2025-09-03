@@ -8,7 +8,7 @@
       "locked": {
         "dir": "nixos",
         "lastModified": 1753805697,
-        "narHash": "sha256-wg8p7JQWXHt3rW/cEvjswGsuAB0Pw5WdxtBlWEfrYpU=",
+        "narHash": "sha256-fpizvcntgdH89PLKn8PV4njQRSSGBURQd77tt2i83Wk=",
         "owner": "xieve",
         "repo": "automatic-ripping-machine",
         "rev": "fc8fb16a444353f1b8b896955cbfff371de7fdb9",
