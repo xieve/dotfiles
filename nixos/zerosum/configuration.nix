@@ -93,6 +93,7 @@ in
     flavours
     jetbrains-toolbox
     moonlight-qt
+    prismlauncher
     rnote
     syncthingtray
     wezterm
