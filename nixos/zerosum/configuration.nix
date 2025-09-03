@@ -95,6 +95,7 @@ in
     moonlight-qt
     prismlauncher
     rnote
+    signal-desktop
     syncthingtray
     wezterm
     wineWowPackages.stagingFull
