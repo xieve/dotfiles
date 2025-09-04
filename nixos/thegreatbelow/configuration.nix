@@ -166,6 +166,10 @@ in
         nssmdns4 = true;
         openFirewall = true;
       };
+      atuin = {
+        enable = true;
+        port = 37889;
+      };
     };
 
     # jellyfin

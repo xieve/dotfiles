@@ -110,6 +110,13 @@ in
             proxyPass = "http://192.168.178.84:30000";
             proxyWebsockets = true;
           };
+          "atuin.xieve.net" =
+            let
+              cfg = config.services.atuin;
+            in
+            {
+              proxyPass = "http://${cfg.host}:${toString cfg.port}";
+            };
         };
   };
 
