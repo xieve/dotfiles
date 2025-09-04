@@ -54,6 +54,10 @@ autoload -Uz zmv
 
 source $ZSH/oh-my-zsh.sh
 
+if type atuin > /dev/null; then
+    eval "$(atuin init zsh)"
+fi
+
 # Overrides vim-modes' settings which seem to be incompatible with syntax-highlighting
 autoload -U up-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -63,8 +67,4 @@ bindkey -M viins '^[OA' up-line-or-beginning-search
 bindkey -M vicmd '^[OA' up-line-or-beginning-search
 bindkey -M viins '^[OB' down-line-or-beginning-search
 bindkey -M vicmd '^[OB' down-line-or-beginning-search
-
-if type atuin > /dev/null; then
-    eval "$(atuin init zsh)"
-fi
 
