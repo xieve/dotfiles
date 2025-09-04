@@ -64,3 +64,7 @@ bindkey -M vicmd '^[OA' up-line-or-beginning-search
 bindkey -M viins '^[OB' down-line-or-beginning-search
 bindkey -M vicmd '^[OB' down-line-or-beginning-search
 
+if type atuin > /dev/null; then
+    eval "$(atuin init zsh)"
+fi
+

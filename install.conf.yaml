@@ -24,6 +24,7 @@
     ~/.config/VSCodium/User/settings.json: vscode.json
     ~/.config/VSCode/User/settings.json: vscode.json
     ~/.ssh/config: ssh.config
+    ~/.config/atuin/config.toml: atuin.toml
 
 - shell:
   -

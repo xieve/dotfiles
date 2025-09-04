@@ -90,6 +90,7 @@ in
     # User pkgs
     packages = with pkgs; [
       (pkgs.python3.withPackages (ps: with ps; [ black ] ++ pkgs.black.optional-dependencies.d))
+      atuin
       dnsutils
       fastfetch
       fd
