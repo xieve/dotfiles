@@ -23,6 +23,7 @@ in
     ./lldap.nix
     ./ddclient.nix
     ./unbound.nix
+    ./mollysocket.nix
   ];
 
   options.thegreatbelow =

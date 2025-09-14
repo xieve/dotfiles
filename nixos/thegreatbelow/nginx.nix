@@ -67,6 +67,7 @@ in
                   proxy_set_header Upgrade $http_upgrade;
                   proxy_set_header Connection $connection_upgrade;
                 ''}
+                proxy_set_header Host $host;
               }
             '';
           }
@@ -116,6 +117,14 @@ in
             in
             {
               proxyPass = "http://${cfg.host}:${toString cfg.port}";
+            };
+          "molly.xieve.net" =
+            let
+              cfg = config.services.mollysocket.settings;
+            in
+            {
+              proxyPass = "http://${cfg.host}:${toString cfg.port}";
+              proxyWebsockets = true;
             };
         };
   };
