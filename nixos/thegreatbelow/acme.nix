@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
-  NAMESILO_API_KEY_ENCRYPTED = ''
-    Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAAAUPEwv11kLm/E8SWMAAAAAIWhkd88EDZpKARcMIvAvk8IgAAXFJHRyHzYsu0XRmP9O+gsLd89bgsALZLHQHHA1fdtvbBGucsKPVNWy6tQRMQT2OfCWcBULD7EWrp8dGD8dSBup6g==
+  cloudflareApiToken = ''
+    Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAAAKg0Ch1zFvimaWH4oAAAAAfunzjRPaA7wdfFV0QDw3V7r4Z5oMDcGiWgTjW1nThbcFcbECsZEtPJNhOmSXq6qLxJOsfmtUcn19laQqA3uD+O6lnd96pfs58TNVlh8Kp2bc3AHuRs21PFFnN0WsSfmU7goUNeTUnIc=
   '';
 in
 {
@@ -10,20 +10,19 @@ in
     defaults.email = "acme@xieve.net";
     certs."xieve.net" = {
       domain = "*.xieve.net";
-      dnsProvider = "namesilo";
-      dnsResolver = "ns1.dnsowl.com:53";
+      dnsProvider = "cloudflare";
+      dnsResolver = "arvind.ns.cloudflare.com";
       group = "nginx";
     };
   };
 
   systemd.services."acme-xieve.net" = {
     environment = {
-      NAMESILO_API_KEY_FILE = "%d/NAMESILO_API_KEY_FILE";
-      NAMESILO_PROPAGATION_TIMEOUT = "3600"; # Wait for up to 1h (TTL of the challenge)
+      CF_DNS_API_TOKEN_FILE = "%d/cloudflareApiToken.txt";
     };
     serviceConfig = {
       SetCredentialEncrypted = [
-        "NAMESILO_API_KEY_FILE:${NAMESILO_API_KEY_ENCRYPTED}"
+        "cloudflareApiToken.txt:${cloudflareApiToken}"
       ];
     };
   };
