@@ -19,6 +19,7 @@ in
       "mqtt"
       "tasmota"
       "local_calendar"
+      "wled"
     ];
     customComponents = with pkgs; [
       selfPkgs.homeassistant-localtuya
