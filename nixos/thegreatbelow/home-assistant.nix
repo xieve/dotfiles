@@ -68,5 +68,32 @@ in
         "www/material-rounded-theme.js".L = {
           argument = "${home-assistant-theme-material-you}/dist/material-rounded-theme.js";
         };
+        "www/fonts".d = { };
+        "www/fonts/figtree.ttf".L = {
+          argument = "${pkgs.google-fonts}/share/fonts/truetype/Figtree[wght].ttf";
+        };
+        "www/fonts/figtree-italic.ttf".L = {
+          argument = "${pkgs.google-fonts}/share/fonts/truetype/Figtree-Italic[wght].ttf";
+          # WARN: requires manual setup (add as lovelace resource)
+        };
+        "www/fonts.css".L = {
+          argument =
+            (pkgs.writeText "fonts.css" ''
+              @font-face {
+                font-family: 'Figtree';
+                font-style: normal;
+                font-weight: 300 900;
+                font-display: swap;
+                src: url('./fonts/figtree.ttf') format('truetype');
+              }
+              @font-face {
+                font-family: 'Figtree';
+                font-style: italic;
+                font-weight: 300 900;
+                font-display: swap;
+                src: url('./fonts/figtree-italic.ttf') format('truetype');
+              }
+            '').outPath;
+        };
       };
 }
