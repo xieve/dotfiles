@@ -3,9 +3,7 @@
   config,
   pkgs,
   selfPkgs,
-  home-assistant-theme-bubble,
   home-assistant-theme-material-you,
-  home-assistant-card-big-slider,
   home-assistant-scheduler-card,
   ...
 }:
@@ -42,7 +40,6 @@ in
         themes = "!include_dir_merge_named themes";
         extra_module_url = [
           "/local/material-rounded-theme.js"
-          "/local/big-slider-card.js"
         ]
         ++ map (
           card: "/local/nixos-lovelace-modules/${card.entrypoint or (card.pname + ".js")}?${card.version}"
@@ -65,17 +62,11 @@ in
       })
       {
         "themes".d = { };
-        "themes/bubble.yaml".L = {
-          argument = "${home-assistant-theme-bubble}/themes/bubble.yaml";
-        };
         "themes/material-rounded-theme.yaml".L = {
           argument = "${home-assistant-theme-material-you}/themes/material_rounded.yaml";
         };
         "www/material-rounded-theme.js".L = {
           argument = "${home-assistant-theme-material-you}/dist/material-rounded-theme.js";
-        };
-        "www/big-slider-card.js".L = {
-          argument = "${home-assistant-card-big-slider}/dist/big-slider-card.js";
         };
       };
 }

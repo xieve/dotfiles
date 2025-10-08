@@ -15,14 +15,6 @@
 
     automatic-ripping-machine.url = "github:xieve/automatic-ripping-machine/dev?dir=nixos";
 
-    home-assistant-card-big-slider = {
-      url = "github:nicufarmache/lovelace-big-slider-card";
-      flake = false;
-    };
-    home-assistant-theme-bubble = {
-      url = "github:Clooos/Bubble";
-      flake = false;
-    };
     home-assistant-theme-material-you = {
       url = "github:Nerwyn/material-rounded-theme";
       flake = false;
