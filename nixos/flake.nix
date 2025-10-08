@@ -6,7 +6,8 @@
     nixos-hardware-warmplace.url = "github:nixos/nixos-hardware/ca30f8501ab452ca687a7fdcb2d43e1fb1732317";
     nixos-hardware-zerosum.url = "github:nixos/nixos-hardware/6aabf68429c0a414221d1790945babfb6a0bd068";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -17,6 +18,10 @@
 
     home-assistant-theme-material-you = {
       url = "github:Nerwyn/material-rounded-theme";
+      flake = false;
+    };
+    home-assistant-lovelace-module-material-you = {
+      url = "github:Nerwyn/material-you-utilities";
       flake = false;
     };
     home-assistant-node-red = {

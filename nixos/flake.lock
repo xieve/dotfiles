@@ -7,11 +7,11 @@
       },
       "locked": {
         "dir": "nixos",
-        "lastModified": 1753805697,
-        "narHash": "sha256-fpizvcntgdH89PLKn8PV4njQRSSGBURQd77tt2i83Wk=",
+        "lastModified": 1760024790,
+        "narHash": "sha256-ecEZq9lXPNiHXnObEL1jcBfmYSfK9UlMUgPYG0PafDw=",
         "owner": "xieve",
         "repo": "automatic-ripping-machine",
-        "rev": "fc8fb16a444353f1b8b896955cbfff371de7fdb9",
+        "rev": "6848a096ea26ee36c9107fb3e20f0224850b7202",
         "type": "github"
       },
       "original": {
@@ -71,11 +71,11 @@
     "home-assistant-card-scheduler": {
       "flake": false,
       "locked": {
-        "lastModified": 1759813099,
-        "narHash": "sha256-Nx1zJuUVMu1nzZjUD+65J/WegFEQginO+wyAr2qUmGg=",
+        "lastModified": 1759937986,
+        "narHash": "sha256-ZEnoEHqY1pWAVbCN5Z6qC1OTH7uea9dhVowgOsN5/7Q=",
         "owner": "nielsfaber",
         "repo": "scheduler-card",
-        "rev": "7c172a3e09a047afaa56e23ec40f36709107c795",
+        "rev": "df347ec585648f8a9707fc18aceb4257cd3bd398",
         "type": "github"
       },
       "original": {
@@ -100,14 +100,30 @@
         "type": "github"
       }
     },
+    "home-assistant-lovelace-module-material-you": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759814545,
+        "narHash": "sha256-VHOH1DHVTksMJCBb/8wiFXm+7zXZaxrCl3CylqA8K5M=",
+        "owner": "Nerwyn",
+        "repo": "material-you-utilities",
+        "rev": "72000c23a1ef939dbdf85fd63f383ee2f7d80d31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Nerwyn",
+        "repo": "material-you-utilities",
+        "type": "github"
+      }
+    },
     "home-assistant-node-red": {
       "flake": false,
       "locked": {
-        "lastModified": 1735513244,
-        "narHash": "sha256-F+EIz5gLGi5WGO7jPeKl/ybXF320szKuuXyJtQyD8ME=",
+        "lastModified": 1759201784,
+        "narHash": "sha256-W7aCxOr+kfY6cVm7xHKg8+TbC9YmNuvrE5ptAI/wa6c=",
         "owner": "zachowj",
         "repo": "hass-node-red",
-        "rev": "943d298a67fb99f3cd8ee665339f1fda90d75039",
+        "rev": "b61750e08f404bf81f0a6d8eaba9edf33845ded4",
         "type": "github"
       },
       "original": {
@@ -119,11 +135,11 @@
     "home-assistant-theme-material-you": {
       "flake": false,
       "locked": {
-        "lastModified": 1754718449,
-        "narHash": "sha256-fsuU+9Xe0L7SJy+vg09Dol6K/7oeFylzWIcbcLeRVts=",
+        "lastModified": 1759340370,
+        "narHash": "sha256-mfEyfVrLXcXT1Dprg7ej9eI7xMwVCZKH+kRIbuvoJ+w=",
         "owner": "Nerwyn",
         "repo": "material-rounded-theme",
-        "rev": "7f403e59c6410b206308848f67ebc4050b522257",
+        "rev": "20e281bd5ac23a8b2ebc75c149ed2f870bbc17a7",
         "type": "github"
       },
       "original": {
@@ -155,11 +171,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754800038,
-        "narHash": "sha256-UbLO8/0pVBXLJuyRizYOJigtzQAj8Z2bTnbKSec/wN0=",
+        "lastModified": 1759637156,
+        "narHash": "sha256-8NI1SqntLfKl6Q0Luemc3aIboezSJElofUrqipF5g78=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "b65f8d80656f9fcbd1fecc4b7f0730f468333142",
+        "rev": "0ca69684091aa3a6b1fe994c4afeff305b15e915",
         "type": "github"
       },
       "original": {
@@ -174,11 +190,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1754792811,
-        "narHash": "sha256-AykbHn8kgpILEIexYVBJBC/zD3E+Fh6fAY1j1+S51fw=",
+        "lastModified": 1759974692,
+        "narHash": "sha256-8AN/Ps23Wx6CBEj7s5SKp8pVSA63BHlsAQICYF6Ac6E=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "9d8125d53aa4a329ed82a6856831b085cb0f298d",
+        "rev": "6c39663c00cb3041d9567cfc103c29b46d0b3c98",
         "type": "github"
       },
       "original": {
@@ -225,11 +241,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1754326498,
-        "narHash": "sha256-3ynDaygIzQYlBZFHGDeQzXmPkX2ILeZ0wWJ84FR4g7E=",
+        "lastModified": 1759833546,
+        "narHash": "sha256-rOfkgIiiZNPUbf61OqEym60wXEODeDG8XH+gV/SUoUc=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "ca55236cd9ef3cdea29b51a0b52a9402c60e9a27",
+        "rev": "7c0c0f4c3a51761434f18209fa9499b8579ff730",
         "type": "github"
       },
       "original": {
@@ -254,29 +270,45 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1744868846,
-        "narHash": "sha256-5RJTdUHDmj12Qsv7XOhuospjAjATNiTMElplWnJE9Hs=",
-        "owner": "NixOS",
+        "lastModified": 1759735786,
+        "narHash": "sha256-a0+h02lyP2KwSNrZz4wLJTu9ikujNsTWIC874Bv7IJ0=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ebe4301cbd8f81c4f8d3244b3632338bbeb6d49c",
+        "rev": "20c4598c84a671783f741e02bf05cbfaf4907cff",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "nixos",
+        "ref": "nixos-25.05",
         "repo": "nixpkgs",
-        "rev": "ebe4301cbd8f81c4f8d3244b3632338bbeb6d49c",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1759770925,
+        "narHash": "sha256-CZwkCtzTNclqlhuwDsVtGoRumTpqCUK0xSnFIMgd8ls=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "674c2b09c59a220204350ced584cadaacee30038",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "674c2b09c59a220204350ced584cadaacee30038",
         "type": "github"
       }
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1754214453,
-        "narHash": "sha256-Q/I2xJn/j1wpkGhWkQnm20nShYnG7TI99foDBpXm1SY=",
+        "lastModified": 1759733170,
+        "narHash": "sha256-TXnlsVb5Z8HXZ6mZoeOAIwxmvGHp1g4Dw89eLvIwKVI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5b09dc45f24cf32316283e62aec81ffee3c3e376",
+        "rev": "8913c168d1c56dc49a7718685968f38752171c3b",
         "type": "github"
       },
       "original": {
@@ -288,16 +320,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1754772842,
-        "narHash": "sha256-aKmIQcvT857VRc3XbLvsuMdLeUuYfz+8zQ4eTXe78KE=",
+        "lastModified": 1759831965,
+        "narHash": "sha256-vgPm2xjOmKdZ0xKA6yLXPJpjOtQPHfaZDRtH+47XEBo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1ef586712f85b4b004caecd385d6b023e7fd2450",
+        "rev": "c9b6fb798541223bbb396d287d16f43520250518",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -325,6 +357,7 @@
         "fasttext-lid": "fasttext-lid",
         "home-assistant-card-scheduler": "home-assistant-card-scheduler",
         "home-assistant-component-scheduler": "home-assistant-component-scheduler",
+        "home-assistant-lovelace-module-material-you": "home-assistant-lovelace-module-material-you",
         "home-assistant-node-red": "home-assistant-node-red",
         "home-assistant-theme-material-you": "home-assistant-theme-material-you",
         "localtuya": "localtuya",
@@ -333,7 +366,8 @@
         "nixos-hardware-warmplace": "nixos-hardware-warmplace",
         "nixos-hardware-zerosum": "nixos-hardware-zerosum",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_4",
+        "nixpkgs-stable": "nixpkgs-stable"
       }
     },
     "systems": {

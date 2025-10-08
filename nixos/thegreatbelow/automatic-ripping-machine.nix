@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  nixpkgs-stable,
   ...
 }:
 
@@ -21,6 +22,8 @@ in
   services.automatic-ripping-machine = {
     enable = true;
     enableTranscoding = true;
+    # https://github.com/NixOS/nixpkgs/issues/450339
+    handbrakePackage = nixpkgs-stable.legacyPackages.${pkgs.system}.handbrake;
     settings = {
       DISABLE_LOGIN = true;
       WEBSERVER_IP = "127.0.0.1";
