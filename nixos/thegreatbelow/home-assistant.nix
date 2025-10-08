@@ -1,14 +1,17 @@
 {
   lib,
+  config,
   pkgs,
   selfPkgs,
   home-assistant-theme-bubble,
   home-assistant-theme-material-you,
   home-assistant-card-big-slider,
+  home-assistant-scheduler-card,
   ...
 }:
 let
   inherit (lib) concatMapAttrs mapAttrs;
+  cfg = config.services.home-assistant;
 in
 {
   services.home-assistant = {
@@ -21,13 +24,15 @@ in
       "local_calendar"
       "wled"
     ];
-    customComponents = with pkgs; [
-      selfPkgs.homeassistant-localtuya
-      selfPkgs.homeassistant-node-red
+    customComponents = with selfPkgs; [
+      homeassistant-localtuya
+      homeassistant-node-red
+      homeassistant-scheduler-component
     ];
     customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
       bubble-card
       card-mod
+      selfPkgs.homeassistant-scheduler-card
     ];
     config = {
       http = {
@@ -36,10 +41,12 @@ in
       frontend = {
         themes = "!include_dir_merge_named themes";
         extra_module_url = [
-          "/local/nixos-lovelace-modules/card-mod.js"
           "/local/material-rounded-theme.js"
           "/local/big-slider-card.js"
-        ];
+        ]
+        ++ map (
+          card: "/local/nixos-lovelace-modules/${card.entrypoint or (card.pname + ".js")}?${card.version}"
+        ) cfg.customLovelaceModules;
       };
       # frontend.themes = "!include themes/bubble.yaml";
     };

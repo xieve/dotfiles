@@ -31,6 +31,14 @@
       url = "github:zachowj/hass-node-red";
       flake = false;
     };
+    home-assistant-component-scheduler = {
+      url = "github:nielsfaber/scheduler-component";
+      flake = false;
+    };
+    home-assistant-card-scheduler = {
+      url = "github:nielsfaber/scheduler-card";
+      flake = false;
+    };
     # Fasttext language identification model for languagetool
     fasttext-lid = {
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";

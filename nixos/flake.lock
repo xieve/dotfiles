@@ -84,6 +84,38 @@
         "type": "github"
       }
     },
+    "home-assistant-card-scheduler": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759813099,
+        "narHash": "sha256-Nx1zJuUVMu1nzZjUD+65J/WegFEQginO+wyAr2qUmGg=",
+        "owner": "nielsfaber",
+        "repo": "scheduler-card",
+        "rev": "7c172a3e09a047afaa56e23ec40f36709107c795",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nielsfaber",
+        "repo": "scheduler-card",
+        "type": "github"
+      }
+    },
+    "home-assistant-component-scheduler": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750786822,
+        "narHash": "sha256-128TA6LXUGCR9tHlHgVWA7f3+vsqmtDDKuMgVMk8duk=",
+        "owner": "nielsfaber",
+        "repo": "scheduler-component",
+        "rev": "b722eb411caad5ad1ce8c11673f209f30bff31d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nielsfaber",
+        "repo": "scheduler-component",
+        "type": "github"
+      }
+    },
     "home-assistant-node-red": {
       "flake": false,
       "locked": {
@@ -337,6 +369,8 @@
         "automatic-ripping-machine": "automatic-ripping-machine",
         "fasttext-lid": "fasttext-lid",
         "home-assistant-card-big-slider": "home-assistant-card-big-slider",
+        "home-assistant-card-scheduler": "home-assistant-card-scheduler",
+        "home-assistant-component-scheduler": "home-assistant-component-scheduler",
         "home-assistant-node-red": "home-assistant-node-red",
         "home-assistant-theme-bubble": "home-assistant-theme-bubble",
         "home-assistant-theme-material-you": "home-assistant-theme-material-you",
