@@ -132,19 +132,6 @@
         "type": "github"
       }
     },
-    "lattice-diamond": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-T2b5ulnJJwyljoFc1VvqAOoqPMyyhLKMDe7JrXojs28=",
-        "type": "file",
-        "url": "https://files.latticesemi.com/Diamond/3.13/diamond_3_13-base-56-2-x86_64-linux.rpm"
-      },
-      "original": {
-        "narHash": "sha256-T2b5ulnJJwyljoFc1VvqAOoqPMyyhLKMDe7JrXojs28=",
-        "type": "file",
-        "url": "https://files.latticesemi.com/Diamond/3.13/diamond_3_13-base-56-2-x86_64-linux.rpm"
-      }
-    },
     "localtuya": {
       "flake": false,
       "locked": {
@@ -340,7 +327,6 @@
         "home-assistant-component-scheduler": "home-assistant-component-scheduler",
         "home-assistant-node-red": "home-assistant-node-red",
         "home-assistant-theme-material-you": "home-assistant-theme-material-you",
-        "lattice-diamond": "lattice-diamond",
         "localtuya": "localtuya",
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
