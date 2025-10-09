@@ -5,6 +5,7 @@ sine() { pactl load-module module-sine frequency=$@; read; pactl unload-module m
 alias_or_name() { alias_value $@ || echo $@ }
 cd() { pushd $@ > /dev/null }
 nix-tree() { echo "$(nix build --print-out-paths --no-link $@)" | xargs tree }
+osnip() { rg "$@" ~o/scripts/latex-snippets/ }
 
 ansi_colors() {
   # source: https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
