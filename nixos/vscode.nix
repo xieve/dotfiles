@@ -25,6 +25,7 @@
           ms-python.isort
           ms-python.python
           ms-python.vscode-pylance
+          ms-toolsai.jupyter
           ms-vscode.hexeditor
           pkief.material-icon-theme
           redhat.vscode-yaml
