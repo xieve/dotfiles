@@ -27,24 +27,35 @@ in
       homeassistant-node-red
       homeassistant-scheduler-component
     ];
-    customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
-      bubble-card
-      card-mod
-      selfPkgs.homeassistant-scheduler-card
-    ];
+    customLovelaceModules =
+      with pkgs.home-assistant-custom-lovelace-modules;
+      [
+        bubble-card
+        card-mod
+      ]
+      ++ (with selfPkgs; [
+        homeassistant-scheduler-card
+        homeassistant-material-you-utilities
+      ]);
     config = {
       http = {
         server_host = "::1";
       };
       frontend = {
         themes = "!include_dir_merge_named themes";
-        extra_module_url = [
-          "/local/material-rounded-theme.js"
-        ]
-        ++ map (
+        extra_module_url = map (
           card: "/local/nixos-lovelace-modules/${card.entrypoint or (card.pname + ".js")}?${card.version}"
         ) cfg.customLovelaceModules;
       };
+      panel_custom = [
+        {
+          name = "material-you-panel";
+          url_path = "material-you-configuration";
+          sidebar_title = "Material You Utilities";
+          sidebar_icon = "mdi:material-design";
+          module_url = "/local/nixos-lovelace-modules/material-you-utilities.min.js";
+        }
+      ];
       # frontend.themes = "!include themes/bubble.yaml";
     };
   };
@@ -62,11 +73,8 @@ in
       })
       {
         "themes".d = { };
-        "themes/material-rounded-theme.yaml".L = {
-          argument = "${home-assistant-theme-material-you}/themes/material_rounded.yaml";
-        };
-        "www/material-rounded-theme.js".L = {
-          argument = "${home-assistant-theme-material-you}/dist/material-rounded-theme.js";
+        "themes/material_you.yaml".L = {
+          argument = "${home-assistant-theme-material-you}/themes/material_you.yaml";
         };
         "www/fonts".d = { };
         "www/fonts/figtree.ttf".L = {
