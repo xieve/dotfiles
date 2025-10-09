@@ -82,6 +82,22 @@
         "type": "github"
       }
     },
+    "home-assistant-lovelace-google-components": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1758814079,
+        "narHash": "sha256-MMqM2F1qazW6reYF67fVUjk7s5mbewxe5pHiFxzU//0=",
+        "owner": "giovannilamarmora",
+        "repo": "lovelace-google-components",
+        "rev": "ab2e8bee4e32532c217eb35ce275a3f118acdda8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "giovannilamarmora",
+        "repo": "lovelace-google-components",
+        "type": "github"
+      }
+    },
     "home-assistant-lovelace-module-material-you": {
       "flake": false,
       "locked": {
@@ -354,6 +370,7 @@
         "fasttext-lid": "fasttext-lid",
         "home-assistant-card-scheduler": "home-assistant-card-scheduler",
         "home-assistant-component-scheduler": "home-assistant-component-scheduler",
+        "home-assistant-lovelace-google-components": "home-assistant-lovelace-google-components",
         "home-assistant-lovelace-module-material-you": "home-assistant-lovelace-module-material-you",
         "home-assistant-material-symbols": "home-assistant-material-symbols",
         "home-assistant-node-red": "home-assistant-node-red",
