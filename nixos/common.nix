@@ -18,7 +18,7 @@ in
 
   # Provide shortcut to own packages to other modules
   _module.args = {
-    selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+    selfPkgs = self.packages.${pkgs.system};
   };
 
   # Enable flakes
