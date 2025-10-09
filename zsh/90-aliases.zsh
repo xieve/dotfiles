@@ -4,6 +4,7 @@ alias find="noglob $(alias_or_name find)"
 alias sed="noglob $(alias_or_name sed)"
 alias rg="noglob $(alias_or_name rg) --smart-case"
 alias ccat='pygmentize -g'
+alias nix-where='nix build --print-out-paths --no-link'
 # Some applications don't support locales properly
 if [ "$LC_COLLATE" = "en_DE.UTF-8" ]; then
     alias mosh="LC_ALL='en_US.UTF-8' $(alias_or_name mosh)"
