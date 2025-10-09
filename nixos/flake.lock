@@ -98,6 +98,22 @@
         "type": "github"
       }
     },
+    "home-assistant-material-symbols": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759346364,
+        "narHash": "sha256-p8hO0c+HIeaQHWBypBdyqtWxIDf6q4lysg6I5cxyFNk=",
+        "owner": "beecho01",
+        "repo": "material-symbols",
+        "rev": "10a90a7ab034cc5f7e7d2ace3ccc2d88569879dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "beecho01",
+        "repo": "material-symbols",
+        "type": "github"
+      }
+    },
     "home-assistant-node-red": {
       "flake": false,
       "locked": {
@@ -339,6 +355,7 @@
         "home-assistant-card-scheduler": "home-assistant-card-scheduler",
         "home-assistant-component-scheduler": "home-assistant-component-scheduler",
         "home-assistant-lovelace-module-material-you": "home-assistant-lovelace-module-material-you",
+        "home-assistant-material-symbols": "home-assistant-material-symbols",
         "home-assistant-node-red": "home-assistant-node-red",
         "home-assistant-theme-material-you": "home-assistant-theme-material-you",
         "localtuya": "localtuya",

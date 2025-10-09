@@ -36,6 +36,10 @@
       url = "github:nielsfaber/scheduler-card";
       flake = false;
     };
+    home-assistant-material-symbols = {
+      url = "github:beecho01/material-symbols";
+      flake = false;
+    };
     # Fasttext language identification model for languagetool
     fasttext-lid = {
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";

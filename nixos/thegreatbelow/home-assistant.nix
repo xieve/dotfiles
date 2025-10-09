@@ -24,6 +24,7 @@ in
     ];
     customComponents = with selfPkgs; [
       homeassistant-localtuya
+      homeassistant-material-symbols
       homeassistant-node-red
       homeassistant-scheduler-component
     ];
