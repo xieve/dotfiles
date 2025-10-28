@@ -4,7 +4,7 @@
   inputs = {
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-hardware-warmplace.url = "github:nixos/nixos-hardware/ca30f8501ab452ca687a7fdcb2d43e1fb1732317";
-    nixos-hardware-zerosum.url = "github:nixos/nixos-hardware/2379bc40992ec29feb1933bb4acd224fa055f3f8";
+    nixos-hardware-zerosum.url = "github:nixos/nixos-hardware/19ea375ca73d4ccebd19998cdd4c9b915e0d648c";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
