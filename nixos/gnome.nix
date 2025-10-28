@@ -121,6 +121,12 @@
     pulse.enable = true;
   };
 
+  # Needed for compose under Wayland since Gnome 49
+  i18n.inputMethod = {
+    enable = true;
+    type = "ibus";
+  };
+
   # Qt Theme
   qt = {
     enable = true;
