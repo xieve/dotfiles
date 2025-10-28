@@ -67,4 +67,9 @@ vim.keymap.set("n", "y", "<plug>(YoinkYankPreserveCursorPosition)")
 vim.keymap.set("x", "y", "<plug>(YoinkYankPreserveCursorPosition)")
 
 
+-- If on GNOME, use xclip (wl-clipboard hangs vim)
+if os.getenv("XDG_CURRENT_DESKTOP") == "GNOME" then
+	vim.g.clipboard = "xclip"
+end
+
 vim.cmd.source("~/.vimrc")
