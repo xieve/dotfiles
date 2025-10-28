@@ -107,7 +107,6 @@ in
   services.udev.packages = with pkgs; [
     # Dolphin emu udev rules (allow direct bluetooth access)
     dolphin-emu
-    android-udev-rules
     # Allow raw access to all usb storage devices
     (writeTextFile {
       name = "usb-storage-udev-rules";
