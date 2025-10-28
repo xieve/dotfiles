@@ -1,95 +1,128 @@
+:root {
+	--dark: oklch(0.235 0 0);
+	--light: white;
+
+	--gray-1: oklch(0.85 0 273);
+	--gray-2: oklch(0.7 0.008 273);
+	--gray-3: oklch(0.5 0.01 273);
+	--gray-4: oklch(0.4 0.01 273);
+	--gray-5: oklch(0.33 0.008 273);
+	--gray-6: oklch(0.28 0.006 273);
+
+	--lwt-accent-color: oklch(from var(--dark) l c h / 0.8) !important;
+	--lwt-text-color: var(--gray-1) !important;
+	--arrowpanel-background: var(--gray-5) !important;
+	--arrowpanel-color: var(--light) !important;
+	--toolbar-field-background-color: var(--gray-4) !important;
+	--toolbar-bgcolor: var(--gray-5) !important;
+	--toolbar-color: var(--light) !important;
+	--toolbar-field-color: var(--light) !important;
+	--toolbar-field-background-color: var(--gray-4) !important;
+	--toolbar-field-border-color: transparent !important;
+	--toolbar-field-focus-background-color: var(--gray-4) !important;
+	--toolbar-field-focus-color: var(--light) !important;
+	--newtab-background-color: transparent !important;
+	--lwt-tab-line-color: var(--gray-3) !important;
+	--sidebar-text-color: var(--gray-1) !important;
+	--tabpanel-background-color: var(--dark) !important;
+	--tab-loading-fill: oklch(from var(--gray-3) l c h / 0.3) !important;
+	--focus-outline-color: #c061cb !important;
+	/* &:where(-moz-window-inactive) { */
+	/*--toolbar-bgcolor: -moz-headerbar-inactive !important;*/
+	/* } */
+	/* align icon in navbar at top left */
+	--toolbar-start-end-padding: 5px !important;
+	/* slightly smaller collapsed tab sidebar */
+	/* --tab-collapsed-width: 48px !important; */
+}
+
+:root {
+	min-width: 1rem !important;
+}
+
 #sidebar-main {
-    transition: width 0.3s 0.3s !important;
+	transition: width 0.3s 0.3s !important;
 }
 
 /* Hidden state: Hide native tabs strip */
-/*#main-window[titlepreface*="​"] */
-:root:has([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden="true"])) {
-    #sidebar-main {
-        width: 0 !important;
-    }
+:root:has(
+		[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden="true"])
+	) {
+	#sidebar-main {
+		width: 0 !important;
+	}
 
-    #sidebar {
-        border-radius: unset !important;
-        box-shadow: unset !important;
-        border: unset !important;
-    }
+	#sidebar {
+		border-radius: unset !important;
+		box-shadow: unset !important;
+		border: unset !important;
+	}
 
-    navigator-toolbar {
-        border-bottom: none;
-    }
-}
-
-@-moz-document url-prefix("moz-extension://b41b013c-e140-4120-8212-fc7d960ef9d5/sidebar/") {
-    * {
-        background: red
-    }
-    :-moz-window-inactive * {
-        background: green;
-    }
+	navigator-toolbar {
+		border-bottom: none;
+	}
 }
 
 /* Remove sidebar header */
-/*#sidebar-header {*/
-/*    display: none;*/
-/*}*/
+@-moz-document url("chrome://browser/content/webext-panels.xhtml")
+{
+	sidebar-panel-header {
+		display: none;
+	}
+}
 
 /* Prettier, smaller sidebar on linux */
 splitter.sidebar-splitter {
-    width: 1px !important;
-    border: none !important;
-    background-color: var(--sidebar-background-color) !important;
+	width: 2px !important;
+	border: none !important;
+	background-color: var(--sidebar-background-color) !important;
 }
 
 #sidebar {
-    border-radius: unset !important;
-    box-shadow: unset !important;
-    border: unset !important;
+	border-radius: unset !important;
+	box-shadow: unset !important;
+	border: unset !important;
 }
 
 /* make extensions menu a little more compact */
 #unified-extensions-panel .unified-extensions-item {
-    margin-block: 0px !important;
+	margin-block: 0px !important;
 }
 
-/* Transparent Toolbar */
-#navigator-toolbox {
-    /*background: transparent;*/
+.urlbar:popover-open {
+	opacity: 1 !important;
 }
 
-:root {
-    /*--toolbar-bgcolor: -moz-headerbar !important;*/
-    /*--lwt-accent-color: transparent !important;*/
-    /*--lwt-accent-color-inactive: transparent !important;*/
-    /*--toolbar-field-background-color: transparent !important;*/
-
-    &:where(-moz-window-inactive) {
-        /*--toolbar-bgcolor: -moz-headerbar-inactive !important;*/
-    }
-}
-
-/* Experiments: Wanted to turn sidebar transparent. It seems there is some sort
- * of hardcoded rule that forbids anything below the toolbar being transparent
-
-* {
-    background-color: transparent !important;
-}
-
-@-moz-document url("chrome://browser/content/webext-panels.xhtml") {
-    * {
-        background-color: transparent !important;
-    }
-}
-
-@-moz-document url("moz-extension://b41b013c-e140-4120-8212-fc7d960ef9d5/sidebar/sidebar.html") {
-    * {
-        background-color: transparent !important;
-    }
-}
-
+/* make every browser box transparent */
 @-moz-document url-prefix() {
-    * {
-        background-color: transparent !important;
-    }
+	browser,
+	window,
+	tabpanels {
+		background-color: transparent !important;
+	}
 }
-*/
+
+/* transparent search bar */
+.urlbar:is(:not([focused], [open])) > .urlbar-background:not(:focus) {
+	background-color: transparent !important;
+}
+
+@media -moz-pref("sidebar.revamp") {
+	#sidebar {
+		outline: none !important;
+	}
+
+	#sidebar-main {
+		/* width: 37px !important; */
+	}
+
+	#sidebar-box {
+		padding-bottom: 0 !important;
+	}
+
+	#sidebar-tools-and-extensions-splitter {
+		margin-block-end: var(--space-xxsmall) !important;
+		min-height: 4px !important;
+		background-color: transparent !important;
+	}
+}

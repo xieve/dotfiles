@@ -1,8 +1,64 @@
-/*
-@-moz-document url-prefix() {
-    * {
-        background-color: transparent !important;
-    }
-}
-*/
+/* @-moz-document url-prefix() { */
+/*     * { */
+/*         background-color: transparent !important; */
+/*     } */
+/* } */
 
+/* @-moz-document url-prefix("http") { */
+/*     :where(body) { */
+/*         background-color: white; */
+/*     } */
+/* } */
+
+@-moz-document url("about:newtab") {
+	:root {
+		--newtab-background-color: transparent !important;
+	}
+
+	:root[lwt-newtab-brighttext] {
+		background-color: transparent;
+	}
+}
+
+@-moz-document url("moz-extension://b41b013c-e140-4120-8212-fc7d960ef9d5/sidebar/sidebar.html") {
+	#root.root {
+		--frame-bg: transparent !important;
+	}
+	#root.root {
+		--toolbar-el-overlay-selected-bg: transparent !important;
+	}
+
+	#root.root {
+		--nav-btn-len-margin: 3px !important;
+	}
+	#root.root {
+		--nav-btn-width: 32px !important;
+	}
+	#root.root {
+		--nav-btn-height: 32px !important;
+	}
+	#root.root {
+		--general-border-radius: 8px !important;
+	}
+	#root.root {
+		--tabs-pinned-height: 32px !important;
+	}
+	#root.root {
+		--tabs-pinned-width: 32px !important;
+	}
+	.left-vertical-box {
+		padding: 0 7px 7px !important;
+	}
+
+	#root.root {
+		--toolbar-bg: transparent !important;
+
+		&:where(-moz-window-inactive) {
+			--frame-bg: -moz-headerbar-inactive !important;
+		}
+	}
+
+	:root {
+		background-color: transparent !important;
+	}
+}
