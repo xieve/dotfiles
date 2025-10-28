@@ -95,6 +95,7 @@ in
       fastfetch
       fd
       git-crypt
+      jujutsu
       nmap
       p7zip
       ripgrep

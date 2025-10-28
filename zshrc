@@ -58,6 +58,12 @@ if type atuin > /dev/null; then
     eval "$(atuin init zsh)"
 fi
 
+autoload -U compinit
+compinit
+if type jj > /dev/null; then
+    source <(jj util completion zsh)
+fi
+
 # Overrides vim-modes' settings which seem to be incompatible with syntax-highlighting
 autoload -U up-line-or-beginning-search
 zle -N up-line-or-beginning-search
