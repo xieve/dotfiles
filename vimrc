@@ -148,12 +148,27 @@ set smartcase
 " vim-cutlass
 " uses `x` as the new cutting operation. `dl` will also delete a single
 " character
+nnoremap c "_c
+vnoremap c "_c
+nnoremap cc "_S
+nnoremap C "_C
+" not these, they're used for surround
+" nnoremap s "_s
+" vnoremap s "_s
+" nnoremap S "_S
+nnoremap d "_d
+vnoremap d "_d
+nnoremap dd "_dd
+nnoremap D "_D
+nnoremap x "_x
+vnoremap x "_x
+nnoremap X "_X
+
 nnoremap x d
-xnoremap x d
+vnoremap x d
 
 nnoremap xx dd
 nnoremap X D
-
 
 " ~ now accepts a motion
 set tildeop

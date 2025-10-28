@@ -46,9 +46,6 @@
 [submodule "vim/pack/plugins/start/vim-autoformat"]
 	path = vim/pack/plugins/start/vim-autoformat
 	url = https://github.com/vim-autoformat/vim-autoformat.git
-[submodule "vim/pack/plugins/start/vim-cutlass"]
-	path = vim/pack/plugins/opt/vim-cutlass
-	url = https://github.com/svermeulen/vim-cutlass.git
 [submodule "vim/pack/plugins/start/vim-yoink"]
 	path = vim/pack/plugins/opt/vim-yoink
 	url = https://github.com/svermeulen/vim-yoink

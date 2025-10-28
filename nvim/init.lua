@@ -28,7 +28,6 @@ vim.g.matchup_matchparen_deferred = 1
 vim.cmd.packadd("sleuth")
 vim.cmd.packadd("suda.vim")
 vim.cmd.packadd("targets.vim")
-vim.cmd.packadd("vim-cutlass")
 vim.cmd.packadd("vim-indent-object")
 vim.cmd.packadd("vim-subversive")
 vim.cmd.packadd("vim-surround")
