@@ -95,6 +95,7 @@ in
       fastfetch
       fd
       git-crypt
+      nmap
       p7zip
       ripgrep
       tree
