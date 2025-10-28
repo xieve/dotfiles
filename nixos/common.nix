@@ -32,6 +32,10 @@ in
      NIXPKGS_ALLOW_UNFREE = "1";
   };
 
+  # enable appimage support
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+
   # Optimise system nix store and collect garbage on every rebuild
   # system.userActivationScripts.optimise-storage = ''
   #   nix-store --optimise
