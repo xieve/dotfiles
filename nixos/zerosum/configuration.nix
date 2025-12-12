@@ -135,6 +135,10 @@ in
     })
   ];
 
+  # Lets me mount .iso files to virtual /dev/sr* devices for testing ARM
+  boot.extraModulePackages = with config.boot.kernelPackages; [ vhba ];
+  programs.cdemu.enable = true;
+
   # Steam
   programs.steam = {
     enable = true;
