@@ -2,6 +2,7 @@
     "PresetList": [
         {
             "AlignAVStart": false,
+            "AudioAutomaticNamingBehavior": "unnamed",
             "AudioCopyMask": [
                 "copy:aac",
                 "copy:ac3"
@@ -10,8 +11,7 @@
             "AudioLanguageList": [
                 "deu",
                 "eng",
-                "jpn",
-                "und"
+                "any"
             ],
             "AudioList": [
                 {
@@ -29,6 +29,7 @@
                 }
             ],
             "AudioSecondaryEncoderMode": true,
+            "AudioTrackNamePassthru": true,
             "AudioTrackSelectionBehavior": "first",
             "ChapterMarkers": true,
             "ChildrenArray": [],
@@ -102,11 +103,13 @@
                 "deu",
                 "eng"
             ],
+            "SubtitleTrackNamePassthru": true,
             "SubtitleTrackSelectionBehavior": "first",
             "Type": 1,
             "UsesPictureFilters": true,
             "VideoAvgBitrate": 9000,
             "VideoColorMatrixCodeOverride": 0,
+            "VideoColorRange": "auto",
             "VideoEncoder": "x265_10bit",
             "VideoFramerate": "30",
             "VideoFramerateMode": "pfr",
@@ -115,9 +118,9 @@
             "VideoLevel": "auto",
             "VideoMultiPass": true,
             "VideoOptionExtra": "",
+            "VideoPasshtruHDRDynamicMetadata": "all",
             "VideoPreset": "medium",
             "VideoProfile": "auto",
-            "VideoQSVDecode": false,
             "VideoQualitySlider": 20.0,
             "VideoQualityType": 2,
             "VideoScaler": "swscale",
@@ -127,7 +130,7 @@
             "x264UseAdvancedOptions": false
         }
     ],
-    "VersionMajor": 59,
+    "VersionMajor": 67,
     "VersionMicro": 0,
     "VersionMinor": 0
 }
