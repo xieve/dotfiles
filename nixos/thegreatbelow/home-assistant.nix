@@ -16,10 +16,10 @@ in
     enable = true;
     extraComponents = [
       "esphome"
-      "local_calendar"
       "motionblinds_ble"
       "mqtt"
       "tasmota"
+      "local_calendar"
       "wled"
     ];
     customComponents = with selfPkgs; [
@@ -37,7 +37,6 @@ in
       ++ (with selfPkgs; [
         homeassistant-scheduler-card
         homeassistant-material-you-utilities
-        homeassistant-lovelace-google-components
       ]);
     config = {
       http = {

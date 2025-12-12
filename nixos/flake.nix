@@ -40,10 +40,6 @@
       url = "github:beecho01/material-symbols";
       flake = false;
     };
-    home-assistant-lovelace-google-components = {
-      url = "github:giovannilamarmora/lovelace-google-components";
-      flake = false;
-    };
     # Fasttext language identification model for languagetool
     fasttext-lid = {
       url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
