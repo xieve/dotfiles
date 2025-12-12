@@ -102,5 +102,19 @@
 	"haskell.manageHLS": "GHCup",
 	"terminal.integrated.fontLigatures.enabled": true,
 	"nix.enableLanguageServer": true,
-	"nix.serverPath": "nixd"
+	"nix.serverPath": "nixd",
+	"task.allowAutomaticTasks": "on",
+	"notebook.editorOptionsCustomizations": {
+		"editor.tabSize": 4,
+		"editor.indentSize": 4,
+		"editor.insertSpaces": false
+	},
+	"flake8.severity": {
+		"E": "Warning"
+	},
+	"chat.disableAIFeatures": true,
+	"gitlens.ai.enabled": false,
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }
