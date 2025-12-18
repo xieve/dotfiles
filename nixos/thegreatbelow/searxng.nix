@@ -1,10 +1,42 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  secrets = lib.importTOML ./secrets.toml;
+  cfg = config.services.searx;
+
+  settingsFile = pkgs.writeText "settings.yml" (
+    builtins.toJSON (builtins.removeAttrs cfg.settings [ "redis" ])
+  );
 in
 {
-  # SearXNG
+  systemd.services.searx-init = {
+    script = lib.mkForce ''
+      cd /run/searx
+
+      # write NixOS settings as JSON
+      (
+        umask 077
+        export SEARXNG_SECRET="$(cat "$CREDENTIALS_DIRECTORY"/searxngSecret)"
+        ${pkgs.envsubst}/bin/envsubst < ${settingsFile} > settings.yml
+      )
+    '';
+    serviceConfig = {
+      SetCredentialEncrypted = [
+        ''
+          searxngSecret: \
+            Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAABKbu5BbhxOwTg/nyYAAAAAv62ns \
+            tOoLGkcW8Fm4nOoPGLYYlldfSjypyianVUd/6lGLmQCTLlaLjFUbQX19zmYEu4fmbKeYC \
+            npro5v5qXInPo5kkePHb/IbBrEeSf50KcvcCqwzUq/axZ8XXmKR5UpgHIQJPbUBTq/VWT \
+            zsMtA7XyGUGLMnQR1
+        ''
+      ];
+    };
+  };
+
   services.searx = {
     redisCreateLocally = true;
     runInUwsgi = true;
@@ -25,7 +57,7 @@ in
         #files = [];
       };
       server = {
-        secret_key = secrets.searxng;
+        secret_key = "$SEARXNG_SECRET";
         limiter = true;
         image_proxy = true;
         method = "GET";
