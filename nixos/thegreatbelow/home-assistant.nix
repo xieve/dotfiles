@@ -16,11 +16,13 @@ in
     enable = true;
     extraComponents = [
       "esphome"
+      "fritz"
       "motionblinds_ble"
       "mqtt"
       "tasmota"
       "local_calendar"
       "wled"
+      "zha"
     ];
     customComponents = with selfPkgs; [
       homeassistant-localtuya
