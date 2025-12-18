@@ -70,7 +70,7 @@ in
         }
         {
           name = "bing";
-          disabled = false;
+          disabled = true;
         }
         {
           name = "ebay";
