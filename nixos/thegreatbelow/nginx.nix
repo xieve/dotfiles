@@ -126,6 +126,18 @@ in
               proxyPass = "http://${cfg.host}:${toString cfg.port}";
               proxyWebsockets = true;
             };
+          "hydrusapi.xieve.net" ={
+            proxyPass = "http://localhost:45869";
+            localOnly = true;
+          };
+          "hydrui.xieve.net" =
+            let
+              cfg = config.services.hydrui;
+            in
+            {
+              proxyPass = "http://localhost:${toString cfg.port}";
+              localOnly = true;
+            };
         };
   };
 

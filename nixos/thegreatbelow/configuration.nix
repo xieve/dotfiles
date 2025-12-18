@@ -24,6 +24,7 @@ in
     ./ddclient.nix
     ./unbound.nix
     ./mollysocket.nix
+    ./hydrus.nix
   ];
 
   options.thegreatbelow =

@@ -15,6 +15,14 @@
     };
 
     automatic-ripping-machine.url = "github:xieve/automatic-ripping-machine/dev?dir=nixos";
+    hydrus = {
+      url = "github:hydrui/hydrus-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hydrui = {
+      url = "github:hydrui/hydrui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-assistant-theme-material-you = {
       url = "github:Nerwyn/material-rounded-theme";
