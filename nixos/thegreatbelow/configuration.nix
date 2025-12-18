@@ -62,13 +62,13 @@ in
 
     # Graphics drivers for HW accelerated transcoding
     hardware.graphics.enable = true;
-    services.xserver.videoDrivers = [ "nvidia" ];
-    hardware.nvidia = {
-      # GPU is not new enough for the open source kernel modules
-      open = false;
-      # Keep GPU online while headless
-      nvidiaPersistenced = true;
-    };
+    services.xserver.videoDrivers = [ "mga" ];
+    # hardware.nvidia = {
+    #   # GPU is not new enough for the open source kernel modules
+    #   open = false;
+    #   # Keep GPU online while headless
+    #   nvidiaPersistenced = true;
+    # };
 
     # zfs
     boot.supportedFilesystems = [ "zfs" ];
