@@ -3,6 +3,7 @@
 let
   inherit (lib) filterAttrs mapAttrs optionalString;
   inherit (builtins) head match toString;
+  cfg = config.thegreatbelow;
 in
 {
   services.nginx = {
@@ -25,8 +26,10 @@ in
       # TODO: This is not great. I should probably do separate server blocks instead.
       map $server_addr $dest_local {
         default 0;
-        ~*fd.* 1;
-        192.168.0.2 1;
+        ${cfg.ipAddress.v4} 1;
+        ${cfg.ipAddress.v6} 1;
+        ${cfg.ipAddress.tailscale.v4} 1;
+        ${cfg.ipAddress.tailscale.v6} 1;
       }
     '';
     # Partly reimplementing the nixpkgs nginx module here because it does not allow to prepend
@@ -54,7 +57,7 @@ in
               }
               ${optionalString localOnly ''
                 allow 192.168../24;
-                allow 100.104../32;
+                allow 100.../8;
                 allow ::/0;
                 deny all;
                 if ($dest_local = 0) {

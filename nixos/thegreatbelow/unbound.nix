@@ -52,8 +52,8 @@ in
             inherit local-zone;
             name = "tailscale";
             local-data = [
-              ''"xieve.net. 60 IN A 100.67.195.13"''
-              ''"xieve.net. 60 IN AAAA fd7a:115c:a1e0::b601:c30d"''
+              ''"xieve.net. 60 IN A ${cfg.ipAddress.tailscale.v4}"''
+              ''"xieve.net. 60 IN AAAA ${cfg.ipAddress.tailscale.v6}"''
             ];
           }
         ];

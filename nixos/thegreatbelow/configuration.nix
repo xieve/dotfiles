@@ -42,6 +42,16 @@ in
           type = str;
           default = "fd00::acab";
         };
+        tailscale = {
+          v4 = mkOption {
+            type = str;
+            default = "100.67.195.13";
+          };
+          v6 = mkOption {
+            type = str;
+            default = "fd7a:115c:a1e0::b601:c30d";
+          };
+        };
       };
     };
 
