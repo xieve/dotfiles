@@ -25,7 +25,7 @@ in
       # TODO: This is not great. I should probably do separate server blocks instead.
       map $server_addr $dest_local {
         default 0;
-        fd00::acab 1;
+        ~*fd.* 1;
         192.168.0.2 1;
       }
     '';
@@ -46,7 +46,10 @@ in
             useACMEHost = "xieve.net";
             forceSSL = true;
             extraConfig = ''
-              if ($limit_bots = 1) {
+              if ($dest_local = 1) {
+                set $limit_bots 0;
+              }
+              if ($limit_bots) {
                 return 403;
               }
               ${optionalString localOnly ''
