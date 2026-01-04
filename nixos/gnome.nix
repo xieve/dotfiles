@@ -15,7 +15,9 @@
     (with pkgs; [
       adw-gtk3
       adwaita-icon-theme-legacy
+      chromium
       firefox
+      evolution
       gnome-tweaks
       keepassxc
       mpv
