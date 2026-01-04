@@ -18,3 +18,4 @@ user_pref("font.name.monospace.x-western", "FiraCode Nerd Font");
 user_pref("font.name.sans-serif.x-western", "Inter");
 user_pref("sidebar.revamp", true);
 user_pref("sidebar.verticalTabs", true);
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);

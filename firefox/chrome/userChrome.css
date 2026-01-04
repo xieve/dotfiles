@@ -34,6 +34,9 @@
 	--toolbar-start-end-padding: 5px !important;
 	/* slightly smaller collapsed tab sidebar */
 	/* --tab-collapsed-width: 48px !important; */
+
+	--toolbox-bgcolor: var(--lwt-accent-color) !important;
+	--toolbox-bgcolor-inactive: var(--lwt-accent-color-inactive, var(--lwt-accent-color)) !important;
 }
 
 :root {
