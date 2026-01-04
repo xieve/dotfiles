@@ -96,7 +96,6 @@ splitter.sidebar-splitter {
 /* make every browser box transparent */
 @-moz-document url-prefix() {
 	browser,
-	window,
 	tabpanels {
 		background-color: transparent !important;
 	}
