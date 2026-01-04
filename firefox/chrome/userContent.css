@@ -10,13 +10,36 @@
 /*     } */
 /* } */
 
-@-moz-document url("about:newtab") {
+@-moz-document url-prefix("about:") {
 	:root {
 		--newtab-background-color: transparent !important;
 	}
 
 	:root[lwt-newtab-brighttext] {
 		background-color: transparent;
+	}
+
+	.outer-wrapper.only-search {
+		display: flex !important;
+		padding: var(--space-xxlarge) !important;
+		padding-block-end: calc(var(--space-xxlarge) * 4) !important; 
+	}
+
+	.logo-and-wordmark .wordmark {
+		background-size: contain !important;
+		margin-inline-start: var(--space-xlarge) !important;
+		width: 220px !important;
+	}
+
+	.no-recommended-stories .logo-and-wordmark {
+		margin-block-end: calc(var(--space-xxlarge)*2) !important;
+	}
+
+	.logo-and-wordmark .logo {
+		height: 120px !important;
+		width: unset !important;
+		aspect-ratio: 1 !important;
+		background-size: contain !important;
 	}
 }
 

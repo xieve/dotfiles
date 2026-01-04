@@ -19,13 +19,6 @@ cd xieves-dotfiles
 ./install-userchrome.zsh
 ```
 
-Open Firefox, type `about:config` into the URL bar and hit enter, then set these options:
-
-| Setting | Value |
-| --- | --- |
-| `toolkit.legacyUserProfileCustomizations.stylesheets` | `true` |
-| `browser.tabs.allow_transparent_browser` | `true` |
-
 ### Transparency fix script
 This script needs to be installed via Violentmonkey:
 
