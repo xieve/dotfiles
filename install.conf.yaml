@@ -26,6 +26,7 @@
     ~/.ssh/config: ssh.config
     ~/.config/atuin/config.toml: atuin.toml
     ~/.config/jj/config.toml: jj.toml
+    ~/.config/mimeapps.list:
 
 - shell:
   -
