@@ -27,6 +27,7 @@ in
       "console=tty0"
       ''root="LABEL=nixos"''
       "fsck.repair=yes" # Always try to repair a broken fs, even if deemed risky
+      "fsck.mode=force" # Always check filesystem, even if deemed unnecessary
     ];
     # Override common.nix
     loader.systemd-boot.enable = false;
