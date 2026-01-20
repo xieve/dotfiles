@@ -95,6 +95,8 @@
   services = {
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
+    # Using KeePassXC instead
+    gnome.gnome-keyring.enable = false;
 
     languagetool = {
       enable = true;
