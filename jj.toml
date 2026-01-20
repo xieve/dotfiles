@@ -3,3 +3,6 @@
 [user]
 name = "xieve"
 email = "2876434-xieve@users.noreply.gitlab.com"
+
+[git]
+private-commits = '''description('private:*')'''
