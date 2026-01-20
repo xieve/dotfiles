@@ -25,8 +25,7 @@
 	},
 	"debug.onTaskErrors": "debugAnyway",
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit",
-		"source.organizeImports": "explicit"
+		"source.fixAll.eslint": "explicit"
 	},
 	"editor.experimentalWhitespaceRendering": "font",
 	"editor.fontFamily": "'FiraCode Nerd Font', 'Fira Code', 'Droid Sans Mono', 'monospace'",
@@ -116,5 +115,10 @@
 	"gitlens.ai.enabled": false,
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	},
+	"webgl-glsl-editor.format.favorFloatingSuffix": false,
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"python.analysis.typeCheckingMode": "standard"
 }
