@@ -106,5 +106,8 @@ end
 
 config.colors = scheme
 
+if os.getenv("SSH_AUTH_SOCK") == nil then
+	config.default_ssh_auth_sock = os.getenv("XDG_RUNTIME_DIR") .. "/ssh-agent.sock"
+end
 
 return config

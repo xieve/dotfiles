@@ -87,7 +87,6 @@
 	"flake8.args": [
 		"--max-line-length=88"
 	],
-	"git.autofetch": true,
 	"python.terminal.executeInFileDir": true,
 	"terminal.integrated.scrollback": 10000,
 	"prettier.documentSelectors": [
@@ -120,5 +119,7 @@
 	"[html]": {
 		"editor.defaultFormatter": "vscode.html-language-features"
 	},
-	"python.analysis.typeCheckingMode": "standard"
+	"python.analysis.typeCheckingMode": "standard",
+	"diffEditor.hideUnchangedRegions.enabled": true,
+	"editor.minimap.showSlider": "always"
 }
