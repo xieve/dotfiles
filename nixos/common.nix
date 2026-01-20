@@ -99,11 +99,14 @@ in
       fastfetch
       fd
       git-crypt
+      git-lfs
       jujutsu
       nmap
       p7zip
       ripgrep
+      sshfs
       tree
+      xpra
     ];
   };
 
@@ -132,6 +135,7 @@ in
     git
     htop
     killall
+    lsscsi
     nixfmt
     smartmontools
     tmux
