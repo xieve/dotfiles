@@ -130,6 +130,15 @@
         )
       );
 
+      templates = {
+        default = {
+          path = ./templates/default;
+          description = "A basic package and shell.";
+        };
+      };
+
+      defaultTemplate = self.templates.default;
+
       formatter = forEachSystem ({ pkgs }: pkgs.nixfmt);
     };
 }
