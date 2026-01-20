@@ -46,12 +46,8 @@ in
   programs.appimage.binfmt = true;
 
   # Enable CCache (must still be enabled per-package)
-  programs.ccache = {
-    enable = true;
-    packageNames = [
-      "buildLinux"
-    ];
-  };
+  programs.ccache.enable = true;
+
   nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
 
   # Optimise system nix store and collect garbage on every rebuild

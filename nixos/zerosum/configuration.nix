@@ -18,6 +18,11 @@ in
     hostName = "zerosum";
   };
 
+  # Cache kernel build with CCache
+  programs.ccache.packageNames = [
+    "buildLinux"
+  ];
+
   hardware = {
     bluetooth = {
       enable = true;

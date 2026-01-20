@@ -17,6 +17,11 @@ in
 
   networking.hostName = "warmplace";
 
+  # Cache kernel build with CCache
+  programs.ccache.packageNames = [
+    "buildLinux"
+  ];
+
   hardware = {
     raspberry-pi."4".apply-overlays-dtmerge.enable = true;
     deviceTree.enable = true;
