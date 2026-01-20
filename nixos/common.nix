@@ -9,14 +9,20 @@
 }:
 
 let
-  inherit (lib) attrValues fileset mkIf mkDefault;
+  inherit (lib)
+    attrValues
+    fileset
+    mkIf
+    mkDefault
+    ;
   secrets = lib.importTOML ./secrets.toml;
   stablePkgs = nixpkgs-stable.legacyPackages.${pkgs.stdenv.system};
 in
 {
   imports = [
     nix-index-database.nixosModules.nix-index
-  ] ++ attrValues self.nixosModules;
+  ]
+  ++ attrValues self.nixosModules;
 
   # Provide shortcut to own packages to other modules
   _module.args = {
@@ -32,12 +38,21 @@ in
   };
 
   environment.variables = {
-     NIXPKGS_ALLOW_UNFREE = "1";
+    NIXPKGS_ALLOW_UNFREE = "1";
   };
 
   # enable appimage support
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
+
+  # Enable CCache (must still be enabled per-package)
+  programs.ccache = {
+    enable = true;
+    packageNames = [
+      "buildLinux"
+    ];
+  };
+  nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
 
   # Optimise system nix store and collect garbage on every rebuild
   # system.userActivationScripts.optimise-storage = ''
