@@ -1,2 +1,3 @@
 vim/.netrwhist
-.history
+.history/
+node_modules/
