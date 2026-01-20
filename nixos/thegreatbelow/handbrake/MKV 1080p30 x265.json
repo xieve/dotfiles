@@ -9,8 +9,6 @@
             ],
             "AudioEncoderFallback": "av_aac",
             "AudioLanguageList": [
-                "deu",
-                "eng",
                 "any"
             ],
             "AudioList": [
@@ -30,7 +28,7 @@
             ],
             "AudioSecondaryEncoderMode": true,
             "AudioTrackNamePassthru": true,
-            "AudioTrackSelectionBehavior": "first",
+            "AudioTrackSelectionBehavior": "all",
             "ChapterMarkers": true,
             "ChildrenArray": [],
             "Default": true,

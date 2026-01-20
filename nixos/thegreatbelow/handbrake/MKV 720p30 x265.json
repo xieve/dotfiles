@@ -9,8 +9,6 @@
             ],
             "AudioEncoderFallback": "av_aac",
             "AudioLanguageList": [
-                "deu",
-                "eng",
                 "any"
             ],
             "AudioList": [
@@ -30,7 +28,7 @@
             ],
             "AudioSecondaryEncoderMode": true,
             "AudioTrackNamePassthru": true,
-            "AudioTrackSelectionBehavior": "first",
+            "AudioTrackSelectionBehavior": "all",
             "ChapterMarkers": true,
             "ChildrenArray": [],
             "Default": false,
@@ -90,7 +88,7 @@
             "PictureTopCrop": 0,
             "PictureUseMaximumSize": true,
             "PictureWidth": 1280,
-            "PresetDescription": "High quality H.265 video (up to 1080p30), AAC stereo audio, and Dolby Digital (AC-3) surround audio, in an MKV container.",
+            "PresetDescription": "High quality H.265 video (up to 720p30), AAC stereo audio, and Dolby Digital (AC-3) surround audio, in an MKV container.",
             "PresetDisabled": false,
             "PresetName": "MKV 720p30 x265",
             "SubtitleAddCC": true,
