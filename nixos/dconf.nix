@@ -16,8 +16,12 @@ in
     ];
     workspaces-only-on-primary = true;
   };
-  # Disable automatic backlight adjustments
-  "org/gnome/settings-daemon/plugins/power".ambient-enabled = false;
+  "org/gnome/settings-daemon/plugins/power" = {
+    # Disable automatic backlight adjustments
+    ambient-enabled = false;
+    # Auto-suspend even when plugged in
+    sleep-inactive-ac-type = "suspend";
+  };
 
   # Behaviour
   "org/gnome/desktop/wm/preferences" = {
