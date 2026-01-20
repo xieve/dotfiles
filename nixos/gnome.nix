@@ -141,7 +141,9 @@
     style = "kvantum";
   };
 
-  environment.variables = {
+  environment.sessionVariables = {
+    # Workaround for external monitors not waking up after blanking
+    MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
     # Force Firefox to use Wayland
     MOZ_ENABLE_WAYLAND = 1;
     # Force electron apps to use Wayland
