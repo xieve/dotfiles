@@ -22,7 +22,8 @@
       keepassxc
       mpv
       obsidian
-      piper
+      # piper
+      solaar
       xclip # clipboard support for term apps (neovim, ssh) (works on gnome, while wl-clipboard does not)
     ])
     ++ (with pkgs.gnomeExtensions; [
@@ -108,7 +109,11 @@
     #printing.enable = true;
 
     # Logitech devices daemon (for piper)
-    ratbagd.enable = true;
+    # ratbagd.enable = true;
+
+    udev.packages = with pkgs; [
+      solaar
+    ];
   };
 
   # Enable sound with pipewire.
