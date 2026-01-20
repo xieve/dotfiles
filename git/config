@@ -5,6 +5,7 @@
 
 [core]
 	autocrlf = input
+	excludesfile = ~/.dotfiles/git/ignore
 
 [pager]
 	# diff-highlight is script provided by git that shows word-by-word diff

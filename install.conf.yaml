@@ -3,7 +3,7 @@
       create: true
 
 - link:
-    ~/.gitconfig:
+    ~/.gitconfig: git/config
     ~/.tmux.conf:
     ~/.tmuxline.theme:
     ~/.vimrc:
