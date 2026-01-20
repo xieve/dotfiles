@@ -5,29 +5,33 @@
 // @namespace   Violentmonkey Scripts
 // @match       http*://*/*
 // @grant       GM_addStyle
-// @version     1.1
+// @version     1.3
 // @author      -
 // @description 1/4/2026, 3:48:16 PM
 // @downloadURL https://gitlab.com/xieve/dotfiles/-/raw/master/firefox/transparent-browser-fix.user.js
 // ==/UserScript==
 
-let bgColor = getComputedStyle(document.querySelector("body"))["background-color"];
-const fgColor = getComputedStyle(document.querySelector("body"))["color"]
-  .replace(/rgba?\((.*)\)/, "$1")
-  .split(", ")
-  .splice(0, 3);
-const average = fgColor.reduce((a,b) => Number(a) + Number(b)) / fgColor.length;
+document.addEventListener("load", (event) => {
+	let bgColor = getComputedStyle(document.querySelector("body"))["background-color"];
+	const fgColor = getComputedStyle(document.querySelector("body"))
+		["color"].replace(/rgba?\((.*)\)/, "$1")
+		.split(", ")
+		.splice(0, 3);
+	const average = fgColor.reduce((a, b) => Number(a) + Number(b)) / fgColor.length;
 
-if (average < 128 && bgColor === "rgba(0, 0, 0, 0)") {
-  GM_addStyle(`
-    html {
-      background-color: white !important;
-    }
-  `)
-} else {
-  GM_addStyle(`
-    :where(html) {
-      background-color: ${bgColor};
-    }
-  `)
-}
+	console.log(`bg color: ${bgColor} fg color: ${fgColor} average ${average}`);
+
+	if (average < 127 && bgColor === "rgba(0, 0, 0, 0)") {
+		GM_addStyle(`
+			html {
+				background-color: white !important;
+			}
+		`);
+	} else {
+		GM_addStyle(`
+			:where(html) {
+				background-color: ${bgColor};
+			}
+		`);
+	}
+});
