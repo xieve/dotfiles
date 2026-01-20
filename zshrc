@@ -24,7 +24,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(
     history
 )
 
-export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS"
+export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS --mouse --wheel-lines=5"
 export SYSTEMD_LESS="$LESS"
 
 if type nvim > /dev/null; then
