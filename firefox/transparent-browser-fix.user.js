@@ -5,7 +5,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       http*://*/*
 // @grant       GM_addStyle
-// @version     1.0
+// @version     1.1
 // @author      -
 // @description 1/4/2026, 3:48:16 PM
 // @downloadURL https://gitlab.com/xieve/dotfiles/-/raw/master/firefox/transparent-browser-fix.user.js
@@ -19,11 +19,15 @@ const fgColor = getComputedStyle(document.querySelector("body"))["color"]
 const average = fgColor.reduce((a,b) => Number(a) + Number(b)) / fgColor.length;
 
 if (average < 128 && bgColor === "rgba(0, 0, 0, 0)") {
-  bgColor = "white"
+  GM_addStyle(`
+    html {
+      background-color: white !important;
+    }
+  `)
+} else {
+  GM_addStyle(`
+    :where(html) {
+      background-color: ${bgColor};
+    }
+  `)
 }
-
-GM_addStyle(`
-  :where(html) {
-    background-color: ${bgColor}
-  }
-`)
