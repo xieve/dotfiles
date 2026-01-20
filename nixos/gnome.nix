@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  selfPkgs,
   lib,
   fasttext-lid,
   ...
@@ -97,6 +98,7 @@
     displayManager.gdm.enable = true;
     # Using KeePassXC instead
     gnome.gnome-keyring.enable = false;
+    gnome.gcr-ssh-agent.enable = false;
 
     languagetool = {
       enable = true;
@@ -154,7 +156,9 @@
 
   programs.dconf = {
     enable = true;
-    profiles.user.databases = [ { settings = import ./dconf.nix { inherit lib config; }; } ];
+    profiles.user.databases = [
+      { settings = import ./dconf.nix { inherit lib config; }; }
+    ];
   };
 
   environment.gnome.excludePackages = (
@@ -165,4 +169,10 @@
       geary # email
     ]
   );
+
+  programs.ssh = {
+    startAgent = true;
+    enableAskPassword = true;
+    askPassword = "${selfPkgs.gnome-ssh-askpass4}/libexec/gnome-ssh-askpass4";
+  };
 }
