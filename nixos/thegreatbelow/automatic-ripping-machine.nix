@@ -49,21 +49,37 @@ in
   };
 
   systemd.services = {
-    "arm@".serviceConfig.ReadWritePaths = [
-      "/mnt/frail/srv/movies"
-      "/mnt/frail/srv/shows"
-    ];
+    "arm@" = {
+      serviceConfig.ReadWritePaths = [
+        "/mnt/frail/srv/movies"
+        "/mnt/frail/srv/shows"
+      ];
+      environment = {
+        ARM_MAKEMKV_PERMA_KEY_FILE = "%d/MAKEMKV_PERMA_KEY";
+      };
+      serviceConfig.SetCredentialEncrypted = [
+        ''
+          MAKEMKV_PERMA_KEY: \
+            Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAABqr976tphr25P3KoQAAAAAAz5dn \
+            gy/4pALKqUVBIN9IgV9v0RS3h0GYHFglxHhVR7x9HHQ2Jsuuj2/rIRMctaSihhAVT6Iu/ \
+            Y9UPotXZU6mK1wWJsfEN2IwvVEA7qZOPg1JRMUC+sDxcJ9DKm7kDiziRFfdwnZE+znBrD \
+            2Q9gtDnFK80qRymWL7u5F6w==
+        ''
+      ];
+    };
 
     armui = {
       environment = {
         ARM_OMDB_API_KEY_FILE = "%d/OMDB_API_KEY";
       };
-      serviceConfig.SetCredentialEncrypted = ''
-        OMDB_API_KEY: \
-          Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAAAXlninw82kE8nfIUIAAAAA1PDAy \
-          cEFyzZZRe2yhxetzR0KTfDpcuYhHQnZdKqn3ejptIoHjRZVYIh8UgOeXBJ25XBdgpLa6N \
-          Q=
-      '';
+      serviceConfig.SetCredentialEncrypted = [
+        ''
+          OMDB_API_KEY: \
+            Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAAAXlninw82kE8nfIUIAAAAA1PDAy \
+            cEFyzZZRe2yhxetzR0KTfDpcuYhHQnZdKqn3ejptIoHjRZVYIh8UgOeXBJ25XBdgpLa6N \
+            Q=
+        ''
+      ];
     };
   };
 
