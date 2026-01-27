@@ -132,7 +132,7 @@ in
     git
     htop
     killall
-    nixfmt-rfc-style
+    nixfmt
     smartmontools
     tmux
     unzip

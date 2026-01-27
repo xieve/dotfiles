@@ -39,7 +39,7 @@ in
 
   services.searx = {
     redisCreateLocally = true;
-    runInUwsgi = true;
+    configureUwsgi = true;
     uwsgiConfig = {
       disable-logging = true;
       http = "[::1]:41318";

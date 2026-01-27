@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  nixpkgs-stable,
+  ...
+}:
 
 let
   home = config.users.users.xieve.home;
@@ -91,22 +96,27 @@ in
     pcscd.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    bespokesynth
-    dolphin-emu
-    flavours
-    jetbrains-toolbox
-    moonlight-qt
-    prismlauncher
-    rnote
-    signal-desktop
-    syncthingtray
-    wezterm
-    wineWowPackages.stagingFull
-    xournalpp
-    yabridge
-    yabridgectl
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      bespokesynth
+      dolphin-emu
+      flavours
+      jetbrains-toolbox
+      moonlight-qt
+      prismlauncher
+      rnote
+      signal-desktop
+      syncthingtray
+      wezterm
+      wineWow64Packages.stagingFull
+      xournalpp
+    ]
+    ++ (with nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [
+      # https://github.com/NixOS/nixpkgs/issues/490049
+      yabridge
+      yabridgectl
+    ]);
 
   services.udev.packages = with pkgs; [
     # Dolphin emu udev rules (allow direct bluetooth access)

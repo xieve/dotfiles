@@ -55,7 +55,7 @@
           nSgG2zA==
       '';
       ExecStart = lib.mkForce ''
-        ${lib.getExe cfg.package} -nogui=true -server-mode=true -acme=false -listen=:43258 -hydrus-url=https://hydrusapi.xieve.net -hydrus-api-key-file=$CREDENTIALS_DIRECTORY/hydrusApiKey -allow-bug-report=true
+        ${lib.getExe' cfg.package "hydrui-server"} -nogui=true -server-mode=true -acme=false -listen=:43258 -hydrus-url=https://hydrusapi.xieve.net -hydrus-api-key-file=$CREDENTIALS_DIRECTORY/hydrusApiKey -allow-bug-report=true
       '';
     };
 
