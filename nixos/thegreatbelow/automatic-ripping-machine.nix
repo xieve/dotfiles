@@ -7,7 +7,6 @@
 }:
 
 let
-  secrets = lib.importTOML ./secrets.toml;
   baseFolder = "/mnt/frail/srv/rips";
   configFolder = "/etc/arm";
   uid = 950;
@@ -28,7 +27,6 @@ in
       DISABLE_LOGIN = true;
       WEBSERVER_IP = "127.0.0.1";
       WEBSERVER_PORT = 27570;
-      OMDB_API_KEY = secrets.omdb;
       DATE_FORMAT = "%Y-%m-%d %H:%M:%S";
       RAW_PATH = "${baseFolder}/raw/";
       TRANSCODE_PATH = "${baseFolder}/transcoded/";
@@ -52,10 +50,24 @@ in
     inherit uid;
   };
 
-  systemd.services."arm@".serviceConfig.ReadWritePaths = [
-    "/mnt/frail/srv/movies"
-    "/mnt/frail/srv/shows"
-  ];
+  systemd.services = {
+    "arm@".serviceConfig.ReadWritePaths = [
+      "/mnt/frail/srv/movies"
+      "/mnt/frail/srv/shows"
+    ];
+
+    armui = {
+      environment = {
+        ARM_OMDB_API_KEY_FILE = "%d/OMDB_API_KEY";
+      };
+      serviceConfig.SetCredentialEncrypted = ''
+        OMDB_API_KEY: \
+          Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAAAXlninw82kE8nfIUIAAAAA1PDAy \
+          cEFyzZZRe2yhxetzR0KTfDpcuYhHQnZdKqn3ejptIoHjRZVYIh8UgOeXBJ25XBdgpLa6N \
+          Q=
+      '';
+    };
+  };
 
   systemd.tmpfiles.settings."50-arm-handbrake-presets" = {
     "${configFolder}/handbrake"."L+".argument = toString ./handbrake;
