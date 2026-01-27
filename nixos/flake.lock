@@ -149,11 +149,11 @@
     "home-assistant-node-red": {
       "flake": false,
       "locked": {
-        "lastModified": 1766529321,
-        "narHash": "sha256-Wbeo7mN6anfqX6iSmD47seoS7oV/QJlC4lYzW8UGMFs=",
+        "lastModified": 1768245206,
+        "narHash": "sha256-kAgwbRwxFvOS4COE/ikCt6ysduXHM/jHQC3GARjkHls=",
         "owner": "zachowj",
         "repo": "hass-node-red",
-        "rev": "8e570b9d22657816ed1ac53eb9c333bbbd2af0ab",
+        "rev": "961a2c04f2cb7aca121f20427b3e5abe2723f1e6",
         "type": "github"
       },
       "original": {
