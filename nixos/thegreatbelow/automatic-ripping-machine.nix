@@ -33,6 +33,7 @@ in
       # TODO: remove when config is final
       LOGLEVEL = "DEBUG";
       DELRAWFILES = false;
+      MINLENGTH = 360;
 
       # HandBrake
       inherit HB_PRESET_BD HB_PRESET_DVD;
