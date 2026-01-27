@@ -96,7 +96,6 @@ in
         "9.9.9.9"
       ];
     };
-    services.resolved.domains = [ "~xieve.net" ];
 
     systemd.network = {
       enable = true;

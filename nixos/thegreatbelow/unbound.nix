@@ -1,8 +1,15 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   cfg = config.thegreatbelow;
 in
 {
+  services.resolved.settings.Resolve = {
+    # Deactivate systemd-resolved stub resolver, we're taking over
+    DNSStubListener = "no";
+    # Write unbound IP to resolv.conf
+    DNS = "127.0.0.1";
+  };
+
   # This is queried by the Fritzbox to obtain local addresses for this machine at *.xieve.net.
   # All other non-local domains have rebind protection by the Fritzbox.
   services.unbound = {
