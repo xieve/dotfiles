@@ -64,7 +64,8 @@ in
       };
       search = {
         autocomplete = "duckduckgo";
-        safe_search = 1;
+        safe_search = 0;
+        default_lang = "all";
         languages = [
           "all"
           "en"
