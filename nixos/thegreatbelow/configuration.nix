@@ -25,6 +25,7 @@ in
     ./unbound.nix
     ./mollysocket.nix
     ./hydrus.nix
+    ./authelia.nix
   ];
 
   options.thegreatbelow =

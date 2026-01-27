@@ -6,7 +6,7 @@
       settings = {
         ldap_host = "::1";
         http_host = "::1";
-        http_url = "https://auth.xieve.net";
+        http_url = "https://lldap.xieve.net";
         ldap_base_dn = "dc=auth,dc=xieve,dc=net";
         smtp_options.enable_password_reset = false;
       };

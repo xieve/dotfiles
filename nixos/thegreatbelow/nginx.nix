@@ -6,145 +6,92 @@ let
   cfg = config.thegreatbelow;
 in
 {
-  services.nginx = {
+  xieve.nginx = {
     enable = true;
-    commonHttpConfig = ''
-      map $http_user_agent $limit_bots {
-        default 0;
-        ~*(bot|crawler|google|bing|yandex|altavista|slurp|blackwidow|chinaclaw|custo|disco) 1;
-        ~*(download|demon|ecatch|eirgrabber|emailsiphon|emailwolf|superhttp|webwhacker|express) 1;
-        ~*(webpictures|extractorpro|eyenetie|flashget|getright|getweb!|go!zilla|go-ahead-got-it) 1;
-        ~*(grabnet|grafula|hmview|go!zilla|go-ahead-got-it|rafula|hmview|httrack|stripper|sucker) 1;
-        ~*(indy|interget|ninja|jetcar|spider|larbin|leechftp|downloader|tool|navroad|nearsite) 1;
-        ~*(netants|takeout|wwwoffle|grabnet|netspider|vampire|netzip|octopus|offline|pagegrabber) 1;
-        ~*(foto|pavuk|pcbrowser|realdownload|reget|sitesnagger|smartdownload|webspider|teleport) 1;
-        ~*(voideye|collector|webauto|webcopier|webfetch|webgo|webleacher|webreaper|websauger) 1;
-        ~*(extractor|quester|webstripper|webzip|wget|widow|zeus|htmlparser|libwww|python|perl) 1;
-        ~*(urllib|scan|curl|email|pycurl|pyth|pyq|webcollector|webcopy) 1;
-      }
-
-      # TODO: This is not great. I should probably do separate server blocks instead.
-      map $server_addr $dest_local {
-        default 0;
-        ${cfg.ipAddress.v4} 1;
-        ${cfg.ipAddress.v6} 1;
-        ${cfg.ipAddress.tailscale.v4} 1;
-        ${cfg.ipAddress.tailscale.v6} 1;
-      }
-    '';
-    # Partly reimplementing the nixpkgs nginx module here because it does not allow to prepend
-    # config inside a server block before the locations, but we need that
-    virtualHosts =
-      mapAttrs
-        (
-          name:
-          cfg@{
-            proxyPass,
-            proxyWebsockets ? false,
-            localOnly ? false,
-            serverAliases ? [ ],
-          }:
-          {
-            inherit serverAliases;
-            useACMEHost = "xieve.net";
-            forceSSL = true;
-            extraConfig = ''
-              if ($dest_local = 1) {
-                set $limit_bots 0;
-              }
-              if ($limit_bots) {
-                return 403;
-              }
-              ${optionalString localOnly ''
-                allow 192.168../24;
-                allow 100.../8;
-                allow ::/0;
-                deny all;
-                if ($dest_local = 0) {
-                  return 403;
-                }
-              ''}
-              add_header X-Robots-Tag noindex;
-
-              location / {
-                proxy_pass ${proxyPass};
-                ${optionalString proxyWebsockets ''
-                  proxy_http_version 1.1;
-                  proxy_set_header Upgrade $http_upgrade;
-                  proxy_set_header Connection $connection_upgrade;
-                ''}
-                proxy_set_header Host $host;
-              }
-            '';
-          }
-        )
-        {
-          "auth.xieve.net" = {
-            proxyPass = "http://[::1]:${toString config.services.lldap.settings.http_port}";
-            localOnly = true;
-          };
-          "search.xieve.net" = {
-            # serverAliases = [ "xieve.net" ];
-            proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
-          };
-          "jellyfin.xieve.net" = {
-            proxyPass = "http://localhost:8096";
-            localOnly = true;
-          };
-          "arm.xieve.net" =
-            let
-              cfg = config.services.automatic-ripping-machine.settings;
-            in
-            {
-              proxyPass = "http://${cfg.WEBSERVER_IP}:${toString cfg.WEBSERVER_PORT}";
-              localOnly = true;
-            };
-          "home.xieve.net" =
-            let
-              cfg = config.services.home-assistant.config.http;
-            in
-            {
-              proxyPass = "http://[::1]:${toString cfg.server_port}";
-              localOnly = true;
-              proxyWebsockets = true;
-            };
-          "nodered.xieve.net" = {
-            proxyPass = "http://localhost:${toString config.services.node-red.port}";
-            localOnly = true;
-            proxyWebsockets = true;
-          };
-          "cockring.xieve.net" = {
-            proxyPass = "http://192.168.178.84:30000";
-            proxyWebsockets = true;
-          };
-          "atuin.xieve.net" =
-            let
-              cfg = config.services.atuin;
-            in
-            {
-              proxyPass = "http://${cfg.host}:${toString cfg.port}";
-            };
-          "molly.xieve.net" =
-            let
-              cfg = config.services.mollysocket.settings;
-            in
-            {
-              proxyPass = "http://${cfg.host}:${toString cfg.port}";
-              proxyWebsockets = true;
-            };
-          "hydrusapi.xieve.net" ={
-            proxyPass = "http://localhost:45869";
-            localOnly = true;
-          };
-          "hydrui.xieve.net" =
-            let
-              cfg = config.services.hydrui;
-            in
-            {
-              proxyPass = "http://localhost:${toString cfg.port}";
-              localOnly = true;
-            };
+    localAddresses = [
+      cfg.ipAddress.v4
+      cfg.ipAddress.v6
+      cfg.ipAddress.tailscale.v4
+      cfg.ipAddress.tailscale.v6
+    ];
+    wildcardSSLDomain = "xieve.net";
+    autheliaURL = "http://unix:${config.thegreatbelow.authelia.socket}:";
+    virtualHosts = {
+      "lldap.xieve.net" = {
+        proxyPass = "http://[::1]:${toString config.services.lldap.settings.http_port}";
+        localOnly = true;
+      };
+      "search.xieve.net" = {
+        # serverAliases = [ "xieve.net" ];
+        proxyPass = "http://${config.services.searx.uwsgiConfig.http}";
+      };
+      "jellyfin.xieve.net" = {
+        proxyPass = "http://localhost:8096";
+        auth = true;
+        # The default ones didn't work with the WebOS Client
+        headers = {
+          X-Frame-Options = "";
+          Content-Security-Policy = "default-src https: data: blob: ; img-src 'self' https://* ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.youtube.com blob:; worker-src 'self' blob:; connect-src 'self'; object-src 'none'; font-src 'self'";
+          Cross-Origin-Resource-Policy = "";
+          Cross-Origin-Embedder-Policy = "";
+          Cross-Origin-Opener-Policy = "";
         };
+      };
+      "arm.xieve.net" =
+        let
+          cfg = config.services.automatic-ripping-machine.settings;
+        in
+        {
+          proxyPass = "http://${cfg.WEBSERVER_IP}:${toString cfg.WEBSERVER_PORT}";
+          auth = true;
+        };
+      "home.xieve.net" =
+        let
+          cfg = config.services.home-assistant.config.http;
+        in
+        {
+          proxyPass = "http://[::1]:${toString cfg.server_port}";
+          localOnly = true;
+          proxyWebsockets = true;
+        };
+      "nodered.xieve.net" = {
+        localOnly = true;
+        proxyWebsockets = true;
+        auth = true;
+        proxyPass = "http://localhost:${toString config.services.node-red.port}";
+      };
+      "cockring.xieve.net" = {
+        proxyPass = "http://192.168.178.84:30000";
+        proxyWebsockets = true;
+      };
+      "atuin.xieve.net" =
+        let
+          cfg = config.services.atuin;
+        in
+        {
+          proxyPass = "http://${cfg.host}:${toString cfg.port}";
+        };
+      "molly.xieve.net" =
+        let
+          cfg = config.services.mollysocket.settings;
+        in
+        {
+          proxyPass = "http://${cfg.host}:${toString cfg.port}";
+          proxyWebsockets = true;
+        };
+      "hydrusapi.xieve.net" = {
+        proxyPass = "http://localhost:45869";
+        localOnly = true;
+      };
+      "hydrui.xieve.net" =
+        let
+          cfg = config.services.hydrui;
+        in
+        {
+          proxyPass = "http://localhost:${toString cfg.port}";
+          localOnly = true;
+        };
+    };
   };
 
   networking.firewall.allowedTCPPorts = [

@@ -185,7 +185,7 @@ in
   };
 
   services.nginx = {
-    recommendedProxySettings = mkDefault true;
+    recommendedProxySettings = true;
     recommendedTlsSettings = mkDefault true;
     recommendedOptimisation = mkDefault true;
     # This option runs "Gixy" on the generated config. Gixy is a primitive vuln scanner that does
