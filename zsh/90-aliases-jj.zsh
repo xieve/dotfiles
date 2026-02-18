@@ -6,4 +6,5 @@ alias jst='jj status'
 alias jsp='jj split'
 alias jgp='jj git push'
 alias jbs='jj bookmark set'
+alias jd='jj diff'
 
