@@ -14,6 +14,19 @@ in
       cfg.ipAddress.tailscale.v4
       cfg.ipAddress.tailscale.v6
     ];
+    commonHttpConfig = ''
+      map $host $log_less_for_host {
+        default 1;
+        search.xieve.net 0;
+      }
+      map "$log_less_for_host$status" $log {
+        default 1;
+        1200 0;
+      }
+    '';
+    commonServerConfig = ''
+      access_log /var/log/nginx/access.log verbose if=$log;
+    '';
     wildcardSSLDomain = "xieve.net";
     autheliaURL = "http://unix:${config.thegreatbelow.authelia.socket}:";
     virtualHosts = {

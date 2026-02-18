@@ -136,6 +136,10 @@ in
               ${addr} 1;
             '') cfg.localAddresses}
           }
+
+          log_format verbose '$remote_addr → $host@$server_addr [$time_local] '
+            '$limit_bots $dest_local "$request" $status $body_bytes_sent '
+            '"$http_referer" "$http_user_agent"';
           ${cfg.commonHttpConfig}
         '';
         # Partly reimplementing the nixpkgs nginx module here because it does not allow to prepend
