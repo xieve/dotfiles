@@ -26,6 +26,7 @@ in
     ./mollysocket.nix
     ./hydrus.nix
     ./authelia.nix
+    ./karakeep.nix
   ];
 
   options.thegreatbelow =
