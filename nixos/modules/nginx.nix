@@ -32,6 +32,14 @@ in
         type = nullOr str;
         default = null;
       };
+      commonHttpConfig = mkOption {
+        type = str;
+        default = "";
+      };
+      commonServerConfig = mkOption {
+        type = str;
+        default = "";
+      };
       virtualHosts = mkOption {
         type = attrsOf (submodule {
           options = {
@@ -128,6 +136,7 @@ in
               ${addr} 1;
             '') cfg.localAddresses}
           }
+          ${cfg.commonHttpConfig}
         '';
         # Partly reimplementing the nixpkgs nginx module here because it does not allow to prepend
         # config inside a server block before the locations, but we need that
@@ -199,6 +208,7 @@ in
               ''}
 
               ${extraConfig}
+              ${cfg.commonServerConfig}
             '';
           }
         ) cfg.virtualHosts;
