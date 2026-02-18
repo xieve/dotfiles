@@ -82,10 +82,12 @@ in
       # after = ["authelia-main"];
       script = ''
         set -x
-        ${lib.getExe' pkgs.inotify-tools "inotifywait"} \
-          -e create \
-          --include '/${lib.escapeRegex (baseNameOf cfg.socket)}$' \
-          '${dirOf cfg.socket}'
+        if [ ! -e '${cfg.socket}' ]; then
+          ${lib.getExe' pkgs.inotify-tools "inotifywait"} \
+            -e create \
+            --include '/${lib.escapeRegex (baseNameOf cfg.socket)}$' \
+            '${dirOf cfg.socket}'
+        fi
 
         ${lib.getExe' pkgs.acl "setfacl"} --modify 'u:60:rw' '${cfg.socket}' || true
       '';
