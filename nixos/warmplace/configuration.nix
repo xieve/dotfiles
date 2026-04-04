@@ -12,6 +12,7 @@ in
   imports = [
     ../common.nix
     ./hardware.nix
+    ./nginx.nix
   ];
 
   networking.hostName = "warmplace";
@@ -278,43 +279,6 @@ in
             };
           }
         ];
-      };
-    };
-
-    nginx = {
-      enable = true;
-      virtualHosts.${config.networking.hostName} = {
-        # We're abusing the fallback self-signed cert here
-        enableACME = true;
-        # forceSSL = true;
-        extraConfig = ''
-          proxy_buffering off;
-        '';
-        locations = {
-          "/" = {
-            proxyWebsockets = true;
-            extraConfig = ''
-              # https://serverfault.com/questions/586586/nginx-redirect-via-proxy-rewrite-and-preserve-url
-              # evcc doesn't support running behind a reverse proxy but we're obviously gonna do it anyway
-              # by using the Referer header we can infer the "proxied" URL from the wrong one
-              add_header Vary Referer;
-
-              # This dumb workaround is in place because NixOS forces me to
-              # pass a piece of shit "validation" with this config.
-              # https://github.com/NixOS/nixpkgs/issues/128506
-              # fuck you
-              set $fuck_you_gixy http_referer;
-              if ($fuck_you_gixy ~ ^https://[^/]*/(evcc|esphome)) {
-                return 302 /$1/$request_uri;
-              }
-              proxy_pass http://[::1]:8123;
-            '';
-          };
-          "/evcc/" = {
-            proxyWebsockets = true;
-            proxyPass = "http://[::1]:7070/";
-          };
-        };
       };
     };
   };
