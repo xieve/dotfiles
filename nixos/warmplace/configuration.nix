@@ -15,7 +15,11 @@ in
     ./nginx.nix
   ];
 
-  networking.hostName = "warmplace";
+  networking = {
+    hostName = "warmplace";
+    useNetworkd = true;
+    useDHCP = true;
+  };
 
   # Cache kernel build with CCache
   programs.ccache.packageNames = [
@@ -174,7 +178,7 @@ in
             type = "template";
             # go-e HTTP API v2
             template = "go-e-v3";
-            host = "go-echarger_${secrets.goeSerial}";
+            host = "go-echarger_${secrets.goeSerial}.fritz.box";
           }
         ];
         vehicles = [
