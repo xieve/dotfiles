@@ -156,7 +156,7 @@ in
                       case = 1; # normal
                       set = {
                         source = "mqtt";
-                        topic = "homeassistant/sensor/growatt_discharge_rate";
+                        topic = "homeassistant/set/growatt_discharge_rate";
                         payload = "100";
                       };
                     }
@@ -164,7 +164,7 @@ in
                       case = 2; # hold
                       set = {
                         source = "mqtt";
-                        topic = "homeassistant/sensor/growatt_discharge_rate";
+                        topic = "homeassistant/set/growatt_discharge_rate";
                         payload = "0";
                       };
                     }
@@ -309,6 +309,18 @@ in
                   "pPv":{{ states("sensor.growatt_pv_total_power") }}}
                 '';
               };
+            };
+          }
+          {
+            alias = "Set growatt_discharge_rate from MQTT";
+            trigger = {
+              platform = "mqtt";
+              topic = "homeassistant/set/growatt_discharge_rate";
+            };
+            action = {
+              service = "number.set_value";
+              target.entity_id = "number.growatt_discharge_rate";
+              data.value = "{{ trigger.payload }}";
             };
           }
         ];
