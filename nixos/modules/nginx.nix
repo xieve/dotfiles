@@ -105,7 +105,7 @@ in
         };
       };
 
-      services.nginx = {
+      services.nginx = mkIf cfg.enable {
         inherit (cfg) enable;
         commonHttpConfig = ''
           map $http_user_agent $limit_bots {
