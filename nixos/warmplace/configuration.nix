@@ -137,6 +137,28 @@ in
                   source = "mqtt";
                   topic = "homeassistant/sensor/growatt_battery_charge/state";
                 };
+
+                batterymode = {
+                  source = "switch";
+                  switch = [
+                    {
+                      case = 1; # normal
+                      set = {
+                        source = "mqtt";
+                        topic = "homeassistant/sensor/growatt_discharge_rate";
+                        payload = "100";
+                      };
+                    }
+                    {
+                      case = 2; # hold
+                      set = {
+                        source = "mqtt";
+                        topic = "homeassistant/sensor/growatt_discharge_rate";
+                        payload = "0";
+                      };
+                    }
+                  ];
+                };
               }
               // goeMqtt "pAkku"
             )
