@@ -216,8 +216,8 @@ in
         "forecast_solar"
       ];
       config = {
-        # Only write database to disk every 30min to reduce SSD wear
-        recorder.commit_interval = 1800;
+        # Only write database to disk every 15min to reduce SSD wear
+        recorder.commit_interval = 900;
 
         # growatt is auto-discovered (HA api), we do our own energy calculations
         # based on polled power data (integral)
