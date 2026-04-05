@@ -111,22 +111,7 @@ in
       LogsDirectory = "authelia-main";
       RuntimeDirectory = "authelia-main";
     };
-    systemd.services.authelia-socket-perms = {
-      wantedBy = [ "authelia-main.service" ];
-      bindsTo = [ "authelia-main.service" ];
-      after = [ "authelia-main.service" ];
-      script = ''
-        set -x
-        if [ ! -e '${cfg.socket}' ]; then
-          ${lib.getExe' pkgs.inotify-tools "inotifywait"} \
-            -e create \
-            --include '/${lib.escapeRegex (baseNameOf cfg.socket)}$' \
-            '${dirOf cfg.socket}'
-        fi
-
-        ${lib.getExe' pkgs.acl "setfacl"} --modify 'u:nginx:rw' '${cfg.socket}' || true
-      '';
-    };
+    xieve.acls.authelia-main.${cfg.socket} = "u:nginx:rw";
 
     # Redis
     services.redis.servers.authelia = {
