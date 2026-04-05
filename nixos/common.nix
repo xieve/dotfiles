@@ -4,12 +4,14 @@
   lib,
   pkgs,
   nix-index-database,
+  nixpkgs-stable,
   ...
 }:
 
 let
   inherit (lib) attrValues fileset mkIf mkDefault;
   secrets = lib.importTOML ./secrets.toml;
+  stablePkgs = nixpkgs-stable.legacyPackages.${pkgs.stdenv.system};
 in
 {
   imports = [
@@ -18,6 +20,7 @@ in
 
   # Provide shortcut to own packages to other modules
   _module.args = {
+    inherit stablePkgs;
     selfPkgs = self.packages.${pkgs.system};
   };
 
@@ -31,6 +34,10 @@ in
   environment.variables = {
      NIXPKGS_ALLOW_UNFREE = "1";
   };
+
+  # motionblindsble was failing with python 3.14
+  # https://github.com/NixOS/nixpkgs/issues/475732
+  services.home-assistant.package = stablePkgs.home-assistant;
 
   # enable appimage support
   programs.appimage.enable = true;
