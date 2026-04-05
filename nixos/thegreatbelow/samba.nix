@@ -41,7 +41,7 @@
           "force create mode" = "0664";
           "force directory mode" = "0775";
           #force user = nobody
-          "force group" = "users";
+          # "force group" = "users";
           "create mask" = "0664";
           "directory mask" = "0775";
         };
