@@ -35,10 +35,6 @@ in
      NIXPKGS_ALLOW_UNFREE = "1";
   };
 
-  # motionblindsble was failing with python 3.14
-  # https://github.com/NixOS/nixpkgs/issues/475732
-  services.home-assistant.package = stablePkgs.home-assistant;
-
   # enable appimage support
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
