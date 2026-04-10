@@ -19,10 +19,6 @@ in
   };
 
   hardware = {
-    # Use stable kernel instead of default LTS. Introduced to avoid compile failure:
-    # https://github.com/NixOS/nixos-hardware/issues/1600
-    microsoft-surface.kernelVersion = "stable";
-
     bluetooth = {
       enable = true;
       powerOnBoot = false;
