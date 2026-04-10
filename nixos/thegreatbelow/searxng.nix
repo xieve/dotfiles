@@ -106,6 +106,14 @@ in
           disabled = true;
         }
         {
+          name = "brave";
+          disabled = true;
+        }
+        {
+          name = "deviantart";
+          disabled = true;
+        }
+        {
           name = "ebay";
           engine = "ebay";
           shortcut = "ede";
