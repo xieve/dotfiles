@@ -32,6 +32,7 @@ in
       }
     '';
     virtualHosts."kopia.xieve.net" = {
+      localOnly = true;
       extraConfig = ''
         # Allow unlimited upload size
         client_max_body_size 0;
