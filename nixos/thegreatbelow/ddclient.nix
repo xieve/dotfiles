@@ -20,7 +20,7 @@ in
     enable = true;
     protocol = "cloudflare";
     zone = "xieve.net";
-    domains = [ "xieve.net" ];
+    domains = [ "xieve.net" "a.xieve.net" ];
     passwordFile = "\${CREDENTIALS_DIRECTORY}/cloudflare_api_token.txt";
     usev4 = "cmdv4";
     usev6 = "ifv6";
