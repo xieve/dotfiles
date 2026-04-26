@@ -28,6 +28,7 @@ in
     ./authelia.nix
     ./karakeep.nix
     ./kopia.nix
+    ./netdata.nix
   ];
 
   options.thegreatbelow =
