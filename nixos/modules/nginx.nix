@@ -71,6 +71,10 @@ in
               type = attrsOf str;
               default = { };
             };
+            useWildcardSSL = mkOption {
+              type = bool;
+              default = true;
+            };
           };
         });
       };
@@ -155,6 +159,7 @@ in
             extraConfig,
             auth,
             headers,
+            useWildcardSSL,
           }:
           let
             headerStr = concatMapAttrsStringSep "\n" (
@@ -166,7 +171,7 @@ in
           in
           {
             inherit serverAliases;
-            useACMEHost = mkIf (cfg.wildcardSSLDomain != null) cfg.wildcardSSLDomain;
+            useACMEHost = mkIf (useWildcardSSL && cfg.wildcardSSLDomain != null) cfg.wildcardSSLDomain;
             forceSSL = true;
             # listenAddresses = mkIf localOnly (
             #   map (x: if lib.hasInfix ":" x then "[${x}]" else x) cfg.localAddresses
