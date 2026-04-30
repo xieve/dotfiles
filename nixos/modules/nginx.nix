@@ -2,15 +2,22 @@
 
 let
   inherit (lib)
+    attrNames
+    concatMapAttrsStringSep
+    concatMapStrings
+    concatStringsSep
+    escape
+    genAttrs
     filterAttrs
     mapAttrs
-    optionalString
+    mkDefault
     mkIf
-    concatMapAttrsStringSep
-    escape
+    optional
+    optionalString
     ;
   inherit (builtins) head match toString;
-  thegreatbelow = config.thegreatbelow;
+  inherit (config.security) acme;
+  inherit (config) thegreatbelow;
   cfg = config.xieve.nginx;
 in
 {
@@ -24,6 +31,9 @@ in
       localAddresses = mkOption {
         type = listOf str;
         default = [ ];
+      };
+      exposedV4Address = mkOption {
+        type = str;
       };
       autheliaURL = mkOption {
         type = str;
@@ -98,11 +108,14 @@ in
         "'"
         ''\''
       ];
+      acmeNames = attrNames (
+        filterAttrs (name: { useWildcardSSL, ... }: !useWildcardSSL) cfg.virtualHosts
+      );
     in
     {
       # This is here because this module depends on authelia
       xieve.nginx.virtualHosts = {
-        "auth.*" = {
+        "auth.xieve.net" = {
           extraConfig = ''
             location / {
               include ${./nginx/proxy.conf};
@@ -118,8 +131,17 @@ in
         };
       };
 
+      security.acme.certs = genAttrs acmeNames (name: {
+        group = config.services.nginx.group;
+        webroot = "/var/lib/acme/acme-challenge/";
+      });
+
       services.nginx = mkIf cfg.enable {
         inherit (cfg) enable;
+
+        # Reload (SIGHUP) instead of restart. This should improve uptime dramatically.
+        enableReload = true;
+
         commonHttpConfig = ''
           map $http_user_agent $limit_bots {
             default 0;
@@ -149,7 +171,7 @@ in
         '';
         # Partly reimplementing the nixpkgs nginx module here because it does not allow to prepend
         # config inside a server block before the locations, but we need that
-        virtualHosts = mapAttrs (
+        appendHttpConfig = concatMapAttrsStringSep "\n" (
           name:
           {
             proxyPass,
@@ -168,16 +190,41 @@ in
                 optionalString (header == "Content-Security-Policy" && proxyWebsockets) "; connect-src \\'self\\'"
               }' always;"
             ) (cfg.defaultHeaders // headers);
+            serverName = ''
+              server_name ${name} ${concatStringsSep " " serverAliases};
+            '';
+            listen = (
+              {
+                ssl ? true,
+              }:
+              concatMapStrings (address: ''
+                listen ${if lib.hasInfix ":" address then "[${address}]" else address}:${
+                  if ssl then "443 ssl" else "80"
+                };
+              '') (cfg.localAddresses ++ (optional (!localOnly) cfg.exposedV4Address))
+            );
+            acmeName = if useWildcardSSL && cfg.wildcardSSLDomain != null then cfg.wildcardSSLDomain else name;
+            acmeDir = acme.certs.${acmeName}.directory;
+            # We use ^~ here, so that we don't check any regexes (which could
+            # otherwise easily override this intended match accidentally).
+            acmeLocation = optionalString (!useWildcardSSL) ''
+              location ^~ /.well-known/acme-challenge/ {
+                auth_basic off;
+                auth_request off;
+                root ${acme.certs.${acmeName}.webroot};
+              }
+            '';
           in
-          {
-            inherit serverAliases;
-            useACMEHost = mkIf (useWildcardSSL && cfg.wildcardSSLDomain != null) cfg.wildcardSSLDomain;
-            forceSSL = true;
-            # listenAddresses = mkIf localOnly (
-            #   map (x: if lib.hasInfix ":" x then "[${x}]" else x) cfg.localAddresses
-            # );
-            # TODO: longer HSTS period, possibly submit domain to HSTS preload list
-            extraConfig = ''
+          # TODO: longer HSTS period, possibly submit domain to HSTS preload list
+          ''
+            server {
+              ${listen { }}
+              ${serverName}
+              ${optionalString (!localOnly) ''
+                # Putting the dot in brackets makes it a pattern, which makes it optional
+                include /run/nginx_listen_ssl[.]conf;
+              ''}
+
               if ($dest_local = 1) {
                 set $limit_bots 0;
               }
@@ -217,10 +264,28 @@ in
                 }
               ''}
 
+              ${acmeLocation}
+
+              ssl_certificate ${acmeDir}/fullchain.pem;
+              ssl_certificate_key ${acmeDir}/key.pem;
+              ssl_trusted_certificate ${acmeDir}/fullchain.pem;
+
               ${extraConfig}
               ${cfg.commonServerConfig}
-            '';
-          }
+            }
+
+            server {
+              ${listen { ssl = false; }}
+              ${serverName}
+              ${optionalString (!localOnly) ''
+                include /run/nginx_listen_insecure[.]conf;
+              ''}
+              location / {
+                return 301 https://$host$request_uri;
+              }
+              ${acmeLocation}
+            }
+          ''
         ) cfg.virtualHosts;
       };
 

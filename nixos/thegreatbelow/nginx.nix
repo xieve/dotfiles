@@ -1,11 +1,71 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (lib) filterAttrs mapAttrs optionalString;
+  inherit (lib)
+    filterAttrs
+    mapAttrs
+    optionalString
+    getExe
+    ;
   inherit (builtins) head match toString;
   cfg = config.thegreatbelow;
 in
 {
+  services.networkd-dispatcher = {
+    enable = true;
+    extraArgs = ["--run-startup-triggers"];
+    # Because our IPv6 prefix changes over time, this always provides nginx
+    # with an includeable and up-to-date `listen $my_global_ipv6` directive
+    rules.nginx-update-address = {
+      onState = [ "configured" "no-carrier" "off" ];
+      script = ''${getExe pkgs.python3} ${pkgs.writeScript "nginx-update-address.py" ''
+        import os
+        import re
+        import subprocess
+        import json
+        import ipaddress
+
+        eventData = json.loads(os.environ["json"])
+
+        if "${cfg.exposedInterface}" in [eventData["InterfaceName"], *eventData["Alternative Names"]]:
+          result = subprocess.run(
+            ["networkctl", "status", eventData["InterfaceName"], "--json=short"],
+            capture_output=True,
+            text=True,
+            check=True,
+          )
+          data = json.loads(result.stdout)
+
+          if eventData["OperationalState"] == "routable":
+            for ip_addr in data["Addresses"]:
+              if ip_addr.get("Family") != 10:
+                continue
+              formatted_addr = ipaddress.IPv6Address(bytes(ip_addr["Address"])).compressed
+              if re.match(r"^(?!fd00).*${cfg.ipAddress.exposed.v6Suffix}$", formatted_addr):
+                break
+            else:  # no break
+              print(os.environ["json"])
+              raise Exception("Could not find matching IPv6 address")
+
+            with open("/run/nginx_listen_insecure.conf", "w") as f:
+              f.write(f"listen [{formatted_addr}]:80;")
+            with open("/run/nginx_listen_ssl.conf", "w") as f:
+              f.write(f"listen [{formatted_addr}]:443 ssl;")
+          else:
+            # Nginx fails if it tries to listen on an address that is not configured
+            # But if the files don't exist it simply ignores that
+            os.remove("/run/nginx_listen_insecure.conf", "/run/nginx_listen_ssl.conf")
+
+          subprocess.run(["systemctl", "reload-or-restart", "nginx"])
+      ''}'';
+    };
+  };
+
   xieve.nginx = {
     enable = true;
     localAddresses = [
@@ -14,6 +74,7 @@ in
       cfg.ipAddress.tailscale.v4
       cfg.ipAddress.tailscale.v6
     ];
+    exposedV4Address = cfg.ipAddress.exposed.v4;
     commonHttpConfig = ''
       map $host $log_less_for_host {
         default 1;

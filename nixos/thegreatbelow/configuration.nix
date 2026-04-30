@@ -32,31 +32,29 @@ in
   ];
 
   options.thegreatbelow =
-    with lib.types;
     let
-      inherit (lib) mkOption;
+      inherit (lib) mkOption types;
+      strOption =
+        default:
+        mkOption {
+          inherit default;
+          type = types.str;
+        };
     in
     {
       ipAddress = {
-        v4 = mkOption {
-          type = str;
-          default = "192.168.0.2";
-        };
-        v6 = mkOption {
-          type = str;
-          default = "fd00::acab";
+        v4 = strOption "192.168.0.2";
+        v6 = strOption "fd00::acab";
+        exposed = {
+          v4 = strOption "192.168.0.4";
+          v6Suffix = strOption "::c0:ffee";
         };
         tailscale = {
-          v4 = mkOption {
-            type = str;
-            default = "100.67.195.13";
-          };
-          v6 = mkOption {
-            type = str;
-            default = "fd7a:115c:a1e0::b601:c30d";
-          };
+          v4 = strOption "100.67.195.13";
+          v6 = strOption "fd7a:115c:a1e0::b601:c30d";
         };
       };
+      exposedInterface = strOption "enp4s0f0";
     };
 
   config = {
@@ -97,37 +95,42 @@ in
     systemd.network = {
       enable = true;
 
-      networks."10-lan" = {
-        # Interface
-        matchConfig.Name = "eno*";
+      networks =
+        let
+          routes = [ { Gateway = "192.168.0.1"; } ];
 
-        address = [
-          "${cfg.ipAddress.v4}/24"
-          "${cfg.ipAddress.v6}/64"
-        ];
-        routes = [ { Gateway = "192.168.0.1"; } ];
+          dns = [
+            "127.0.0.1"
+            "192.168.0.1"
+            "9.9.9.9"
+          ];
+        in
+        {
+          "10-lan" = {
+            inherit routes dns;
+            # Interface
+            matchConfig.Name = "enp4s0f0";
 
-        # Accept router advertisements, but set a static suffix
-        networkConfig.IPv6AcceptRA = true;
-        ipv6AcceptRAConfig = {
-          Token = "::acab";
-          # if we don't set this, we'll get an extra IPv6 global address
-          DHCPv6Client = false;
+            address = [
+              "${cfg.ipAddress.exposed.v4}/24"
+              "${cfg.ipAddress.v4}/24"
+              "${cfg.ipAddress.v6}/64"
+            ];
+            # Accept router advertisements, but set a static suffix
+            networkConfig.IPv6AcceptRA = true;
+            ipv6AcceptRAConfig = {
+              Token = "static:${cfg.ipAddress.exposed.v6Suffix}";
+              # if we don't set this, we'll get an extra IPv6 global address
+              DHCPv6Client = false;
+            };
+            linkConfig.RequiredFamilyForOnline = "both";
+          };
         };
-
-        linkConfig.RequiredForOnline = "routable";
-
-        dns = [
-          "127.0.0.1"
-          "192.168.0.1"
-          "9.9.9.9"
-        ];
-      };
     };
     # Any link is sufficient, we use only one of two interfaces
     systemd.services.systemd-networkd-wait-online.serviceConfig.ExecStart = [
       ""
-      "${pkgs.systemd}/lib/systemd/systemd-networkd-wait-online --any --timeout=120"
+      "${pkgs.systemd}/lib/systemd/systemd-networkd-wait-online --ignore=tailscale0"
     ];
 
     # Firewall
