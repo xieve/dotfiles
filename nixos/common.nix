@@ -108,6 +108,7 @@ in
       ripgrep
       sshfs
       tree
+      xauth
       xpra
     ];
   };
