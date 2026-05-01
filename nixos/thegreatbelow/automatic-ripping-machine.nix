@@ -51,6 +51,7 @@ in
 
   systemd.services = {
     "arm@" = {
+      restartIfChanged = false;
       environment = {
         ARM_MAKEMKV_PERMA_KEY_FILE = "%d/MAKEMKV_PERMA_KEY";
       };
