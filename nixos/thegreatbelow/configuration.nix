@@ -59,7 +59,7 @@ in
       };
       exposedInterface = strOption "enp4s0f0";
       paths = {
-        inherit srv;
+        srv = strOption srv;
         media = strOption "${srv}/media";
       };
     };
@@ -97,7 +97,7 @@ in
 
     # Directory setup
     systemd.tmpfiles.settings."10-srv" = {
-      "/srv".L.argument = srv;
+      "/srv".L.argument = cfg.paths.srv;
     };
 
     # Network
