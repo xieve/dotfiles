@@ -171,6 +171,13 @@ in
   # This way, we can run the tailscale CLI as user (if the service is enabled for the host)
   services.tailscale.extraUpFlags = [ "--operator=xieve" ];
 
+  services.avahi = {
+    enable = true;
+    publish.enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   services.home-assistant = {
     extraComponents = [
       "met"
