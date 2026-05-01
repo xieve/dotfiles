@@ -7,41 +7,25 @@
 
 let
   inherit (lib) genAttrs;
-  domain = "auth.n50.lat";
-  tlsPath = "/var/lib/acme/${domain}";
+  tlsPath = "/var/lib/acme/auth.hackmz.de";
+  domain = "auth.hackmz.de";
   origin = "https://${domain}";
   cfg = config.services.kanidm;
-  http_client_address_info = {
-    x-forward-for = [ "127.0.0.1" ];
-  };
 in
 {
   services.kanidm = {
     package = pkgs.kanidm_1_9;
-    server = {
-      enable = true;
-      settings = {
-        inherit
-          domain
-          origin
-          http_client_address_info
-          ;
-        # ldapbindaddress = "[::1]:636";
-        tls_key = "${tlsPath}/key.pem";
-        tls_chain = "${tlsPath}/fullchain.pem";
-        online_backup = {
-          path = "/mnt/frail/kanidm-backup/";
-          # At 22h
-          schedule = "00 22 * * *";
-          # Keep 30 backups
-          versions = 30;
-        };
-      };
+    enableServer = true;
+    enableClient = true;
+    # enablePam = true;
+    serverSettings = {
+      inherit domain origin;
+      ldapbindaddress = "[::1]:636";
+      tls_key = "${tlsPath}/key.pem";
+      tls_chain = "${tlsPath}/fullchain.pem";
+      trust_x_forward_for = true;
     };
-    client = {
-      enable = true;
-      settings.uri = origin;
-    };
+    clientSettings.uri = origin;
     # unixSettings.kanidm.pam_allowed_login_groups = [ "users" ];
   };
 
@@ -49,7 +33,8 @@ in
   systemd.tmpfiles.settings."50-kanidm-tls".${tlsPath}."A+".argument = "u:kanidm:r-X";
 
   xieve.nginx.virtualHosts.${domain} = {
-    proxyPass = "https://${cfg.server.settings.bindaddress}";
+    proxyPass = "https://${cfg.serverSettings.bindaddress}";
+    localOnly = true;
     useWildcardSSL = false;
   };
 }

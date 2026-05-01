@@ -29,7 +29,6 @@ in
     ./karakeep.nix
     ./kopia.nix
     ./netdata.nix
-    ./kanidm.nix
   ];
 
   options.thegreatbelow =
