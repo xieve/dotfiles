@@ -29,6 +29,7 @@ in
     ./karakeep.nix
     ./kopia.nix
     ./netdata.nix
+    ./pocket-id.nix
   ];
 
   options.thegreatbelow =
