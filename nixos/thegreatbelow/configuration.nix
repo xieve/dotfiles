@@ -30,6 +30,7 @@ in
     ./kopia.nix
     ./netdata.nix
     ./pocket-id.nix
+    ./vpn.nix
   ];
 
   options.thegreatbelow =
