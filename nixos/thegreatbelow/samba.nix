@@ -32,7 +32,7 @@ in
           # smbpasswd will set the unix password as well
           "unix password sync" = "yes";
 
-          "hosts allow" = "192.168.0.";
+          "hosts allow" = "192.168.0. 100.64.0.0/255.192.0.0";
           "hosts deny" = "ALL";
           "restrict anonymous" = 2;
           "map to guest" = "bad user"; # needed to make public work
