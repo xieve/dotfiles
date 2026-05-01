@@ -14,6 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    authentik-nix.url = "github:nix-community/authentik-nix";
     automatic-ripping-machine.url = "github:xieve/automatic-ripping-machine/dev?dir=nixos";
     forge-src = {
       # https://github.com/forge-ext/forge/pull/516
