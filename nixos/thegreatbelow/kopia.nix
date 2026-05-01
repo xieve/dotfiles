@@ -1,7 +1,10 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   inherit (lib) basename;
   socket = "/run/kopia/kopia.sock";
+  hostname = "kopia.xieve.net";
+  acmeDir = config.security.acme.certs.${hostname}.directory;
+  cfg = config.services.kopia;
 in
 {
   services.kopia = {
@@ -12,6 +15,8 @@ in
         address = "unix:${socket}";
         server-username = "xieve";
         htpasswd-file = "%d/kopia.htpasswd";
+        tls-cert-file = "${acmeDir}/fullchain.pem";
+        tls-key-file = "${acmeDir}/key.pem";
       };
     };
     #directories = [ "/home/xieve" ];
@@ -31,8 +36,9 @@ in
         server unix://${socket};
       }
     '';
-    virtualHosts."kopia.xieve.net" = {
+    virtualHosts.${hostname} = {
       localOnly = true;
+      useWildcardSSL = false;
       extraConfig = ''
         # Allow unlimited upload size
         client_max_body_size 0;
@@ -43,6 +49,16 @@ in
       '';
     };
   };
+
+  systemd.tmpfiles.settings."50-kopia-cert" =
+    lib.genAttrs
+      [
+        cfg.server.args.tls-cert-file
+        cfg.server.args.tls-key-file
+      ]
+      (lib.const {
+        "A+".argument = "u:kopia:r-X";
+      });
 
   xieve.acls.kopia-server =
     let

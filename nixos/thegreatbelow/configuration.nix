@@ -147,6 +147,10 @@ in
       members = [ "xieve" ];
     };
 
+    users.groups.kopia = {
+      members = [ "xieve" ];
+    };
+
     # podman setup
     virtualisation = {
       podman = {

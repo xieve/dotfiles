@@ -24,7 +24,6 @@ let
   systemdEscape = s: replaceStrings [ "/" ] [ "-" ] (escapeC [ "\\" "-" ] s);
   defaultServerArgs = {
     address = "127.0.0.1:51515";
-    tls-generate-cert = true;
     tls-cert-file = "./kopia.cert";
     tls-key-file = "./kopia.key";
   };
@@ -54,6 +53,9 @@ in
                       Arguments to be passed to the `kopia server start` command.
                       The defaults are merged.
                     '';
+                    example = {
+                      tls-generate-cert = true;
+                    };
                   };
                 };
               };
