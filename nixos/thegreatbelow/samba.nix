@@ -1,5 +1,8 @@
 { lib, config, ... }:
 
+let
+  inherit (config.thegreatbelow) paths;
+in
 {
   # allow multicast for wsdd
   #system.activationScripts = { samba-wsdd.text = "${pkgs.ipset}/bin/ipset create samba-wsdd hash:ip,port timeout 3 -exist"; };
@@ -46,21 +49,19 @@
           "directory mask" = "0775";
         };
         public = {
-          path = "/mnt/frail/srv/public";
+          path = "${paths.srv}/public";
           public = "yes";
           #"guest ok" = "yes";
         };
         hidden = {
-          path = "/mnt/frail/srv/hidden";
+          path = "${paths.srv}/hidden";
           "valid users" = [ "xieve" ];
         };
         kopia = {
           path = "/mnt/frail/kopia";
           "valid users" = [ "xieve" ];
         };
-        movies.path = "/mnt/frail/srv/movies";
-        shows.path = "/mnt/frail/srv/shows";
-        rips.path = "/mnt/frail/srv/rips";
+        media.path = paths.media;
       };
     };
     samba-wsdd = {

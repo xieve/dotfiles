@@ -7,7 +7,7 @@
 }:
 
 let
-  baseFolder = "/mnt/frail/srv/rips";
+  baseFolder = config.thegreatbelow.paths.media;
   configFolder = "/etc/arm";
   uid = 950;
   gid = config.users.groups.media.gid;
@@ -29,7 +29,7 @@ in
       RAW_PATH = "${baseFolder}/raw/";
       TRANSCODE_PATH = "${baseFolder}/transcoded/";
       # Media will be put into movies/ and shows/ subdirectories
-      COMPLETED_PATH = "${baseFolder}/completed/";
+      COMPLETED_PATH = baseFolder;
       # TODO: remove when config is final
       LOGLEVEL = "DEBUG";
       DELRAWFILES = false;
@@ -51,10 +51,6 @@ in
 
   systemd.services = {
     "arm@" = {
-      serviceConfig.ReadWritePaths = [
-        "/mnt/frail/srv/movies"
-        "/mnt/frail/srv/shows"
-      ];
       environment = {
         ARM_MAKEMKV_PERMA_KEY_FILE = "%d/MAKEMKV_PERMA_KEY";
       };
@@ -86,7 +82,5 @@ in
 
   systemd.tmpfiles.settings."50-arm-handbrake-presets" = {
     "${configFolder}/handbrake"."L+".argument = toString ./handbrake;
-    "${baseFolder}/completed/movies"."L+".argument = "/mnt/frail/srv/movies/";
-    "${baseFolder}/completed/shows"."L+".argument = "/mnt/frail/srv/shows/";
   };
 }

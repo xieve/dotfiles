@@ -41,6 +41,7 @@ in
           inherit default;
           type = types.str;
         };
+      srv = "/mnt/frail/srv";
     in
     {
       ipAddress = {
@@ -56,6 +57,10 @@ in
         };
       };
       exposedInterface = strOption "enp4s0f0";
+      paths = {
+        inherit srv;
+        media = strOption "${srv}/media";
+      };
     };
 
   config = {
@@ -81,6 +86,11 @@ in
     boot.supportedFilesystems = [ "zfs" ];
     networking.hostId = "df6e6c66"; # head -c 8 /etc/machine-id
     services.zfs.autoScrub.enable = true;
+
+    # Directory setup
+    systemd.tmpfiles.settings."10-srv" = {
+      "/srv".L.argument = srv;
+    };
 
     # Network
     networking = {
