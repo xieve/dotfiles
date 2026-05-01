@@ -108,6 +108,7 @@ in
         "'"
         ''\''
       ];
+      stringify = s: "'${escapeNginx s}'";
       acmeNames = attrNames (
         filterAttrs (name: { useWildcardSSL, ... }: !useWildcardSSL) cfg.virtualHosts
       );
@@ -202,7 +203,7 @@ in
               }' always;"
             ) (cfg.defaultHeaders // headers);
             serverName = ''
-              server_name ${name} ${concatStringsSep " " serverAliases};
+              server_name ${concatStringsSep " " (map stringify ([ name ] ++ serverAliases))};
             '';
             listen = (
               {
