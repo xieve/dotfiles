@@ -28,9 +28,9 @@ in
     ./authelia.nix
     ./karakeep.nix
     ./kopia.nix
-    ./netdata.nix
     ./pocket-id.nix
     ./vpn.nix
+    ./monitoring.nix
   ];
 
   options.thegreatbelow =
