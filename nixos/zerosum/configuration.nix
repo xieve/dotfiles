@@ -13,7 +13,10 @@ in
     ../common.nix
   ];
 
-  xieve.hardware.swapDevice = "/swap/swapfile";
+  xieve.hardware = {
+    swapDevice = "/swap/swapfile";
+    enableIntelVideo = true;
+  };
 
   networking = {
     hostName = "zerosum";
@@ -56,10 +59,6 @@ in
     "surface_hid"
     "pinctrl_tigerlake"
   ];
-
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  }; # Force intel-media-driver
 
   # Touchscreen calibration values measured by iptsd-calibrate
   services.iptsd.config = {

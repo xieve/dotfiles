@@ -71,7 +71,10 @@ in
       "console=ttyS0,115200n8"
     ];
 
-    xieve.hardware.swapDevice = "/dev/disk/by-partuuid/936d5326-778d-4427-bd23-031d26d302d5";
+    xieve.hardware = {
+      swapDevice = "/dev/disk/by-partuuid/936d5326-778d-4427-bd23-031d26d302d5";
+      enableIntelVideo = true;
+    };
 
     # Graphics drivers for HW accelerated transcoding
     hardware.graphics.enable = true;
