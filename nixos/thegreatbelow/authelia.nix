@@ -86,7 +86,7 @@ in
           "fd00::/32"
         ];
 
-        access_control.rules = [
+        access_control.rules = lib.mkAfter [
           {
             domain = "jellyfin.xieve.net";
             networks = [

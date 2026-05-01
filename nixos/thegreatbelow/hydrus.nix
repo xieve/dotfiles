@@ -6,6 +6,9 @@
   ...
 }:
 
+let
+  hydruiPort = "43258";
+in
 {
   imports = [
     hydrus.nixosModules.default
@@ -38,9 +41,31 @@
     # serverMode = true;
     # hydrusUrl = "http://localhost:45869";
     # hydrusApiKeyFile = "/run/credentials/hydrui/hydrusApiKey";
-    port = 43258;
     openFirewall = true;
   };
+
+  xieve.nginx.virtualHosts = {
+    "hydrusapi.xieve.net" = {
+      proxyPass = "http://localhost:45869";
+      localOnly = true;
+    };
+    "hydrui.xieve.net" = {
+      proxyPass = "http://localhost:${hydruiPort}";
+      auth = true;
+    };
+  };
+
+  services.authelia.instances.main.settings.access_control.rules = [
+    {
+      domain = "hydrui.xieve.net";
+      policy = "one_factor";
+      subject = "user:xieve";
+    }
+    {
+      domain = "hydrui.xieve.net";
+      policy = "deny";
+    }
+  ];
 
   systemd.services.hydrui-server.serviceConfig =
     let
@@ -55,7 +80,7 @@
           nSgG2zA==
       '';
       ExecStart = lib.mkForce ''
-        ${lib.getExe' cfg.package "hydrui-server"} -nogui=true -server-mode=true -acme=false -listen=:43258 -hydrus-url=https://hydrusapi.xieve.net -hydrus-api-key-file=$CREDENTIALS_DIRECTORY/hydrusApiKey -allow-bug-report=true
+        ${lib.getExe' cfg.package "hydrui-server"} -nogui=true -server-mode=true -acme=false -listen=:${hydruiPort} -hydrus-url=https://hydrusapi.xieve.net -hydrus-api-key-file=$CREDENTIALS_DIRECTORY/hydrusApiKey -allow-bug-report=true -no-auth=true
       '';
     };
 
