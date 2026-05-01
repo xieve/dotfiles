@@ -251,15 +251,15 @@ in
 
               ${optionalString (proxyPass != null) ''
                 location / {
+                  proxy_http_version 1.1;
+                  include ${./nginx/proxy.conf};
                   ${optionalString auth ''
-                    include ${./nginx/proxy.conf};
                     include ${./nginx/authelia-authrequest.conf};
                   ''}
                   ${optionalString proxyWebsockets ''
                     proxy_set_header Upgrade $http_upgrade;
                     proxy_set_header Connection $connection_upgrade;
                   ''}
-                  proxy_http_version 1.1;
                   proxy_pass ${proxyPass};
                 }
               ''}
