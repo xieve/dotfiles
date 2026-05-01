@@ -279,7 +279,7 @@ in
 
               ssl_certificate ${acmeDir}/fullchain.pem;
               ssl_certificate_key ${acmeDir}/key.pem;
-              ssl_trusted_certificate ${acmeDir}/fullchain.pem;
+              ssl_trusted_certificate ${acmeDir}/chain.pem;
 
               ${extraConfig}
               ${cfg.commonServerConfig}
