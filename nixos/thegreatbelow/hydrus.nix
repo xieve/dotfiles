@@ -3,6 +3,7 @@
   hydrus,
   hydrui,
   lib,
+  pkgs,
   ...
 }:
 
@@ -29,6 +30,7 @@ in
     ReadWritePaths = [
       "/mnt/frail/hydrus"
       "/mnt/frail/srv/hidden"
+      "/dev/tty"
     ];
     Environment = [
       "QT_AUTO_SCREEN_SCALE_FACTOR=0"
@@ -87,5 +89,20 @@ in
   users.users.hydrus = {
     home = "/home/hydrus";
     shell = "/run/current-system/sw/bin/zsh";
+    # For video decoding
+    extraGroups = [ "video" ];
   };
+
+  # Enable sound with pipewire.
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    # alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  services.openssh.forwardX11 = true;
+
+  environment.systemPackages = with pkgs; [ xauth ];
 }
