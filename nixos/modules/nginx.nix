@@ -164,8 +164,8 @@ in
             ~*(netants|takeout|wwwoffle|grabnet|netspider|vampire|netzip|octopus|offline|pagegrabber) 1;
             ~*(foto|pavuk|pcbrowser|realdownload|reget|sitesnagger|smartdownload|webspider|teleport) 1;
             ~*(voideye|collector|webauto|webcopier|webfetch|webgo|webleacher|webreaper|websauger) 1;
-            ~*(extractor|quester|webstripper|webzip|wget|widow|zeus|htmlparser|libwww|python|perl) 1;
-            ~*(urllib|scan|curl|email|pycurl|pyth|pyq|webcollector|webcopy) 1;
+            ~*(extractor|quester|webstripper|webzip|wget|widow|zeus|htmlparser|libwww|perl) 1;
+            ~*(urllib|scan|curl|email|pycurl|pyq|webcollector|webcopy) 1;
           }
 
           map $server_addr $dest_local {
