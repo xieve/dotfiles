@@ -51,6 +51,7 @@ in
                 "systemd"
                 "processes"
               ];
+              nginx = { };
             }
       );
   };
