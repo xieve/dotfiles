@@ -33,6 +33,10 @@ in
           prefetch = true;
           edns-buffer-size = 1232;
 
+          # https://github.com/NLnetLabs/unbound/issues/1444
+          access-control-view = [
+            "127.0.0.0/8 local"
+          ];
           interface-view = [
             "lo local"
             "eno1 local"
