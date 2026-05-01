@@ -83,7 +83,8 @@ in
 
         definitions.network.internal = [
           "192.168.0.0/24"
-          "fd00::/32"
+          "100.64.0.0/10"
+          "fd00::/8"
         ];
 
         access_control.rules = lib.mkAfter [
