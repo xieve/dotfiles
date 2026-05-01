@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   grafana = config.services.grafana.settings.server;
   inherit (config.services.prometheus) exporters;
@@ -19,32 +19,43 @@ in
       let
         listenAddress = "127.0.0.1";
       in
-      {
-        enable = true;
-        port = 9001;
-        exporters = {
-          node = {
-            inherit listenAddress;
-            enable = true;
-            enabledCollectors = [
-              "systemd"
-              "processes"
-            ];
-            port = 46706;
-          };
-        };
-        scrapeConfigs = [
+      lib.mkMerge (
+        [
           {
-            job_name = "node";
-            static_configs = [
-              {
-                targets = [ "${listenAddress}:${toString exporters.node.port}" ];
-              }
-            ];
+            enable = true;
+            port = 9001;
+            inherit listenAddress;
           }
-        ];
-      };
+        ]
+        ++
+          lib.mapAttrsToList
+            (name: config: {
+              exporters.${name} = {
+                enable = true;
+                inherit listenAddress;
+              }
+              // config;
+              scrapeConfigs = [
+                {
+                  job_name = name;
+                  static_configs = [
+                    {
+                      targets = [ "${listenAddress}:${toString exporters.${name}.port}" ];
+                    }
+                  ];
+                }
+              ];
+            })
+            {
+              node.enabledCollectors = [
+                "systemd"
+                "processes"
+              ];
+            }
+      );
   };
+
+  services.nginx.statusPage = true;
 
   xieve.nginx.virtualHosts = {
     ${grafana.domain} = {
