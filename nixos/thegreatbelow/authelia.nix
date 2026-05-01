@@ -103,6 +103,11 @@ in
         server = {
           address = "unix://${cfg.socket}?umask=0077";
           endpoints.authz.auth-request.implementation = "AuthRequest";
+          buffers = {
+            # needed by hydrui
+            read = 8192;
+            write = 8192;
+          };
         };
       };
     };
