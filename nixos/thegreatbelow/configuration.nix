@@ -76,6 +76,10 @@ in
       enableIntelVideo = true;
     };
 
+    boot.kernel.sysfs = {
+      devices.system.cpu."cpu[0-9]*".cpufreq.energy_performance_preference = "balance_power";
+    };
+
     # Graphics drivers for HW accelerated transcoding
     hardware.graphics.enable = true;
     services.xserver.videoDrivers = [ "mga" ];
