@@ -8,7 +8,7 @@ in
   security.acme = {
     acceptTerms = true;
     defaults.email = "acme@xieve.net";
-    certs."xieve.net" = {
+    certs."wildcard.xieve.net" = {
       domain = "*.xieve.net";
       dnsProvider = "cloudflare";
       dnsResolver = "arvind.ns.cloudflare.com";
@@ -16,7 +16,7 @@ in
     };
   };
 
-  systemd.services."acme-order-renew-xieve.net" = {
+  systemd.services."acme-order-renew-wildcard.xieve.net" = {
     environment = {
       CF_DNS_API_TOKEN_FILE = "%d/cloudflareApiToken.txt";
     };

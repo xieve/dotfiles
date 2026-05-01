@@ -88,9 +88,16 @@ in
     commonServerConfig = ''
       access_log /var/log/nginx/access.log verbose if=$log;
     '';
-    wildcardSSLDomain = "xieve.net";
+    wildcardSSLDomain = "wildcard.xieve.net";
     autheliaURL = "http://unix:${config.thegreatbelow.authelia.socket}:";
     virtualHosts = {
+      "" = {
+        # Fallback (drop connection)
+        extraConfig = ''
+          listen 443 default_server;
+          return 444;
+        '';
+      };
       "lldap.xieve.net" = {
         proxyPass = "http://[::1]:${toString config.services.lldap.settings.http_port}";
         localOnly = true;
