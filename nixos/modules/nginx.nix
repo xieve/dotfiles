@@ -136,6 +136,17 @@ in
         webroot = "/var/lib/acme/acme-challenge/";
       });
 
+      systemd.services.nginx-config-reload =
+        let
+          acmeServices = map (cert: "acme-${cert}.service") acmeNames;
+          acmeOrderRenewServices = map (cert: "acme-order-renew-${cert}.service") acmeNames;
+        in
+        {
+          wantedBy = acmeServices;
+          after = acmeServices;
+          before = acmeOrderRenewServices;
+        };
+
       services.nginx = mkIf cfg.enable {
         inherit (cfg) enable;
 
