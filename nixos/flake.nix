@@ -6,8 +6,8 @@
     nixos-hardware-warmplace.url = "github:nixos/nixos-hardware/ca30f8501ab452ca687a7fdcb2d43e1fb1732317";
     nixos-hardware-zerosum.url = "github:nixos/nixos-hardware/7dd4ad06e9b42c2de422a082f0b7d1dbe8aff1d3";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";

@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  nixpkgs-stable,
   ...
 }:
 
@@ -112,12 +111,9 @@ in
       wezterm
       wineWow64Packages.stagingFull
       xournalpp
-    ]
-    ++ (with nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [
-      # https://github.com/NixOS/nixpkgs/issues/490049
       yabridge
       yabridgectl
-    ]);
+    ];
 
   services.udev.packages = with pkgs; [
     # Dolphin emu udev rules (allow direct bluetooth access)

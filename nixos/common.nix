@@ -4,7 +4,7 @@
   lib,
   pkgs,
   nix-index-database,
-  nixpkgs-stable,
+  nixpkgs-unstable,
   ...
 }:
 
@@ -16,7 +16,7 @@ let
     mkDefault
     ;
   secrets = lib.importTOML ./secrets.toml;
-  stablePkgs = nixpkgs-stable.legacyPackages.${pkgs.stdenv.system};
+  unstablePkgs = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.system};
 in
 {
   imports = [
@@ -26,7 +26,7 @@ in
 
   # Provide shortcut to own packages to other modules
   _module.args = {
-    inherit stablePkgs;
+    inherit unstablePkgs;
     selfPkgs = self.packages.${pkgs.system};
   };
 
