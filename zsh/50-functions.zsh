@@ -9,6 +9,9 @@ alias_or_name() { alias_value $@ || echo $@ }
 cd() { pushd $@ > /dev/null }
 nix-tree() { echo "$(nix build --print-out-paths --no-link $@)" | xargs tree }
 osnip() { rg "$@" ~o/scripts/latex-snippets/ }
+qr() {
+  qrencode -o - -s 12 $@ | wezterm imgcat
+}
 
 ansi_colors() {
   # source: https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
