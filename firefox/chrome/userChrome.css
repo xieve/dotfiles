@@ -9,6 +9,8 @@
 	--gray-5: oklch(0.33 0.008 273);
 	--gray-6: oklch(0.28 0.006 273);
 
+	--transparent: oklch(from var(--dark) l c h / 0);
+
 	--lwt-accent-color: oklch(from var(--dark) l c h / 0.8) !important;
 	--lwt-text-color: var(--gray-1) !important;
 	--arrowpanel-background: var(--gray-5) !important;
@@ -30,13 +32,11 @@
 	/* &:where(-moz-window-inactive) { */
 	/*--toolbar-bgcolor: -moz-headerbar-inactive !important;*/
 	/* } */
-	/* align icon in navbar at top left */
-	--toolbar-start-end-padding: 5px !important;
 	/* slightly smaller collapsed tab sidebar */
 	/* --tab-collapsed-width: 48px !important; */
-
-	--toolbox-bgcolor: var(--lwt-accent-color) !important;
-	--toolbox-bgcolor-inactive: var(--lwt-accent-color-inactive, var(--lwt-accent-color)) !important;
+	--sidebar-background-color: transparent !important;
+	--toolbox-background-color: var(--lwt-accent-color) !important;
+	--toolbox-background-color-inactive: var(--lwt-accent-color-inactive, var(--lwt-accent-color)) !important;
 }
 
 :root {
@@ -51,8 +51,9 @@
 :root:has(
 		[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden="true"])
 	) {
-	#sidebar-main {
+	sidebar-main, #sidebar-launcher-splitter {
 		width: 0 !important;
+		min-width: 0 !important;
 	}
 
 	#sidebar {
@@ -76,7 +77,7 @@
 
 /* Prettier, smaller sidebar on linux */
 splitter.sidebar-splitter {
-	width: 2px !important;
+	width: 6px !important;
 	border: none !important;
 	background-color: var(--sidebar-background-color) !important;
 }
@@ -100,8 +101,9 @@ splitter.sidebar-splitter {
 @-moz-document url-prefix() {
 	browser,
 	#webextpanels-window,
-	tabpanels {
-		background-color: transparent !important;
+	tabpanels,
+	.browserContainer {
+		background-color: var(--transparent) !important;
 	}
 }
 
@@ -127,5 +129,14 @@ splitter.sidebar-splitter {
 		margin-block-end: var(--space-xxsmall) !important;
 		min-height: 4px !important;
 		background-color: transparent !important;
+	}
+
+	/* fix alignment of first element in header toolbar */
+	#nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child {
+		padding-inline-start: 0.75rem !important;
+		margin-inline-start: 0 !important;
+		.toolbarbutton-1 {
+			padding: 0 !important;
+		}
 	}
 }

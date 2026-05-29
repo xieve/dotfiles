@@ -22,7 +22,11 @@
 	.outer-wrapper.only-search {
 		display: flex !important;
 		padding: var(--space-xxlarge) !important;
-		padding-block-end: calc(var(--space-xxlarge) * 4) !important; 
+		padding-block-end: calc(var(--space-xxlarge) * 4) !important;
+	}
+
+	.logo-and-wordmark {
+		align-items: center !important;
 	}
 
 	.logo-and-wordmark .wordmark {
@@ -54,6 +58,7 @@
 		--tabs-pinned-height: 32px !important;
 		--tabs-pinned-width: 32px !important;
 		--toolbar-bg: transparent !important;
+		--tabs-margin: 8px;
 
 		&:where(-moz-window-inactive) {
 			--frame-bg: -moz-headerbar-inactive !important;
@@ -61,10 +66,16 @@
 	}
 
 	.left-vertical-box {
-		padding: 0 7px 7px !important;
+		padding: 0 0.5rem 0.5rem 0.75rem !important;
 	}
 
 	:root {
 		background-color: transparent !important;
+	}
+
+	.Tab:not([data-pin="true"]) {
+		margin: 0 !important;
+		margin-left: var(--tabs-margin) !important;
+		width: calc(100% - var(--tabs-margin)) !important;
 	}
 }
