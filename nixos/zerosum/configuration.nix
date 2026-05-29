@@ -13,6 +13,8 @@ in
     ../common.nix
   ];
 
+  xieve.hardware.swapDevice = "/swap/swapfile";
+
   networking = {
     hostName = "zerosum";
   };

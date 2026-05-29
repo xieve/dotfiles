@@ -41,6 +41,8 @@ in
     NIXPKGS_ALLOW_UNFREE = "1";
   };
 
+  xieve.hardware.enable = !((config ? wsl) && config.wsl.enable);
+
   # enable appimage support
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
@@ -55,24 +57,6 @@ in
   #   nix-store --optimise
   #   nix-collect-garbage --delete-older-than 30d
   # '';
-
-  # Bootloader
-  boot.loader = mkIf (!((config ? wsl) && config.wsl.enable)) {
-    systemd-boot.enable = mkDefault true;
-    efi.canTouchEfiVariables = mkDefault true;
-  };
-
-  # Compress RAM when running out
-  zramSwap = {
-    enable = mkDefault true;
-    memoryPercent = mkDefault 95;
-  };
-  # Swap less aggressively
-  boot.kernel.sysctl."vm.swappiness" = mkDefault 40;
-  # Recommended by https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
-  boot.kernel.sysctl."vm.watermark_boost_factor" = 0;
-  boot.kernel.sysctl."vm.watermark_scale_factor" = 125;
-  boot.kernel.sysctl."vm.page-cluster" = 0;
 
   # Recommended by docs, default enabled only for backwards compat
   boot.zfs.forceImportRoot = false;

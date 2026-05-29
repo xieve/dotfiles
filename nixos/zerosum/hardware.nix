@@ -52,6 +52,15 @@
     ]; 
   };
 
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/0c9f6801-a049-4e37-bda3-fb6bf5b15025";
+    fsType = "btrfs";
+    options = [
+      "subvol=nix"
+      "noatime"
+    ];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/DEE8-FB7D";
     fsType = "vfat";

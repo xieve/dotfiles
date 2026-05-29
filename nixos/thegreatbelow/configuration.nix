@@ -66,13 +66,7 @@ in
       "console=ttyS0,115200n8"
     ];
 
-    # Encrypt swap on boot with new randomly generated key
-    swapDevices = [
-      {
-        device = "/dev/disk/by-partuuid/936d5326-778d-4427-bd23-031d26d302d5";
-        randomEncryption.enable = true;
-      }
-    ];
+    xieve.hardware.swapDevice = "/dev/disk/by-partuuid/936d5326-778d-4427-bd23-031d26d302d5";
 
     # Graphics drivers for HW accelerated transcoding
     hardware.graphics.enable = true;
