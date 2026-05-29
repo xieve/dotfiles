@@ -116,9 +116,9 @@ in
       "blur-my-shell@aunetx"
       "burn-my-windows@schneegans.github.com"
       "drive-menu@gnome-shell-extensions.gcampax.github.com"
+      "forge@jmmaranan.com"
       "gsconnect@andyholmes.github.io"
       "just-perfection-desktop@just-perfection"
-      "pop-shell@system76.com"
       "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
     ];
   };

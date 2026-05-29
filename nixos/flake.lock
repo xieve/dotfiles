@@ -82,6 +82,23 @@
         "type": "github"
       }
     },
+    "forge-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775787465,
+        "narHash": "sha256-73sseIlgDywcRaKg3eCc8KqAtoFSjmUsiidyO5gC9hg=",
+        "owner": "forge-ext",
+        "repo": "forge",
+        "rev": "7072133393af19e6b8ac729faf846917d77c321a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "forge-ext",
+        "repo": "forge",
+        "rev": "7072133393af19e6b8ac729faf846917d77c321a",
+        "type": "github"
+      }
+    },
     "home-assistant-card-scheduler": {
       "flake": false,
       "locked": {
@@ -426,6 +443,7 @@
       "inputs": {
         "automatic-ripping-machine": "automatic-ripping-machine",
         "fasttext-lid": "fasttext-lid",
+        "forge-src": "forge-src",
         "home-assistant-card-scheduler": "home-assistant-card-scheduler",
         "home-assistant-component-scheduler": "home-assistant-component-scheduler",
         "home-assistant-lovelace-module-material-you": "home-assistant-lovelace-module-material-you",

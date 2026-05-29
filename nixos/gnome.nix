@@ -4,6 +4,7 @@
   selfPkgs,
   lib,
   fasttext-lid,
+  forge-src,
   ...
 }:
 
@@ -28,12 +29,12 @@
       xclip # clipboard support for term apps (neovim, ssh) (works on gnome, while wl-clipboard does not)
     ])
     ++ (with pkgs.gnomeExtensions; [
+      (forge.overrideAttrs { src = forge-src; })
       appindicator
       blur-my-shell
       burn-my-windows
       gjs-osk
       just-perfection
-      pop-shell
       removable-drive-menu
       steal-my-focus-window
     ])
