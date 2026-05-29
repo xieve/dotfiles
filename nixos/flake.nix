@@ -82,7 +82,7 @@
           modules = [
             ./overlays.nix
             ./gnome.nix
-            inputs.nixos-hardware-zerosum.nixosModules.microsoft-surface-pro-intel
+            inputs.nixos-hardware-zerosum.nixosModules.microsoft-surface-pro-9
             ./zerosum/configuration.nix
           ];
         };
