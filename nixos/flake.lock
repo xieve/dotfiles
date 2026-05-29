@@ -85,17 +85,17 @@
     "forge-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1775787465,
-        "narHash": "sha256-73sseIlgDywcRaKg3eCc8KqAtoFSjmUsiidyO5gC9hg=",
-        "owner": "forge-ext",
+        "lastModified": 1779727551,
+        "narHash": "sha256-b4rbxx1KoedgfvSlJmCblm8hqKwgAZR6rX/a+w8vZgc=",
+        "owner": "enklht",
         "repo": "forge",
-        "rev": "7072133393af19e6b8ac729faf846917d77c321a",
+        "rev": "2545063617f51ab15a8caaac8526039e471e996f",
         "type": "github"
       },
       "original": {
-        "owner": "forge-ext",
+        "owner": "enklht",
+        "ref": "fix-workspace-remove",
         "repo": "forge",
-        "rev": "7072133393af19e6b8ac729faf846917d77c321a",
         "type": "github"
       }
     },
