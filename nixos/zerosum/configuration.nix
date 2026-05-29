@@ -105,8 +105,11 @@ in
       dolphin-emu
       flavours
       jetbrains-toolbox
+      krita
+      libreoffice
       moonlight-qt
       prismlauncher
+      qrencode
       rnote
       signal-desktop
       syncthingtray

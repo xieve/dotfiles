@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     (vscode-with-extensions.override {
-      vscode = vscode.override {
+      vscode = vscode.fhs.overrideAttrs {
         commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
       };
       vscodeExtensions =
@@ -26,6 +26,8 @@
           ms-python.python
           ms-python.vscode-pylance
           ms-toolsai.jupyter
+          ms-vscode.cmake-tools
+          ms-vscode.cpptools
           ms-vscode.hexeditor
           pkief.material-icon-theme
           redhat.vscode-yaml
@@ -41,6 +43,7 @@
           dozerg.tsimportsorter
           hbohlin.vhdl-ls
           rutger-de-jong.haskell-interactive
+          arm.armls
         ]);
     })
     nixd # Dependency for nix-ide

@@ -30,6 +30,8 @@ text/html=firefox.desktop;
 application/xhtml+xml=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
 application/vnd.efi.iso=cdemu-client.desktop;
+video/quicktime=mpv.desktop;
+video/mp4=mpv.desktop;
 
 [Default Applications]
 application/pdf=firefox.desktop
@@ -67,3 +69,6 @@ text/html=firefox.desktop
 application/xhtml+xml=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 application/vnd.efi.iso=cdemu-client.desktop
+x-scheme-handler/discord-1112049780777037855=discord-1112049780777037855.desktop
+video/quicktime=mpv.desktop
+video/mp4=mpv.desktop

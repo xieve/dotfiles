@@ -18,14 +18,16 @@
       adw-gtk3
       adwaita-icon-theme-legacy
       chromium
-      firefox
       evolution
+      firefox
       gnome-tweaks
       keepassxc
       mpv
+      mutter # gdctl
       obsidian
-      # piper
+      pandoc
       solaar
+      texliveMedium
       xclip # clipboard support for term apps (neovim, ssh) (works on gnome, while wl-clipboard does not)
     ])
     ++ (with pkgs.gnomeExtensions; [

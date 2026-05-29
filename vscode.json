@@ -96,7 +96,7 @@
 	"notebook.markup.fontSize": 15.4,
 	"notebook.markdown.lineHeight": 26,
 	"notebook.markup.fontFamily": "\"Inter\"",
-	"diffEditor.ignoreTrimWhitespace": false,
+	"diffEditor.ignoreTrimWhitespace": true,
 	"haskell.manageHLS": "GHCup",
 	"terminal.integrated.fontLigatures.enabled": true,
 	"nix.enableLanguageServer": true,
@@ -121,5 +121,12 @@
 	},
 	"python.analysis.typeCheckingMode": "standard",
 	"diffEditor.hideUnchangedRegions.enabled": true,
-	"editor.minimap.showSlider": "always"
+	"editor.minimap.showSlider": "always",
+	"notebook.cellToolbarLocation": {
+		"default": "right",
+		"jupyter-notebook": "right"
+	},
+	"editor.fontSize": 15,
+	"nix.serverSettings": {},
+	"diffEditor.maxComputationTime": 0
 }

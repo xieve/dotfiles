@@ -133,6 +133,7 @@ in
     git
     htop
     killall
+    lm_sensors
     lsscsi
     nixfmt
     smartmontools
