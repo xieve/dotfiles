@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  searxng-src,
   ...
 }:
 
@@ -44,6 +45,15 @@ in
       disable-logging = true;
       http = "[::1]:41318";
     };
+    # We need to call toPythonModule again since we're changing deps
+    package = pkgs.python3Packages.toPythonModule (
+      pkgs.searxng.overridePythonAttrs (
+        final: prev: {
+          src = searxng-src;
+          dependencies = prev.dependencies ++ [ pkgs.python3Packages.curl-cffi ];
+        }
+      )
+    );
     settings = {
       use_default_settings = true;
       categories_as_tabs = {
@@ -103,10 +113,6 @@ in
         }
         {
           name = "bing";
-          disabled = true;
-        }
-        {
-          name = "brave";
           disabled = true;
         }
         {
@@ -229,6 +235,14 @@ in
         }
         {
           name = "openverse";
+          disabled = true;
+        }
+        {
+          name = "lucide";
+          disabled = true;
+        }
+        {
+          name = "devicons";
           disabled = true;
         }
       ];

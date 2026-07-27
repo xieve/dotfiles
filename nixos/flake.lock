@@ -459,7 +459,25 @@
         "nixos-hardware-zerosum": "nixos-hardware-zerosum",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "searxng-src": "searxng-src"
+      }
+    },
+    "searxng-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788237925,
+        "narHash": "sha256-norMJOmjWehW4n/f0mI33md/4QZgwDUgPxI7OUcoQfY=",
+        "owner": "vojkovic",
+        "repo": "searxng",
+        "rev": "5bc96af5331134d253fdcc6bc4659d94cbce5d89",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vojkovic",
+        "ref": "cffi",
+        "repo": "searxng",
+        "type": "github"
       }
     },
     "systems": {

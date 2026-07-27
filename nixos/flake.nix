@@ -62,6 +62,10 @@
       url = "github:rospogrigio/localtuya";
       flake = false;
     };
+    searxng-src = {
+      url = "github:vojkovic/searxng/cffi";
+      flake = false;
+    };
   };
 
   outputs =
