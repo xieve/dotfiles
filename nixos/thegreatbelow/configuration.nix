@@ -11,27 +11,11 @@ let
 in
 {
   imports = [
-    ./hardware.nix
     ../common.nix
-    ./acme.nix
-    ./mosquitto.nix
-    ./home-assistant.nix
-    ./samba.nix
-    ./searxng.nix
-    ./automatic-ripping-machine.nix
-    ./nginx.nix
-    ./lldap.nix
-    ./ddclient.nix
-    ./unbound.nix
-    ./mollysocket.nix
-    ./hydrus.nix
-    ./authelia.nix
-    ./karakeep.nix
-    ./kopia.nix
-    ./pocket-id.nix
-    ./vpn.nix
-    ./monitoring.nix
-  ];
+  ]
+  ++ (lib.fileset.toList (
+    lib.fileset.fileFilter (file: file.hasExt "nix" && file.name != "configuration.nix") ./.
+  ));
 
   options.thegreatbelow =
     let
