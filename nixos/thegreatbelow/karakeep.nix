@@ -118,6 +118,7 @@ in
   xieve.nginx.virtualHosts."karakeep.xieve.net" = {
     localOnly = true;
     proxyPass = "http://localhost:${PORT}";
+    headers.X-Frame-Options = "sameorigin";
   };
 
   services.authelia.instances.main.settings.identity_providers.oidc = {
