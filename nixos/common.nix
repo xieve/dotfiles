@@ -41,7 +41,7 @@ in
     NIXPKGS_ALLOW_UNFREE = "1";
   };
 
-  xieve.hardware.enable = !((config ? wsl) && config.wsl.enable);
+  xieve.hardware.enable = !(config.wsl.enable or false);
 
   # enable appimage support
   programs.appimage.enable = true;
@@ -51,10 +51,6 @@ in
   programs.ccache.enable = true;
 
   nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
-
-  # TODO: remove once updated
-  # https://github.com/NixOS/nixpkgs/issues/504407
-  systemd.services."modprobe@".serviceConfig.ExecSearchPath = lib.makeBinPath [ pkgs.kmod ];
 
   # Optimise system nix store and collect garbage on every rebuild
   # system.userActivationScripts.optimise-storage = ''
