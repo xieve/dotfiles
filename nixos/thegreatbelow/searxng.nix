@@ -69,8 +69,8 @@ in
       server = {
         secret_key = "$SEARXNG_SECRET";
         limiter = true;
-        image_proxy = true;
         method = "GET";
+        public_instance = true;
       };
       search = {
         autocomplete = "duckduckgo";
