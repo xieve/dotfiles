@@ -4,7 +4,7 @@ let
 in
 {
   virtualisation.oci-containers.containers.yacy = {
-    image = "yacy/yacy_search_server";
+    image = "docker.io/yacy/yacy_search_server:latest-alpine";
     ports = [
       "35640:8090"
     ];
@@ -13,7 +13,12 @@ in
     ];
     extraOptions = [
       "--userns=auto"
+      ''--health-cmd=["wget", "--spider", "http://localhost:8090/Status.html"]''
+      "--health-start-period=3m"
+      "--health-on-failure=stop"
+      "--label=io.containers.autoupdate=registry"
     ];
+    podman.sdnotify = "healthy";
   };
 
   systemd.services.${serviceName}.serviceConfig.Restart = lib.mkForce "always";
