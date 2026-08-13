@@ -82,6 +82,22 @@
         "type": "github"
       }
     },
+    "flareproxy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736540425,
+        "narHash": "sha256-g4uHcaEi7p4GkWUNMXPHDpeBD0sUTidIfchKD8DxVGQ=",
+        "owner": "mimnix",
+        "repo": "FlareProxy",
+        "rev": "f926bff56b701ffe12f6193a082f9b39d5577c9a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mimnix",
+        "repo": "FlareProxy",
+        "type": "github"
+      }
+    },
     "forge-src": {
       "flake": false,
       "locked": {
@@ -443,6 +459,7 @@
       "inputs": {
         "automatic-ripping-machine": "automatic-ripping-machine",
         "fasttext-lid": "fasttext-lid",
+        "flareproxy": "flareproxy",
         "forge-src": "forge-src",
         "home-assistant-card-scheduler": "home-assistant-card-scheduler",
         "home-assistant-component-scheduler": "home-assistant-component-scheduler",
