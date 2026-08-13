@@ -10,7 +10,7 @@ let
   cfg = config.services.searx;
 
   settingsFile = pkgs.writeText "settings.yml" (
-    builtins.toJSON (builtins.removeAttrs cfg.settings [ "redis" ])
+    builtins.toJSON (removeAttrs cfg.settings [ "redis" ])
   );
 in
 {
@@ -85,6 +85,10 @@ in
       ui = {
         static_use_hash = true;
         query_in_title = true;
+      };
+      outgoing = {
+        max_redirects = 30;
+        enable_http2 = true;
       };
       engines = [
         {
@@ -246,7 +250,6 @@ in
           disabled = true;
         }
       ];
-      outgoing.max_redirects = 30;
     };
   };
 }
