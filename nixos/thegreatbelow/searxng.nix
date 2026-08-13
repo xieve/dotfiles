@@ -100,6 +100,11 @@ in
           weight = 0.7;
         }
         {
+          name = "wiby";
+          disabled = false;
+          weight = 0.6;
+        }
+        {
           name = "wolframalpha";
           disabled = false;
         }
