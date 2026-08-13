@@ -52,6 +52,7 @@ in
                 "processes"
               ];
               nginx = { };
+              zfs = { };
             }
       );
   };
