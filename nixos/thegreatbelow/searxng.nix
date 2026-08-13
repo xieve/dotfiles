@@ -12,6 +12,19 @@ let
   settingsFile = pkgs.writeText "settings.yml" (
     builtins.toJSON (removeAttrs cfg.settings [ "redis" ])
   );
+  secrets = {
+    SEARXNG_SECRET = ''
+      Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAAABnLul6+Hl+5IZ8W8AAAAARFCOa \
+      nk/jjnt7bvvHO/zHqKyNfhAyMDDV1WXk8zXEGy8oBx8h/64XfUotfOl/ObMnfWLZNCbIS \
+      N1NV190pDK3XcC6qs2FF7rINK14Ujk8+9+tC0BXQaCzFB2ACLRL9FvSNYB+esyzNpkCzF \
+      Fr9opeQcJsk2ouc2C
+    '';
+    EXA_API_KEY = ''
+      Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAAB2j3+cJWHnVwHXhd4AAAAAioNpu \
+      Y4km5OKrJRbi70uKAmRd7wuYc2FJHLkCANzkQ0r+pU38KghnWJb8m4NY4RK4kmOOrNB8S \
+      1Jcw1jNbvE0RnsFtGIbfNtu87+oL/AYGoFquRn
+    '';
+  };
 in
 {
   systemd.services.searx-init = {
@@ -21,20 +34,14 @@ in
       # write NixOS settings as JSON
       (
         umask 077
-        export SEARXNG_SECRET="$(cat "$CREDENTIALS_DIRECTORY"/searxngSecret)"
+        ${lib.concatMapAttrsStringSep "\n" (
+          name: _: ''export ${name}="$(cat "$CREDENTIALS_DIRECTORY"/${name})"''
+        ) secrets}
         ${pkgs.envsubst}/bin/envsubst < ${settingsFile} > settings.yml
       )
     '';
     serviceConfig = {
-      SetCredentialEncrypted = [
-        ''
-          searxngSecret: \
-            Whxqht+dQJax1aZeCGLxmiAAAAABAAAADAAAABAAAABKbu5BbhxOwTg/nyYAAAAAv62ns \
-            tOoLGkcW8Fm4nOoPGLYYlldfSjypyianVUd/6lGLmQCTLlaLjFUbQX19zmYEu4fmbKeYC \
-            npro5v5qXInPo5kkePHb/IbBrEeSf50KcvcCqwzUq/axZ8XXmKR5UpgHIQJPbUBTq/VWT \
-            zsMtA7XyGUGLMnQR1
-        ''
-      ];
+      SetCredentialEncrypted = lib.mapAttrsToList (name: value: "${name}:${value}") secrets;
     };
   };
 
@@ -103,6 +110,13 @@ in
           name = "wiby";
           disabled = false;
           weight = 0.6;
+        }
+        {
+          name = "exaapi";
+          api_key = "$EXA_API_KEY";
+          inactive = false;
+          disabled = true;
+          weight = 1.5;
         }
         {
           name = "wolframalpha";
