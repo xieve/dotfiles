@@ -156,9 +156,19 @@ in
       podman = {
         enable = true;
         autoPrune.enable = true;
-        defaultNetwork.settings.dns_enabled = true;
+        defaultNetwork.settings = {
+          dns_enabled = true;
+          ipv6_enabled = true;
+        };
       };
     };
+    # Required for --userns=auto
+    users.users.containers = {
+      isSystemUser = true;
+      autoSubUidGidRange = true;
+      group = "containers";
+    };
+    users.groups.containers = { };
 
     # misc services
     services = {
