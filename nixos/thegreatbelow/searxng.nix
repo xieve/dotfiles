@@ -137,6 +137,16 @@ in
         {
           name = "google";
           shortcut = "g";
+          disabled = false;
+          weight = 0.6;
+        }
+        {
+          name = "startpage";
+          weight = 0.6;
+        }
+        {
+          name = "google cse";
+          disabled = true;
         }
         {
           name = "wikipedia";
@@ -239,6 +249,14 @@ in
         {
           name = "tokyotoshokan";
           categories = "torrents";
+        }
+        {
+          name = "google images";
+          disabled = false;
+        }
+        {
+          name = "google cse images";
+          disabled = true;
         }
         {
           name = "wallhaven";
