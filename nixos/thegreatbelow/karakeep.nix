@@ -62,30 +62,36 @@ in
       SEMANTIC_SEARCH_ENABLED = "true";
       # OPENAI_BASE_URL = "http://192.168.0.29:8080/api";
     };
-    package = pkgs.karakeep.overrideAttrs (
-      final: prev: {
-        patches = prev.patches ++ [
-          (pkgs.writeText "karakeep-prompt.patch" ''
-            --- a/packages/shared/prompts.ts
-            +++ b/packages/shared/prompts.ts
-            @@ -60,13 +60,10 @@
-               return `
-             You are an expert whose responsibility is to help with automatic tagging for a read-it-later/bookmarking app.
-             Analyze the TEXT_CONTENT below and suggest relevant tags that describe its key themes, topics, and main ideas. The rules are:
-            -- Aim for a variety of tags, including broad categories, specific keywords, and potential sub-genres.
-             - The tags must be in ''${lang}.
-            -- If the tag is not generic enough, don't include it.
-             - Do NOT generate tags related to:
-                 - An error page (404, 403, blocked, not found, dns errors)
-                 - Boilerplate content (cookie consent, login walls, GDPR notices)
-            -- Aim for 3-5 tags.
-             - If there are no good tags, leave the array empty.
-             ''${curatedInstruction}
-             ''${potentialRelevantTagsInstruction}
-          '')
-        ];
-      }
-    );
+    package =
+      (pkgs.karakeep.override {
+        # TODO: remove
+        # https://nixpkgs-tracker.ocfox.me/?pr=554776
+        nodejs = pkgs.nodejs_22;
+      }).overrideAttrs
+        (
+          final: prev: {
+            patches = prev.patches ++ [
+              (pkgs.writeText "karakeep-prompt.patch" ''
+                --- a/packages/shared/prompts.ts
+                +++ b/packages/shared/prompts.ts
+                @@ -60,13 +60,10 @@
+                   return `
+                 You are an expert whose responsibility is to help with automatic tagging for a read-it-later/bookmarking app.
+                 Analyze the TEXT_CONTENT below and suggest relevant tags that describe its key themes, topics, and main ideas. The rules are:
+                -- Aim for a variety of tags, including broad categories, specific keywords, and potential sub-genres.
+                 - The tags must be in ''${lang}.
+                -- If the tag is not generic enough, don't include it.
+                 - Do NOT generate tags related to:
+                     - An error page (404, 403, blocked, not found, dns errors)
+                     - Boilerplate content (cookie consent, login walls, GDPR notices)
+                -- Aim for 3-5 tags.
+                 - If there are no good tags, leave the array empty.
+                 ''${curatedInstruction}
+                 ''${potentialRelevantTagsInstruction}
+              '')
+            ];
+          }
+        );
   };
 
   systemd.services = {
