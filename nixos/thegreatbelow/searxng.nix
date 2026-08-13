@@ -92,6 +92,14 @@ in
       };
       engines = [
         {
+          name = "yacy";
+          disabled = false;
+          base_url = [
+            "https://yacy.xieve.net"
+          ];
+          weight = 0.7;
+        }
+        {
           name = "wolframalpha";
           disabled = false;
         }
