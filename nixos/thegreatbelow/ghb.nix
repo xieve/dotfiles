@@ -18,6 +18,7 @@ in
       serviceConfig = {
         User = "ghb";
         RuntimeDirectory = "broadwayd-ghb";
+        RuntimeDirectoryPreserve = true;
       };
     };
     ghb =
@@ -38,9 +39,42 @@ in
         ];
         serviceConfig = {
           User = "ghb";
+          Restart = "always";
         };
       };
   };
+
+  systemd.tmpfiles.settings.ghb =
+    let
+      presetsFile =
+        pkgs.runCommandLocal "presets.json"
+          {
+            src = ./handbrake;
+          }
+          # Merges two JSONs
+          ''
+            cd "$src"
+            ${lib.getExe pkgs.jq} --slurp 'add + { PresetList: ( map(.PresetList) | add ) } | {
+                VersionMajor,
+                VersionMinor,
+                VersionMicro,
+                PresetList: [{
+                  Folder: true,
+                  PresetName: "Custom",
+                  Type: 1,
+                  FolderOpen: true,
+                  ChildrenArray: .PresetList
+                }]
+              }' 'MKV 1080p30 x265.json' 'MKV 720p30 x265.json' > $out
+          '';
+      bookmarksFile = pkgs.writeText "ghb-bookmarks" ''
+        file:///srv/media
+      '';
+    in
+    {
+      "${home}/.config/ghb/presets.json"."L+".argument = presetsFile.outPath;
+      "${home}/.config/gtk-3.0/bookmarks"."L+".argument = bookmarksFile.outPath;
+    };
 
   xieve.acls.broadwayd-ghb.${socket} = "u:nginx:rw";
 
