@@ -63,7 +63,7 @@
       flake = false;
     };
     searxng-src = {
-      url = "github:vojkovic/searxng/cffi";
+      url = "github:searxng/searxng";
       flake = false;
     };
   };
