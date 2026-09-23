@@ -15,12 +15,13 @@ in
   services.home-assistant = {
     enable = true;
     extraComponents = [
+      "webostv"
       "esphome"
       "fritz"
+      "local_calendar"
       "motionblinds_ble"
       "mqtt"
       "tasmota"
-      "local_calendar"
       "wled"
       "zha"
     ];
