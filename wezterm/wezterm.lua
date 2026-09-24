@@ -59,6 +59,8 @@ config.mouse_bindings = {
 	},
 }
 
+config.enable_kitty_keyboard = true
+
 
 -- Theming
 config.font = wezterm.font {
