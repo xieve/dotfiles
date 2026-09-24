@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "uni": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Uni",
+      "models": {
+        "minimax-m3": {
+          "name": "Minimax M3",
+          "limit": {
+            "context": 65536,
+            "input": 49152,
+            "output": 16384
+          }
+        }
+      }
+    }
+  },
+  "enabled_providers": ["uni"],
+  "permission": {
+    "*": "ask",
+    "read": "allow",
+    "grep": "allow",
+    "glob": "allow",
+    "lsp": "allow",
+    "skill": "allow",
+    "question": "allow",
+    "todowrite": "allow"
+  }
+}

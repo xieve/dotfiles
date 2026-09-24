@@ -27,6 +27,7 @@
     ~/.config/atuin/config.toml: atuin.toml
     ~/.config/jj/config.toml: jj.toml
     ~/.config/mimeapps.list:
+    ~/.config/opencode/opencode.jsonc:
 
 - shell:
   -

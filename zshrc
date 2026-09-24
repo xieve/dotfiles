@@ -26,6 +26,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(
 
 export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS --mouse --wheel-lines=5"
 export SYSTEMD_LESS="$LESS"
+export OPENCODE_CONFIG="$HOME/.config/opencode/overrides.jsonc"
 
 if type nvim > /dev/null; then
     export EDITOR=nvim
