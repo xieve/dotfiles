@@ -66,10 +66,6 @@
       url = "github:searxng/searxng";
       flake = false;
     };
-    flareproxy = {
-      url = "github:mimnix/FlareProxy";
-      flake = false;
-    };
   };
 
   outputs =
