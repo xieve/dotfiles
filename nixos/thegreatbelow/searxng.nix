@@ -96,6 +96,8 @@ in
       outgoing = {
         max_redirects = 30;
         enable_http2 = true;
+        proxies."all://" = [ "http://127.0.0.1:${config.services.trawl.proxyPort}" ];
+        verify = "/var/lib/trawl/ca.crt";
       };
       engines = [
         {

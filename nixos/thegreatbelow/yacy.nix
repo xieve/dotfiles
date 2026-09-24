@@ -10,6 +10,7 @@ in
     ];
     volumes = [
       "yacy_search_server_data:/opt/yacy_search_server/DATA"
+      "/var/lib/trawl/ca.crt:/etc/ssl/cert.pem"
     ];
     extraOptions = [
       "--userns=auto"
