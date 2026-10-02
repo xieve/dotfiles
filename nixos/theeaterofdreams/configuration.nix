@@ -17,6 +17,7 @@
     };
     defaultUser = "xieve";
     startMenuLaunchers = true;
+    interop.register = true;
   };
 
   # run unpatched dynamic binaries on nixos
