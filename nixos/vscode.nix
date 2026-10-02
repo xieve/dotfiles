@@ -1,6 +1,10 @@
-{ pkgs, lib, ... }:
+{ pkgs, nix-vscode-extensions, lib, ... }:
 
 {
+  nixpkgs.overlays = [
+    nix-vscode-extensions.overlays.default
+  ];
+
   environment.systemPackages = with pkgs; [
     (vscode-with-extensions.override {
       vscode = vscode.fhs.overrideAttrs {

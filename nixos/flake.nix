@@ -84,7 +84,6 @@
           system = "x86_64-linux";
           specialArgs = inputs; # Pass inputs to modules
           modules = [
-            ./overlays.nix
             ./gnome.nix
             inputs.nixos-hardware-zerosum.nixosModules.microsoft-surface-pro-9
             ./zerosum/configuration.nix
