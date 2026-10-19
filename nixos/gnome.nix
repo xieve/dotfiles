@@ -29,6 +29,7 @@
       solaar
       texliveMedium
       xclip # clipboard support for term apps (neovim, ssh) (works on gnome, while wl-clipboard does not)
+      zotero
     ])
     ++ (with pkgs.gnomeExtensions; [
       appindicator
