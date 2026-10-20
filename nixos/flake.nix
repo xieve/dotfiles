@@ -15,11 +15,6 @@
     };
 
     automatic-ripping-machine.url = "github:xieve/automatic-ripping-machine/dev?dir=nixos";
-    forge-src = {
-      # https://github.com/forge-ext/forge/pull/516
-      url = "github:enklht/forge/fix-workspace-remove";
-      flake = false;
-    };
     hydrus = {
       url = "github:hydrui/hydrus-nix";
       inputs.nixpkgs.follows = "nixpkgs";

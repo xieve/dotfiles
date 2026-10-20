@@ -2,9 +2,9 @@
   config,
   pkgs,
   selfPkgs,
+  unstablePkgs,
   lib,
   fasttext-lid,
-  forge-src,
   ...
 }:
 
@@ -39,7 +39,10 @@
       just-perfection
       removable-drive-menu
       steal-my-focus-window
-      tiling-shell
+    ])
+    # TODO: switch to stable once available
+    ++ (with unstablePkgs.gnomeExtensions; [
+      o-tiling
     ])
     ++ (with pkgs.kdePackages; [
       breeze

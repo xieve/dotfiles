@@ -116,9 +116,9 @@ in
       "blur-my-shell@aunetx"
       "burn-my-windows@schneegans.github.com"
       "drive-menu@gnome-shell-extensions.gcampax.github.com"
-      "forge@jmmaranan.com"
       "gsconnect@andyholmes.github.io"
       "just-perfection-desktop@just-perfection"
+      "o-tiling@oliwebd.github.com"
       "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
     ];
   };
@@ -153,5 +153,12 @@ in
     play-sound = false;
     round-key-corners = true;
     snap-spacing-px = mkInt32 8;
+  };
+  "org/gnome/shell/extensions/o-tiling" = {
+    gap-inner = mkInt32 3;
+    gap-outer = mkInt32 2;
+    workspace-animation-style = "slide";
+    hide-panel-icon = true;
+    quick-settings-toggle = true;
   };
 }
